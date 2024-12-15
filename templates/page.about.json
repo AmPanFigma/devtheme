@@ -84,11 +84,63 @@
         "heading": "Meet Amy & Pablo",
         "description": "Introduction to the story. Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
       }
+    },
+    "spacer2": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
+    "pawsome": {
+      "type": "pawsome",
+      "blocks": {
+        "item1": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify://shop_images/Group_57.svg",
+            "item_text": "Free Shipping Over €50"
+          }
+        },
+        "item2": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify://shop_images/Group_58.svg",
+            "item_text": "Top Rated Products"
+          }
+        },
+        "item3": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify://shop_images/Pet_Transport_Icon_53d0693a-0c27-4e5c-a2bc-c4ad955a7528.svg",
+            "item_text": "14-Day Return Window"
+          }
+        },
+        "item4": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify://shop_images/Group_59.svg",
+            "item_text": "Crafted with love"
+          }
+        }
+      },
+      "block_order": [
+        "item1",
+        "item2",
+        "item3",
+        "item4"
+      ],
+      "settings": {
+        "background_image": "shopify://shop_images/Frame_427321768.jpg",
+        "pawsome_image": "shopify://shop_images/12b703c7386d28f3cbe93c6764fee559_1.png",
+        "heading": "We’re Kinda Pawsome"
+      }
     }
   },
   "order": [
     "about-banner",
     "spacer",
-    "about-story"
+    "about-story",
+    "spacer2",
+    "pawsome"
   ]
 }
