@@ -1,3 +1,54 @@
-<section>
-    <h1>Hi this is about page</h1>
-</section>
+<section class="about-banner">
+    <div class="bg-image">
+      <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="">
+    </div>
+    <div class="about-banner-content">
+      <div class="container-fluid">
+        <div class="about-banner-image">
+            <img src="{{ section.settings.banner_image | img_url: 'master' }}" alt="">
+        </div>
+        <div class="about-banner-content">
+            <h1 class="abt-head1">{{ section.settings.heading_1 }} <span class="abt-head2">{{ section.settings.heading_2 }}</span> <span class="abt-head3">{{ section.settings.heading_3 }}</span></h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+{% schema %}
+  {
+    "name": "About Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner Image"
+      },
+      {
+        "type": "text",
+        "id": "heading_1",
+        "label": "Heading 1"
+      },
+      {
+        "type": "text",
+        "id": "heading_2",
+        "label": "Heading 2"
+      },
+      {
+        "type": "text",
+        "id": "heading_3",
+        "label": "Heading 3"
+      },
+    ],
+    "presets": [
+      {
+        "name": "About Banner",
+        "category": "Banner"
+      }
+    ]
+  }
+  {% endschema %}
