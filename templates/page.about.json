@@ -8,13 +8,19 @@
  * ------------------------------------------------------------
  */
 {
-    "sections": {
-        "about-banner": {
-        "type": "about-banner",
-        "settings": {
-            
-        }
-        },
-    },
-    "order": ["about-banner"]
+  "sections": {
+    "about-banner": {
+      "type": "about-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/about-banner-bg_a6f6ab4f-b04d-4c5e-a4cf-3f701f7054e7.jpg",
+        "banner_image": "shopify://shop_images/Pretty_Woman_Beige_Outfit_with_Dog_1_1.png",
+        "heading_1": "hi!",
+        "heading_2": "we are",
+        "heading_3": "hey you pups"
+      }
+    }
+  },
+  "order": [
+    "about-banner"
+  ]
 }
