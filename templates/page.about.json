@@ -18,9 +18,15 @@
         "heading_2": "we are",
         "heading_3": "hey you pups"
       }
+    },
+    "about-story": {
+      "type": "about-story",
+      "settings": {
+        
+      }
     }
   },
   "order": [
-    "about-banner"
+    "about-banner","about-story"
   ]
 }
