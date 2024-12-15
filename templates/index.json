@@ -1,29 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "home-banner": {
       "type": "homebanner",
       "settings": {
-        "background_image": "shopify:\/\/shop_images\/homepage-banner.png?v=1733854333",
-        "pet_image": "shopify:\/\/shop_images\/7801df0e34c339d45b220a18634c9bb2.png?v=1734183184",
+        "background_image": "shopify://shop_images/homepage-banner.png",
+        "pet_image": "shopify://shop_images/7801df0e34c339d45b220a18634c9bb2.png",
         "heading_1": "for all the good",
         "heading_2": "boys",
         "heading_3": "girls"
       }
     },
     "spacer": {
-        "type": "spacer",
-        "settings": {}
-      },
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
     "our-categories": {
       "type": "our-categories",
-      "settings": {
-        "heading": "We’ve Got Your Pup Covered!"
-      },
       "blocks": {
         "item1": {
           "type": "category",
           "settings": {
-            "category_image": "shopify:\/\/shop_images\/Group_427321717.jpg?v=1734189557",
+            "category_image": "shopify://shop_images/Group_427321717.jpg",
             "category_name": "Harnesses",
             "category_link": "/collections/harnesses"
           }
@@ -31,7 +39,7 @@
         "item2": {
           "type": "category",
           "settings": {
-            "category_image": "shopify:\/\/shop_images\/Group_427321723.jpg?v=1734189557",
+            "category_image": "shopify://shop_images/Group_427321723.jpg",
             "category_name": "Collars",
             "category_link": "/collections/leashes"
           }
@@ -39,7 +47,7 @@
         "item3": {
           "type": "category",
           "settings": {
-            "category_image": "shopify:\/\/shop_images\/Group_427321722.jpg?v=1734189557",
+            "category_image": "shopify://shop_images/Group_427321722.jpg",
             "category_name": "Bandana",
             "category_link": "/collections/toys"
           }
@@ -47,85 +55,96 @@
         "item4": {
           "type": "category",
           "settings": {
-            "category_image": "shopify:\/\/shop_images\/Group_427321721.jpg?v=1734189558",
+            "category_image": "shopify://shop_images/Group_427321721.jpg",
             "category_name": "Bowties",
             "category_link": "/collections/toys"
           }
         }
       },
-      "block_order": ["item1", "item2", "item3","item4"]
+      "block_order": [
+        "item1",
+        "item2",
+        "item3",
+        "item4"
+      ],
+      "settings": {
+        "heading": "We’ve Got Your Pup Covered!"
+      }
     },
     "spacer2": {
       "type": "spacer",
-      "settings": {}
+      "settings": {
+        "spacer_height": 100
+      }
     },
     "our-collections": {
       "type": "our-collections",
       "settings": {
-            "type": "text",
-            "id": "heading",
-            "label": "Heading",
-            "heading": "Picks For Your Pup’s Personality"
-        },
-      },
+        "heading": "Picks For Your Pup’s Personality"
+      }
+    },
     "spacer3": {
       "type": "spacer",
-      "settings": {}
+      "settings": {
+        "spacer_height": 100
+      }
     },
     "bestsellers": {
       "type": "bestsellers",
       "settings": {
         "heading": "Stuff That Makes You Drool",
-        "collection": "Bit-of-a-prick"
+        "collection": "bit-of-a-prick"
       }
     },
     "spacer4": {
       "type": "spacer",
-      "settings": {}
+      "settings": {
+        "spacer_height": 100
+      }
     },
     "pawsome": {
       "type": "pawsome",
-      "settings": {
-        "background_image": "shopify:\/\/shop_images\/Frame_427321768.jpg?v=1734241389",
-        "pawsome_image": "shopify:\/\/shop_images\/12b703c7386d28f3cbe93c6764fee559_1.png?v=1734240697",
-        "heading": "We’re Kinda Pawsome"
-      },
       "blocks": {
         "item1": {
           "type": "pdr_item",
           "settings": {
-            "item_image": "shopify:\/\/shop_images\/Group_57.svg?v=1734241523",
+            "item_image": "shopify://shop_images/Group_57.svg",
             "item_text": "Free Shipping Over €50"
           }
         },
         "item2": {
           "type": "pdr_item",
           "settings": {
-            "item_image": "shopify:\/\/shop_images\/Group_58.svg?v=1734241522",
+            "item_image": "shopify://shop_images/Group_58.svg",
             "item_text": "Top Rated Products"
           }
         },
         "item3": {
           "type": "pdr_item",
           "settings": {
-            "item_image": "shopify:\/\/shop_images\/Pet_Transport_Icon_856c2282-e43b-49ed-af89-68d091831ab2.svg?v=1734241522",
+            "item_image": "shopify://shop_images/Pet_Transport_Icon_53d0693a-0c27-4e5c-a2bc-c4ad955a7528.svg",
             "item_text": "14-Day Return Window"
           }
         },
         "item4": {
           "type": "pdr_item",
           "settings": {
-            "item_image": "shopify:\/\/shop_images\/Group_59.svg?v=1734241522",
+            "item_image": "shopify://shop_images/Group_59.svg",
             "item_text": "Crafted with love"
           }
         }
-        },
+      },
       "block_order": [
         "item1",
         "item2",
         "item3",
         "item4"
-      ]
+      ],
+      "settings": {
+        "background_image": "shopify://shop_images/Frame_427321768.jpg",
+        "pawsome_image": "shopify://shop_images/12b703c7386d28f3cbe93c6764fee559_1.png",
+        "heading": "We’re Kinda Pawsome"
+      }
     }
   },
   "order": [
