@@ -42,7 +42,7 @@ h4 {
     
 }
 h5 {
-    
+    font-size: 20px;
 }
 h6 {
     
@@ -182,6 +182,19 @@ footer p {
 }
 .ft-in .fcolm-third {
     width: 25%;
+}
+.fcolm-third .fcolt-in {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+.fcolt-in .subscribe {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.subscribe p {
+    font-size: 14px;
 }
 .footer-logo img {
     width: 180px;
