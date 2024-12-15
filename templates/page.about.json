@@ -48,12 +48,36 @@
             "image": "shopify://shop_images/Group_427320864.jpg",
             "alt_text": ""
           }
+        },
+        "slide_FUpJ9d": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_427320831.jpg",
+            "alt_text": ""
+          }
+        },
+        "slide_Mek3Gd": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_427320863.jpg",
+            "alt_text": ""
+          }
+        },
+        "slide_Ww6d6x": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_427320864.jpg",
+            "alt_text": ""
+          }
         }
       },
       "block_order": [
         "slide_pp3w3h",
         "slide_yDnxyE",
-        "slide_yQ4FMK"
+        "slide_yQ4FMK",
+        "slide_FUpJ9d",
+        "slide_Mek3Gd",
+        "slide_Ww6d6x"
       ],
       "settings": {
         "heading_tag": "our story",
