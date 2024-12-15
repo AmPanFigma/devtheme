@@ -21,12 +21,43 @@
     },
     "about-story": {
       "type": "about-story",
+      "blocks": {
+        "slide_pp3w3h": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_427320831.jpg",
+            "alt_text": ""
+          }
+        },
+        "slide_yDnxyE": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_427320863.jpg",
+            "alt_text": ""
+          }
+        },
+        "slide_yQ4FMK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_427320864.jpg",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_pp3w3h",
+        "slide_yDnxyE",
+        "slide_yQ4FMK"
+      ],
       "settings": {
-        
+        "heading_tag": "our story",
+        "heading": "Meet Amy & Pablo",
+        "description": "Introduction to the story. Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
       }
     }
   },
   "order": [
-    "about-banner","about-story"
+    "about-banner",
+    "about-story"
   ]
 }
