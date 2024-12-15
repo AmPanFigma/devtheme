@@ -724,6 +724,66 @@ footer p {
 }
 /* Collection Page CSS Ends */
 
+/* About Page CSS Starts */
+.about-banner {
+    position: relative;
+}
+.about-banner .bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+.about-banner .bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.about-banner .about-banner-content {
+    position: relative;
+    z-index: 2;
+}
+.about-banner-content .about-banner-image {
+    position: absolute;
+    width: 70%;
+    bottom: 0;
+    height: 95%;
+    right: 0;
+}
+.about-banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+}
+.about-banner-content .about-banner-content {
+    padding: 30px 0;
+}
+.about-banner-content h1 {
+    text-align: left;
+    font-size: 20vw;
+    color: #111111;
+    text-transform: uppercase;
+    font-family: var(--tanker);
+    font-weight: 400;
+    line-height: 16vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.about-banner-content .abt-head2{
+    display: block;
+    font-size: 10vw;
+    line-height: 11vw;
+}
+.about-banner-content .abt-head3{
+    display: block;
+    font-size: 14vw;
+    line-height: 12vw;
+}
+/* About Page CSS Ends */
+
 /* Page CSS Ends */
 .locale-selectors__container {
     display: none!important;
