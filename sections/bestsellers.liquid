@@ -1,0 +1,48 @@
+<section class="bestsellers">
+    <div class="container-fluid">
+        <div class="heading center with-pill">
+            <div class="pillwrap">
+                <div class="heading-pill yellow">our bestsellers</div>
+            </div>
+            <h3>{{ section.settings.heading }}</h3>
+        </div>
+        <div class="bestseller-product-grid">
+            <div class="bpg-in">
+                {% if collection.products.size > 0 %}
+                    {% for product in collection.products %}
+                        <div class="product-card-wrapper">
+                            {% render 'product-card', product: product %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No products found in this collection.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bestsellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Top Picks"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

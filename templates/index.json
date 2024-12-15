@@ -1,0 +1,142 @@
+{
+  "sections": {
+    "home-banner": {
+      "type": "homebanner",
+      "settings": {
+        "background_image": "shopify:\/\/shop_images\/homepage-banner.png?v=1733854333",
+        "pet_image": "shopify:\/\/shop_images\/7801df0e34c339d45b220a18634c9bb2.png?v=1734183184",
+        "heading_1": "for all the good",
+        "heading_2": "boys",
+        "heading_3": "girls"
+      }
+    },
+    "spacer": {
+        "type": "spacer",
+        "settings": {}
+      },
+    "our-categories": {
+      "type": "our-categories",
+      "settings": {
+        "heading": "We’ve Got Your Pup Covered!"
+      },
+      "blocks": {
+        "item1": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify:\/\/shop_images\/Group_427321717.jpg?v=1734189557",
+            "category_name": "Harnesses",
+            "category_link": "/collections/harnesses"
+          }
+        },
+        "item2": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify:\/\/shop_images\/Group_427321723.jpg?v=1734189557",
+            "category_name": "Collars",
+            "category_link": "/collections/leashes"
+          }
+        },
+        "item3": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify:\/\/shop_images\/Group_427321722.jpg?v=1734189557",
+            "category_name": "Bandana",
+            "category_link": "/collections/toys"
+          }
+        },
+        "item4": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify:\/\/shop_images\/Group_427321721.jpg?v=1734189558",
+            "category_name": "Bowties",
+            "category_link": "/collections/toys"
+          }
+        }
+      },
+      "block_order": ["item1", "item2", "item3","item4"]
+    },
+    "spacer2": {
+      "type": "spacer",
+      "settings": {}
+    },
+    "our-collections": {
+      "type": "our-collections",
+      "settings": {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "heading": "Picks For Your Pup’s Personality"
+        },
+      },
+    "spacer3": {
+      "type": "spacer",
+      "settings": {}
+    },
+    "bestsellers": {
+      "type": "bestsellers",
+      "settings": {
+        "heading": "Stuff That Makes You Drool",
+        "collection": "Bit-of-a-prick"
+      }
+    },
+    "spacer4": {
+      "type": "spacer",
+      "settings": {}
+    },
+    "pawsome": {
+      "type": "pawsome",
+      "settings": {
+        "background_image": "shopify:\/\/shop_images\/Frame_427321768.jpg?v=1734241389",
+        "pawsome_image": "shopify:\/\/shop_images\/12b703c7386d28f3cbe93c6764fee559_1.png?v=1734240697",
+        "heading": "We’re Kinda Pawsome"
+      },
+      "blocks": {
+        "item1": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/Group_57.svg?v=1734241523",
+            "item_text": "Free Shipping Over €50"
+          }
+        },
+        "item2": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/Group_58.svg?v=1734241522",
+            "item_text": "Top Rated Products"
+          }
+        },
+        "item3": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/Pet_Transport_Icon_856c2282-e43b-49ed-af89-68d091831ab2.svg?v=1734241522",
+            "item_text": "14-Day Return Window"
+          }
+        },
+        "item4": {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/Group_59.svg?v=1734241522",
+            "item_text": "Crafted with love"
+          }
+        }
+        },
+      "block_order": [
+        "item1",
+        "item2",
+        "item3",
+        "item4"
+      ]
+    }
+  },
+  "order": [
+    "home-banner",
+    "spacer",
+    "our-categories",
+    "spacer2",
+    "our-collections",
+    "spacer3",
+    "bestsellers",
+    "spacer4",
+    "pawsome"
+  ]
+}

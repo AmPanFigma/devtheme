@@ -1,0 +1,53 @@
+<section class="our-collections">
+    <div class="container-fluid">
+        <div class="heading center with-pill">
+            <div class="pillwrap">
+                <div class="heading-pill yellow">our collection</div>
+            </div>
+            <h3>{{ section.settings.heading }}</h3>
+        </div>
+        <div class="collection-grid-wrap">
+          <div class="collection-grid">
+            {% for collection in collections %}
+            {% if collection.image %}
+            <div class="collection-grid-in">
+              <div class="cgi-top">
+                <div class="cg-image">
+                  <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
+                </div>
+                <div class="cg-heading">
+                  {{ collection.title }}
+                </div>
+              </div>
+              <div class="cgi-bottom">
+                <div class="cgi-button">
+                  <a href="{{ collection.url }}" class="custom-button light black">Shop Now</a>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+  </section>
+  {% schema %}
+  {
+    "name": "Our Collections",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "We’ve Got Your Pup Covered!"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Our Collections",
+        "category": "Custom"
+      }
+    ]
+  }
+  {% endschema %}
+  

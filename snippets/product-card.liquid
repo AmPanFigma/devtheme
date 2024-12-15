@@ -1,0 +1,32 @@
+<div class="product-card">
+    <a href="{{ product.url }}">
+      <div class="pcard-in">
+          <div class="product-image">
+              {% if product.featured_media %}
+                <img src="{{ product.featured_media | img_url: 'large' }}" alt="{{ product.title }}">
+              {% else %}
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0878/5254/8380/files/placeholder.png?v=1719921517"
+                  alt="placeholder image for product"
+                >
+              {% endif %}
+            </div>
+      </div>
+      <div class="pcard-bottom">
+          <div class="pcard-ratings">
+
+          </div>
+          <div class="pcard-name">
+              <div class="product-name">
+                  {{ product.title }}
+              </div>
+          </div>
+          <div class="pcard-price">
+              <div class="product-price">
+                  {{ product.price | money_without_trailing_zeros }}
+              </div>
+          </div>
+      </div>
+    </a>
+  </div>
+  

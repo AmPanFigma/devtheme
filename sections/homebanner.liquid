@@ -1,0 +1,63 @@
+<section class="home-banner">
+    <div class="bg-image">
+      <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="">
+    </div>
+    <div class="banner-content">
+      <div class="container-fluid">
+        <div class="bannercontent-in">
+          <div class="bci-top">
+            <h1 class="top">{{ section.settings.heading_1 }}</h1>
+          </div>
+          <div class="bci-image">
+            <img src="{{ section.settings.pet_image | img_url: 'master' }}" alt="">
+          </div>
+          <div class="bci-bottom">
+            <h1>{{ section.settings.heading_2 }} <span>&</span> {{ section.settings.heading_3 }}</h1>
+            <div class="banner-button">
+                <a href="" class="custom-button white">Shop Collection</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+{% schema %}
+  {
+    "name": "Home Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "pet_image",
+        "label": "Pet Image"
+      },
+      {
+        "type": "text",
+        "id": "heading_1",
+        "label": "Heading 1"
+      },
+      {
+        "type": "text",
+        "id": "heading_2",
+        "label": "Heading 2"
+      },
+      {
+        "type": "text",
+        "id": "heading_3",
+        "label": "Heading 3"
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Home Banner",
+        "category": "Banner"
+      }
+    ]
+  }
+  {% endschema %}

@@ -1,0 +1,288 @@
+<section class="collection-section">
+    <div class="collection-background">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Blonde_girl_with_dog_indoor_portrait.png?v=1734273348"
+          alt="Default Collection Banner"
+          class="img">
+    </div>
+    <div class="col-sec-content">
+        <div class="container-fluid">
+            <div class="col-sec-con-in">
+                <h1>{{ collection.title }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="coll-button">
+        <a href="" class="custom-button white">Shop Now</a>
+    </div>
+</section>
+
+<section class="collection-features">
+    <div class="container">
+        <div class="cfeatures-in">
+            <div class="pdr-grid white">
+                <div class="pdr-item">
+                    <div class="pdritem-image">
+                        <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_57.svg?v=1734241523" alt="">
+                    </div>
+                    <div class="pdritem-text">Free Shipping Over €50</div>
+                </div>
+                <div class="pdr-item">
+                    <div class="pdritem-image">
+                        <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_58.svg?v=1734241522" alt="">
+                    </div>
+                    <div class="pdritem-text">Top Rated Products</div>
+                </div>
+                <div class="pdr-item">
+                    <div class="pdritem-image">
+                        <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Pet_Transport_Icon_856c2282-e43b-49ed-af89-68d091831ab2.svg?v=1734241522" alt="">
+                    </div>
+                    <div class="pdritem-text">14-Day Return Window</div>
+                </div>
+                <div class="pdr-item">
+                    <div class="pdritem-image">
+                        <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_59.svg?v=1734241522" alt="">
+                    </div>
+                    <div class="pdritem-text">Crafted with love</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="padding">
+    <div class="container-fluid">
+        <div class="heading center with-pill">
+            <div class="pillwrap">
+                <div class="heading-pill yellow">our bestsellers</div>
+            </div>
+            <h3>{{ section.settings.heading }}</h3>
+        </div>
+        <div class="fandsWrap">
+            <!-- New Filter Dropdown for Tags -->
+            {% assign all_tags = "" %}
+
+            <!-- Loop through all products to gather tags -->
+            {% for product in collections.all.products %}
+              {% for tag in product.tags %}
+                {% unless all_tags contains tag %}
+                  {% assign all_tags = all_tags | append: tag | append: ',' %}
+                {% endunless %}
+              {% endfor %}
+            {% endfor %}
+
+            <!-- Create a tag dropdown with unique tags -->
+            <div class="item styled-sort">
+              <select id="filter-by-tag" class="js-example-basic-single">
+                <option value="">Filter by Tag</option>
+                {% assign unique_tags = all_tags | split: ',' | sort %}
+                {% for tag in unique_tags %}
+                  {% if tag != "" %}
+                    <option value="{{ tag }}">{{ tag }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="sort-filter">
+                <div class="item">
+                  <div class="collection-products-list-sort">
+                    <div class="collection-sort styled-sort">
+                      <select id="sort-by">
+                        <option value="default">Sort By</option>
+                        <option value="price-asc">Featured</option>
+                        <option value="price-asc">Best Selling</option>
+                        <option value="price-asc">Price, low to high</option>
+                        <option value="price-asc">Price, High to low</option>
+                        <option value="az">Date, old to new</option>
+                        <option value="za">Date, new to old</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+        
+
+    </div>
+
+
+    <div class="collection-grid-wrap">
+        <div class="container-fluid">
+            <div class="collection-grid">
+                {% for product in collection.products %}
+                <div class="product-card">
+                    <a href="{{ product.url }}">
+                      <div class="pcard-in">
+                          <div class="product-image">
+                              {% if product.featured_media %}
+                                <img src="{{ product.featured_media | img_url: 'large' }}" alt="{{ product.title }}">
+                              {% else %}
+                                <img
+                                  src="https://cdn.shopify.com/s/files/1/0878/5254/8380/files/placeholder.png?v=1719921517"
+                                  alt="placeholder image for product"
+                                >
+                              {% endif %}
+                            </div>
+                      </div>
+                      <div class="pcard-bottom">
+                          <div class="pcard-ratings">
+                
+                          </div>
+                          <div class="pcard-name">
+                              <div class="product-name">
+                                  {{ product.title }}
+                              </div>
+                          </div>
+                          <div class="pcard-price">
+                              <div class="product-price">
+                                  {{ product.price | money_without_trailing_zeros }}
+                              </div>
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+                
+                {% if collection.products.size == 0 %}
+                  <p class="noproducts">There are no products inside of this collection</p>
+                {% endif %}
+              </div>
+        </div>
+
+        </div>
+
+</section>
+
+<section class="bestsellers padding">
+    <div class="container-fluid">
+        <div class="heading center with-pill">
+            <div class="pillwrap">
+                <div class="heading-pill yellow">our bestsellers</div>
+            </div>
+            <h3>{{ section.settings.bestseller-heading }}</h3>
+        </div>
+        <div class="bestseller-product-grid">
+            <div class="collection-grid">
+                {% if collection.products.size > 0 %}
+                    {% for product in collection.products limit: 4 %}
+                        <div class="product-card-wrapper">
+                            {% render 'product-card', product: product %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No products found in this collection.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterByTag = document.querySelector('#filter-by-tag');
+      const sortBy = document.querySelector('#sort-by');
+      const productCards = Array.from(document.querySelectorAll('.product-card'));
+  
+      // Function to update displayed products based on selected tag
+      function updateProductDisplay() {
+        const selectedTag = filterByTag.value.toLowerCase();
+  
+        productCards.forEach(card => {
+          const tags = Array.from(card.querySelectorAll('.pc-tags span'))
+                             .map(tagElement => tagElement.textContent.toLowerCase());
+  
+          if (!selectedTag || tags.includes(selectedTag)) {
+            card.style.display = 'block'; // Show matching product
+          } else {
+            card.style.display = 'none'; // Hide non-matching product
+          }
+        });
+      }
+  
+      // Function to sort and display products
+      function sortProducts() {
+        const sortValue = sortBy.value;
+  
+        const filteredCards = productCards.filter(card => card.style.display !== 'none');
+  
+        let sortedCards;
+        if (sortValue === 'price-asc') {
+          sortedCards = filteredCards.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,"")); // Extract numeric value from price
+            const priceB = parseFloat(b.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
+            return priceA - priceB;
+          });
+        } else if (sortValue === 'price-desc') {
+          sortedCards = filteredCards.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
+            const priceB = parseFloat(b.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
+            return priceB - priceA;
+          });
+        } else if (sortValue === 'az') {
+          sortedCards = filteredCards.sort((a, b) => {
+            const titleA = a.querySelector('.product-name').textContent.toLowerCase();
+            const titleB = b.querySelector('.product-name').textContent.toLowerCase();
+            return titleA.localeCompare(titleB); // A-Z
+          });
+        } else if (sortValue === 'za') {
+          sortedCards = filteredCards.sort((a, b) => {
+            const titleA = a.querySelector('.product-name').textContent.toLowerCase();
+            const titleB = b.querySelector('.product-name').textContent.toLowerCase();
+            return titleB.localeCompare(titleA); // Z-A
+          });
+        } else {
+          sortedCards = filteredCards; // Default case (no sorting)
+        }
+  
+        // Clear the current product display
+        const container = document.querySelector('.collection-grid');
+        container.innerHTML = ''; // Clear current products
+  
+        // Append sorted products back to the container
+        sortedCards.forEach(card => {
+          container.appendChild(card);
+        });
+      }
+  
+      // Event listeners for filtering and sorting
+      filterByTag.addEventListener('change', function() {
+        updateProductDisplay();
+        sortProducts(); // Sort after filtering to keep the display consistent
+      });
+  
+      sortBy.addEventListener('change', function() {
+        sortProducts();
+      });
+    });
+  </script>
+
+
+
+{% schema %}
+    {
+        "name": "Template Collection",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Bestseller heading",
+            "default": "Stuff That Makes You Drool"
+          },
+          {
+            "type": "text",
+            "id": "bestseller-heading",
+            "label": "You May Also Like heading",
+            "default": "Why Stop At Just One?"
+          }
+        ],
+        
+        "default": {
+          "settings": {
+            "heading": "Stuff That Makes You Drool"
+          },
+          
+        },
+      }
+{% endschema %}

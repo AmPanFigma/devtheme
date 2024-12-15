@@ -1,0 +1,96 @@
+<section class="pawsome">
+    <div class="bg-image">
+        <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="">
+    </div>
+    <div class="pawsome-data">
+        <div class="container-fluid">
+            <div class="pawsomedata-in">
+                <div class="pd-left">
+                    <div class="pdl-image">
+                        <img src="{{ section.settings.pawsome_image | img_url: 'master' }}" alt="">
+                    </div>
+                </div>
+                <div class="pd-right">
+                    <div class="pdr-in">
+                        <h2>{{ section.settings.heading }}</h2>
+                        <div class="pdr-grid">
+                            {% for block in section.blocks %}
+                            <div class="pdr-item">
+                                <div class="pdritem-image">
+                                    <img src="{{ block.settings.item_image | img_url: 'master' }}" alt="">
+                                </div>
+                                <div class="pdritem-text">{{ block.settings.item_text }}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawsome Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "pawsome_image",
+      "label": "Pawsome Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We’re Kinda Pawsome"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pdr_item",
+      "name": "Pawsome Grid Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "item_image",
+          "label": "Grid Item Image"
+        },
+        {
+          "type": "text",
+          "id": "item_text",
+          "label": "Grid Item Text",
+          "default": "Free Shipping Over €50"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawsome Section",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "",
+            "item_text": "Free Shipping Over €50"
+          }
+        },
+        {
+          "type": "pdr_item",
+          "settings": {
+            "item_image": "",
+            "item_text": "Exclusive Deals"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
