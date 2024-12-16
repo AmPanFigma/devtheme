@@ -153,6 +153,12 @@
         "right_span": "Pup!",
         "right_paragraph": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
       }
+    },
+    "pups-attitude": {
+      "type": "pups-attitude",
+      "settings": {
+        
+      }
     }
   },
   "order": [
@@ -160,8 +166,9 @@
     "spacer",
     "about-story",
     "spacer2",
-    "pawsome",
+    "left-right-sec",
     "spacer3",
-    "left-right-sec"
+    "pawsome",
+    "pups-attitude"
   ]
 }
