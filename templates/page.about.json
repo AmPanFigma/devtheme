@@ -91,6 +91,25 @@
         "spacer_height": 100
       }
     },
+    "left-right-sec": {
+      "type": "left-right-sec",
+      "settings": {
+        "left_image": "shopify://shop_images/image_53_1.png",
+        "left_heading": "Boring isn’t in our",
+        "left_span": "DNA",
+        "left_paragraph": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci.",
+        "right_image": "shopify://shop_images/image_2_2.jpg",
+        "right_heading": "A personality for every",
+        "right_span": "Pup!",
+        "right_paragraph": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
+      }
+    },
+    "spacer3": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
     "pawsome": {
       "type": "pawsome",
       "blocks": {
@@ -135,29 +154,14 @@
         "heading": "We’re Kinda Pawsome"
       }
     },
-    "spacer3": {
-      "type": "spacer",
-      "settings": {
-        "spacer_height": 100
-      }
-    },
-    "left-right-sec": {
-      "type": "left-right-sec",
-      "settings": {
-        "left_image": "shopify://shop_images/image_53_1.png",
-        "left_heading": "Boring isn’t in our",
-        "left_span": "DNA",
-        "left_paragraph": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci.",
-        "right_image": "shopify://shop_images/image_2_2.jpg",
-        "right_heading": "A personality for every",
-        "right_span": "Pup!",
-        "right_paragraph": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
-      }
-    },
     "pups-attitude": {
       "type": "pups-attitude",
       "settings": {
-        
+        "background_image": "shopify://shop_images/image_3_1.jpg",
+        "subheading": "Bring Out Their Inner Personality",
+        "heading": "Every Pup Deserves a Look That Fits",
+        "button_link": "shopify://collections/all",
+        "button_text": "Shop All"
       }
     }
   },
