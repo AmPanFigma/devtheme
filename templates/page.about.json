@@ -144,7 +144,14 @@
     "left-right-sec": {
       "type": "left-right-sec",
       "settings": {
-        
+        "left_image": "shopify://shop_images/image_53_1.png",
+        "left_heading": "Boring isn’t in our",
+        "left_span": "DNA",
+        "left_paragraph": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci.",
+        "right_image": "shopify://shop_images/image_2_2.jpg",
+        "right_heading": "A personality for every",
+        "right_span": "Pup!",
+        "right_paragraph": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
       }
     }
   },
