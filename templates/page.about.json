@@ -134,6 +134,18 @@
         "pawsome_image": "shopify://shop_images/Cute_Spitz_1_1.png",
         "heading": "We’re Kinda Pawsome"
       }
+    },
+    "spacer3": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
+    "left-right-sec": {
+      "type": "left-right-sec",
+      "settings": {
+        
+      }
     }
   },
   "order": [
@@ -141,6 +153,8 @@
     "spacer",
     "about-story",
     "spacer2",
-    "pawsome"
+    "pawsome",
+    "spacer3",
+    "left-right-sec"
   ]
 }

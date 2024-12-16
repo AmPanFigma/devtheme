@@ -1,0 +1,92 @@
+<section>
+    <div class="lr-sec">
+        <div class="lrsec left">
+            <div class="lr-image">
+                <img src="" alt="">
+            </div>
+            <div class="lr-text">
+                <div class="lrtext-heading">
+                    <h3>Boring isn’t in our <span>DNA</span></h3>
+                </div>
+                <div class="lrtext-para">
+                    <p>Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci.</p>
+                </div>
+            </div>
+        </div>
+        <div class="lrsec right">
+            <div class="lr-image">
+                <img src="" alt="">
+            </div>
+            <div class="lr-text">
+                <div class="lrtext-heading">
+                    <h3>A personality for every <span>Pup!</span></h3>
+                </div>
+                <div class="lrtext-para">
+                    <p>Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Left-Right Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "left_image",
+        "label": "Left Image"
+      },
+      {
+        "type": "text",
+        "id": "left_heading",
+        "label": "Left Heading",
+        "default": "Boring isn’t in our DNA"
+      },
+      {
+        "type": "text",
+        "id": "left_span",
+        "label": "Left Highlighted Word",
+        "default": "DNA"
+      },
+      {
+        "type": "textarea",
+        "id": "left_paragraph",
+        "label": "Left Paragraph",
+        "default": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
+      },
+      {
+        "type": "image_picker",
+        "id": "right_image",
+        "label": "Right Image"
+      },
+      {
+        "type": "text",
+        "id": "right_heading",
+        "label": "Right Heading",
+        "default": "A personality for every Pup!"
+      },
+      {
+        "type": "text",
+        "id": "right_span",
+        "label": "Right Highlighted Word",
+        "default": "Pup!"
+      },
+      {
+        "type": "textarea",
+        "id": "right_paragraph",
+        "label": "Right Paragraph",
+        "default": "Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Left-Right Section",
+        "category": "Custom Sections"
+      }
+    ]
+}
+{% endschema %}
+  
