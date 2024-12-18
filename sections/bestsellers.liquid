@@ -7,18 +7,20 @@
             <h3>{{ section.settings.heading }}</h3>
         </div>
         <div class="bestseller-product-grid">
-            <div class="bpg-in">
-                {% if collection.products.size > 0 %}
-                    {% for product in collection.products %}
-                        <div class="product-card-wrapper">
-                            {% render 'product-card', product: product %}
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>No products found in this collection.</p>
-                {% endif %}
-            </div>
+          <div class="collection-grid">
+            {% assign collection = collections['anxious-mess'] %}
+            {% if collection and collection.products.size > 0 %}
+            {% for product in collection.products limit: 4 %} <!-- Display up to 8 products -->
+            <div class="product-card-wrapper">
+              {% render 'product-card', product: product %}
+          </div>
+            {% endfor %}
+            {% else %}
+            <p>No products found in this collection.</p>
+            {% endif %}
+          </div>
         </div>
+        
     </div>
 </section>
 
