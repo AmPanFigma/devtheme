@@ -28,12 +28,14 @@
       integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
       crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
       integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer">
   </script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
     <!-- Header hook for plugins -->
@@ -45,9 +47,48 @@
     {% section 'announcement' %}
     <!-- Announcement Bar Ends -->
     {% section 'header' %}
-    <main role="main">
+    <main role="main" data-scroll-container id="scroll-container">
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        // Add a delay to ensure everything is loaded
+        setTimeout(() => {
+          const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+
+          function raf(time) {
+            // Check if body has 'modal-backdrop' class
+            if (!document.body.classList.contains('backdrop')) {
+              lenis.raf(time);
+            }
+            else{
+              lenis.raf(time);
+            }
+            requestAnimationFrame(raf);
+          }
+          requestAnimationFrame(raf);
+
+          const header = document.querySelector('header'); // Select your header element
+
+          lenis.on('scroll', ({ scroll, limit }) => {
+              const scrollPercentage = (scroll / limit) * 100; // Calculate scroll percentage
+
+              if (scrollPercentage > 2) {
+                header.classList.add('active'); // Add 'active' class after scrolling 20%
+              } else {
+                header.classList.remove('active'); // Remove 'active' class if less than 20%
+              }
+          });
+          
+        });
+      });
+    </script>
+
+
   </body>
 </html>

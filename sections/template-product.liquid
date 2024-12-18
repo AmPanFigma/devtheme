@@ -1,0 +1,640 @@
+{% comment %} {% assign selected_variant = product.selected_or_first_available_variant %} {% endcomment %}
+<section class="product-inner">
+  <div class="container-fluid">
+    <div class="pi-wrapper">
+      <div class="pi-breadcrumb">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">{{ product.category }}</a></li>
+            <li><a href="">{{ product.title }}</a></li>
+        </ul>
+      </div>
+      <div class="pi-product">
+        <div class="pro-img" >
+          <div class="pro-featured-wrapper">
+            {% for media in product.media %}
+              <div class="product-featured-image">
+                <img
+                  src="{{ media | img_url: 'large' }}"
+                  alt="{{ media.preview_image.alt }}"
+                  id="image{{ forloop.index }}">
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        
+        <div class="pro-description">
+          {% form 'product'
+            , product
+            , id: 'product-form'
+            , novalidate: 'novalidate' %}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}">
+
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when '@app' %}
+                  {% render block %}
+                {% when 'title' %}
+                  <div class="title">
+                    <h1>{{ product.title }}</h1>
+                  </div>
+                {% when 'price' %}
+                  <div class="price" id="price-{{ section.id }}">
+                    <p class="sell-price">
+                      {{ product.price | money_without_trailing_zeros }}
+                    </p>
+                  </div>
+                {% when 'variant_selector' %}
+                  {% if product.type == 'Ring' %}
+                    <div class="variant">
+                      {% unless product.has_only_default_variant %}
+                        <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+                          {% for option in product.options_with_values %}
+                            <div class="ring-size-selector">
+                              <div class="rss-wrap">
+                                <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }} :
+                                </label>
+                                <select name="options[{{ option.name | escape }}]" id="Option-{{ section.id }}-{{ forloop.index0 }}">
+                                  {% for value in option.values %}
+                                    <option
+                                      value="{{ value | escape }}"
+                                      {% if option.selected_value == value %}
+                                      selected="selected"
+                                      {% endif %}>
+                                      {{ value }}
+                                    </option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                              <div class="size-guide-toggle">
+                                <a href="javascript:void(0)">View Size Guide</a>
+                              </div>
+                            </div>
+                            <script type="application/json">
+                              {{ product.variants | json }}
+                            </script>
+                          {% endfor %}
+                        </variant-selector>
+                      {% endunless %}
+                    </div>
+                  {% endif %}
+
+                {% when 'description' %}
+                  <div class="pro-desp">
+                    {{ product.description }}
+                  </div>
+                {% when 'checkout_buttons' %}
+                  <div class="submit">
+                    <button
+                      type="submit"
+                      name="add"
+                      {% if product.selected_or_first_available_variant.available == false %}
+                      disabled
+                      {% endif %}>
+                      {% if product.selected_or_first_available_variant.available == false %}
+                        Sold Out
+                      {% else %}
+                        Add To bag
+                      {% endif %}
+                    </button>
+                    <a href="{{ block.settings.select-page.url }}">Try at Home</a>
+                  </div>
+                  <div class="payment-option">
+                    <p>Guaranteed Safe Checkout with Payment Options</p>
+                    <div class="po-wrapper">
+                      <div class="po-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Amex.svg?v=1728311207" alt="">
+                      </div>
+                      <div class="po-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Mastercard.svg?v=1728311207" alt="">
+                      </div>
+                      <div class="po-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Discover.svg?v=1728311207" alt="">
+                      </div>
+                      <div class="po-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/ApplePay.svg?v=1728311207" alt="">
+                      </div>
+                      <div class="po-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/GooglePay.svg?v=1728311207" alt="">
+                      </div>
+                      <div class="po-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Visa.svg?v=1728311207" alt="">
+                      </div>
+                      <div class="po-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/UnionPay.svg?v=1728311207" alt="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-usp">
+                    <div class="usp-item">
+                      <div class="usp-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Group_10.svg?v=1728312727" alt="">
+                      </div>
+                      <div class="usp-txt">Purity</div>
+                    </div>
+                    <div class="usp-item">
+                      <div class="usp-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Vector_17.svg?v=1728312724" alt="">
+                      </div>
+                      <div class="usp-txt">Conscious</div>
+                    </div>
+                    <div class="usp-item">
+                      <div class="usp-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Vector_18.svg?v=1728312719" alt="">
+                      </div>
+                      <div class="usp-txt">Choice</div>
+                    </div>
+                    <div class="usp-item">
+                      <div class="usp-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Group_11.svg?v=1728312717" alt="">
+                      </div>
+                      <div class="usp-txt">Easy returns</div>
+                    </div>
+                  </div>
+
+                {% when 'pincode' %}
+                  <div class="pincode-div">
+                    <div class="ZipCodeRestrict zipcode_product_page"></div>
+                  </div>
+
+                {% when 'accordions' %}
+                  <div class="product-accordions">
+                    {% if product.metafields.custom.product_details.size > 0 %}
+                      <div class="pa-item">
+                        <div class="pa-head">
+                          <p>Design Details</p>
+                          <div class="pa-plus">
+                            {% render 'acc-plus' %}
+                          </div>
+                        </div>
+                        <div class="pa-ans">
+                          {{ product.metafields.custom.product_details | metafield_tag }}
+                        </div>
+                      </div>
+                    {% endif %}
+                    <div class="pa-item">
+                      <div class="pa-head">
+                        <p>Jewellery Details</p>
+                        <div class="pa-plus">
+                          {% render 'acc-plus' %}
+                        </div>
+                      </div>
+                      <div class="pa-ans">
+                        <div class="pa-ul">
+                          <ul>
+                            <li>
+                                Metal Purity:
+                                <span>18Kt</span>
+                            </li>
+                            {% for item in product.metafields.custom.jewellery_details.value %}
+                              {%  if item.detail_name == 'Metal Purity' or item.detail_name == 'Diamond Certification' or item.detail_name == 'Gold Certification' %}
+      
+                                {% else %}
+                                  <li>
+                                      {{ item.detail_name }}:
+                                      <span>{{ item.detail_description }}</span>
+                                  </li>
+                              {% endif %}
+                              
+                            {% endfor %}
+                            <li>
+                                Diamond Certification:
+                                <span>IGI Certified</span>
+                            </li>
+                            <li>
+                                Gold Certification:
+                                <span>BIS Hallmarked</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pa-item">
+                      <div class="pa-head">
+                        <p>Shipping Details</p>
+                        <div class="pa-plus">
+                          {% render 'acc-plus' %}
+                        </div>
+                      </div>
+                      <div class="pa-ans">
+                        {{ section.settings.shipping }}
+                      </div>
+                    </div>
+                    <div class="pa-item">
+                      <div class="pa-head">
+                        <p>Return Policy</p>
+                        <div class="pa-plus">
+                          {% render 'acc-plus' %}
+                        </div>
+                      </div>
+                      <div class="pa-ans">
+                        {{ section.settings.return }}
+                      </div>
+                    </div>
+                  </div>
+                  
+
+                {% endcase %}
+              {% endfor %}
+            {% endform %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ring-guide-modal" data-lenis-prevent>
+    <div class="rgm-wrapper">
+      <div class="rgm-con">
+        <div class="rgm-cross">
+          {% render 'cross' %}
+        </div>
+        <div class="rgm-head">
+          {% assign ring-guide-heading = section.blocks | where: 'type', 'ring-guide-heading' %}
+          {% for block in ring-guide-heading %}
+            {{ block.settings['modal-heading'] }}
+          {% endfor %}
+        </div>
+        <table>
+          {% assign ring-guide = section.blocks | where: 'type', 'ring-guide' %}
+          <tr>
+            {% for block in ring-guide-heading %}
+              <th>{{ block.settings.head1 }}</th>
+              <th>{{ block.settings.head2 }}</th>
+              <th>{{ block.settings.head3 }}</th>
+              <th>{{ block.settings.head4 }}</th>
+              <th>{{ block.settings.head5 }}</th>
+              <th>{{ block.settings.head6 }}</th>
+              <th>{{ block.settings.head7 }}</th>
+              <th>{{ block.settings.head8 }}</th>
+            {% endfor %}
+          </tr>
+          {% for block in ring-guide %}
+            <tr>
+              <td>{{ block.settings['group-item1'] }}</td>
+              <td>{{ block.settings['group-item2'] }}</td>
+              <td>{{ block.settings['group-item3'] }}</td>
+              <td>{{ block.settings['group-item4'] }}</td>
+              <td>{{ block.settings['group-item5'] }}</td>
+              <td>{{ block.settings['group-item6'] }}</td>
+              <td>{{ block.settings['group-item7'] }}</td>
+              <td>{{ block.settings['group-item8'] }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+
+  
+
+ <script>
+    $(document).ready(function(){
+      $('.join-161').click(function(){
+        $('.join-club').addClass('active');
+      });
+      $('.jc-close').click(function(){
+        $('.join-club').removeClass('active');
+      });
+    });
+  </script>
+
+  <script defer>
+    class VariantSelector extends HTMLElement{
+        constructor(){
+            super();
+            this.addEventListener("change", this.onVariantChange);
+        }
+    
+        onVariantChange(){
+            this.getSelectedOptions();
+            this.getSelectedVariant();
+            if(this.currentVariant){
+                this.updateURL();
+                this.updateFormID();
+                this.updatePrice();
+            }
+        }
+    
+        getSelectedOptions(){
+            this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+        }
+    
+        getVariantJSON(){
+            this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+            return this.variantData;
+        }
+    
+        getSelectedVariant(){
+            this.currentVariant = this.getVariantJSON().find(
+                (variant)=>{
+                    const findings = !variant.options.map(
+                        (option, index) => {
+                            return this.options[index] === option;
+                        }
+                    ).includes(false);
+    
+                    if(findings) return variant;
+                }
+            );
+    
+        }
+    
+        updateURL(){
+            if(!this.currentVariant) return;
+            window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+        }
+    
+        updateFormID(){
+            const form_input = document.querySelector("#product-form input[name='id']");
+            if (form_input && this.currentVariant) {
+                form_input.value = this.currentVariant.id;
+            }
+        }
+    
+        updatePrice(){
+            fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+            .then((response) => response.text())
+            .then((responseText)=>{
+                {% comment %} const id = `price-${this.datatset.section}`; {% endcomment %}
+                const html = new DOMParser().parseFromString(responseText, 'text/html');
+    
+                const oldPrice=document.getElementById('price-{{ section.id }}');
+                const newPrice=html.getElementById('price-{{ section.id }}');
+    
+                if(oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
+            });
+        }
+    }
+    customElements.define("variant-selector", VariantSelector);
+  </script>
+
+  <script>
+      $(document).ready(function () {
+    $('.pa-head').click(function () {
+      var parentItem = $(this).parent('.pa-item');
+      var answer = $(this).next('.pa-ans');
+
+      if (parentItem.hasClass('active') && answer.is(':visible')) {
+        // If the parent is already active and the answer is visible, remove active and slide up
+        parentItem.removeClass('active');
+        answer.slideUp();
+      } else {
+        // Otherwise, remove active from all, add it to the clicked one and slide up/down accordingly
+        $('.pa-item').removeClass('active');
+        parentItem.addClass('active');
+        $('.pa-ans').slideUp();
+        answer.slideDown();
+      }
+    });
+      });
+
+      // Select all anchor tags with the class 'smooth-scroll'
+      document.querySelectorAll('.smooth-scroll').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default anchor click behavior
+
+      // Get the href attribute (which corresponds to the ID) and use it to find the target element
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+
+      // If the target element exists, scroll to it smoothly
+      if (targetElement) {
+        const offset = 50; // Adjust this value to set your desired offset
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        // Scroll to the calculated position
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth', // Smooth scrolling
+        });
+      }
+    });
+      });
+  </script>
+
+  <script>
+      $(document).ready(function () {
+    $('.size-guide-toggle').click(function () {
+      $('.ring-guide-modal').addClass('active');
+      $('body').css({ overflow: 'hidden' }); // Corrected 'hidden' to be in quotes
+    });
+
+    // Optional: Add a close functionality for the modal
+    $('.ring-guide-modal .rgm-cross').click(function () {
+      $('.ring-guide-modal').removeClass('active');
+      $('body').css({ overflow: 'auto' }); // Restore body scroll
+    });
+      });
+  </script>
+
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var productForm = document.getElementById('product-form');
+    if (productForm) {
+      productForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(productForm);
+        
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Optionally, update the cart count or open the cart drawer here
+        })
+        .catch(error => {
+          console.error('Error adding product to cart:', error);
+        });
+      });
+    }
+      });
+  </script>
+
+     <script type="application/ld+json">
+  {
+  "@context": "https://schema.org/",
+             "@type": "Product",
+             "name": "{{ product.title | escape }}",
+  {% if product.featured_image != nil %}
+    "image": [
+    "https:{{ product.featured_image | img_url: '960x960' }}",
+    "https:{{ product.featured_image | img_url: '960x720' }}",
+    "https:{{ product.featured_image | img_url: '960x540' }}"
+    ],
+  {% endif %}
+  "description": "{{ product.description | strip_html | escape }}",
+  "brand": {
+               "@type": "Brand",
+               "name": "{{ product.vendor | escape }}"
+  },
+             "offers" : {
+               "@type" : "Offer",
+               "availability" : "https://schema.org/{% if product.available %}InStock{% else %}SoldOut{% endif %}",
+  "price" : "{{ product.price | divided_by: 100.0 }}",
+  "priceCurrency": "{{ shop.currency }}",
+  "url" : "{{ shop.url }}{{ routes.root_url }}{{ product.url }}" 
+  }
+       }
+
+  </script>
+
+  {% schema %}
+    {
+      "name": "Product",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "shipping",
+          "label": "Shipping text"
+        }, {
+          "type": "richtext",
+          "id": "return",
+          "label": "Return text"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "title",
+          "name": "Title",
+          "limit": 1
+        },
+        {
+          "type": "price",
+          "name": "Price",
+          "limit": 1
+        },
+        {
+          "type": "variant_selector",
+          "name": "Variant Selector",
+          "limit": 1
+        },
+        {
+          "type": "quantity",
+          "name": "Quantity",
+          "limit": 1
+        }, {
+          "type": "description",
+          "name": "Description",
+          "limit": 1
+        },{
+          "type": "pincode",
+          "name": "pincode",
+          "limit": 1
+        }, {
+          "type": "checkout_buttons",
+          "name": "Checkout Buttons",
+          "limit": 1,
+          "settings": [
+            {
+              "type": "page",
+              "id": "select-page",
+              "label": "Select Page"
+            }
+          ]
+        }, {
+          "type": "accordions",
+          "name": "Accordions",
+          "limit": 1
+        }, {
+          "type": "purchase_plan",
+          "name": "Purchase Plan",
+          "limit": 1
+        }, {
+          "type": "@app"
+        }, {
+          "type": "ring-guide",
+          "name": "Ring Guide",
+          "settings": [
+            {
+              "type": "text",
+              "id": "group-item1",
+              "label": "Group Item 1"
+            },
+            {
+              "type": "text",
+              "id": "group-item2",
+              "label": "Group Item 2"
+            },
+            {
+              "type": "text",
+              "id": "group-item3",
+              "label": "Group Item 3"
+            },
+            {
+              "type": "text",
+              "id": "group-item4",
+              "label": "Group Item 4"
+            }, {
+              "type": "text",
+              "id": "group-item5",
+              "label": "Group Item 5"
+            }, {
+              "type": "text",
+              "id": "group-item6",
+              "label": "Group Item 6"
+            }, {
+              "type": "text",
+              "id": "group-item7",
+              "label": "Group Item 7"
+            }, {
+              "type": "text",
+              "id": "group-item8",
+              "label": "Group Item 8"
+            }
+          ]
+        }, {
+          "type": "ring-guide-heading",
+          "name": "Ring Guide Heading",
+          "limit": 1,
+          "settings": [
+            {
+              "type": "richtext",
+              "id": "modal-heading",
+              "label": "Modal Heading"
+            },
+            {
+              "type": "text",
+              "id": "head1",
+              "label": "Heading 1"
+            },
+            {
+              "type": "text",
+              "id": "head2",
+              "label": "Heading 2"
+            },
+            {
+              "type": "text",
+              "id": "head3",
+              "label": "Heading 3"
+            }, {
+              "type": "text",
+              "id": "head4",
+              "label": "Heading 4"
+            }, {
+              "type": "text",
+              "id": "head5",
+              "label": "Heading 5"
+            }, {
+              "type": "text",
+              "id": "head6",
+              "label": "Heading 6"
+            }, {
+              "type": "text",
+              "id": "head7",
+              "label": "Heading 7"
+            }, {
+              "type": "text",
+              "id": "head8",
+              "label": "Heading 8"
+            }
+          ]
+        }
+      ]
+    }
+  {% endschema %}
