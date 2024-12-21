@@ -27,48 +27,14 @@
     },
     "our-categories": {
       "type": "our-categories",
-      "blocks": {
-        "item1": {
-          "type": "category",
-          "settings": {
-            "category_image": "shopify://shop_images/Group_427321717.jpg",
-            "category_name": "Harnesses",
-            "category_link": "/collections/harnesses"
-          }
-        },
-        "item2": {
-          "type": "category",
-          "settings": {
-            "category_image": "shopify://shop_images/Group_427321723.jpg",
-            "category_name": "Collars",
-            "category_link": "/collections/leashes"
-          }
-        },
-        "item3": {
-          "type": "category",
-          "settings": {
-            "category_image": "shopify://shop_images/Group_427321722.jpg",
-            "category_name": "Bandana",
-            "category_link": "/collections/toys"
-          }
-        },
-        "item4": {
-          "type": "category",
-          "settings": {
-            "category_image": "shopify://shop_images/Group_427321721.jpg",
-            "category_name": "Bowties",
-            "category_link": "/collections/toys"
-          }
-        }
-      },
-      "block_order": [
-        "item1",
-        "item2",
-        "item3",
-        "item4"
-      ],
       "settings": {
-        "heading": "We’ve Got Your Pup Covered!"
+        "heading": "We’ve Got Your Pup Covered!",
+        "selected_collections": [
+          "harnesses",
+          "collars",
+          "bandana",
+          "bowties"
+        ]
       }
     },
     "spacer2": {
