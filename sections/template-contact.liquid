@@ -1,0 +1,95 @@
+<section class="contact-page">
+    <div class="cpage">
+        <div class="cpage-image">
+            <img src="" alt="">
+        </div>
+        <div class="container-fluid">
+            <div class="cpage-in">
+                <div class="cpage-contact">
+                    <div class="heading left with-pill">
+                        <div class="pillwrap">
+                            <div class="heading-pill yellow">{{ section.settings.pill_heading }}</div>
+                        </div>
+                        <h3>{{ section.settings.heading }}</h3>
+                        <p>{{ section.settings.para }}</p>
+                    </div>
+                    <div class="cpage-details">
+                        <div class="cpage-item">
+                            <div class="cpi-head">email</div>
+                            <div class="cpi-data">
+                                <a href="mailto:{{ section.settings.email_link }}">{{ section.settings.email_link }}</a>
+                            </div>
+                        </div>
+                        <div class="cpage-item">
+                            <div class="cpi-head">Call Us</div>
+                            <div class="cpi-data">
+                                <a href="tel:{{ section.settings.tel_number }}">{{ section.settings.tel_number }}</a>
+                            </div>
+                        </div>
+                        <div class="cpage-item">
+                            <div class="cpi-head">Address</div>
+                            <div class="cpi-data">
+                                <p>{{ section.settings.address }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pill_heading",
+      "label": "Contact Tag Heading",
+      "default": "contact"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Hey What’s Up!"
+    },
+    {
+      "type": "text",
+      "id": "para",
+      "label": "Paragraph Text",
+      "default": "Pellentesque bibendum dolor tortor diam. Cursus in metus egestas sollicitudin risus dignissim. Fermentum tincidunt bibendum donec ultricies viverra nisi nam eleifend lectus."
+    },
+    {
+      "type": "text",
+      "id": "email_link",
+      "label": "Email Address",
+      "default": "info@heyyoupups.com"
+    },
+    {
+      "type": "text",
+      "id": "tel_number",
+      "label": "Phone Number",
+      "default": "02038234575"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "Gemma House"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Page",
+      "category": "Contact"
+    }
+  ]
+}
+{% endschema %}
