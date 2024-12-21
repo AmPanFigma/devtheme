@@ -87,6 +87,14 @@ p {
     background-color: #fff;
     text-decoration: none;
 }
+.custom-button.black.white {
+    background-color: #111111;
+    color: #fff;
+}
+.custom-button.black.white:hover {
+    background-color: #FE5F99;
+    color: #111111;
+}
 .padding {
     padding: 100px 0;
 }
@@ -421,6 +429,11 @@ footer p {
 .heading.left h3 {
     text-align: left;
 }
+.heading.center p {
+    text-align: center;
+    color: #474747;
+    max-width: 80ch;
+}
 .heading .heading-desc {
     font-size: 16px;
     font-weight: 400;
@@ -428,6 +441,12 @@ footer p {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+.heading-button {
+    margin-top: 20px;
+}
+.heading-button .custom-button {
+    font-size: 16px;
 }
 .categories-grid-wrap .category-grid {
     display: grid;
@@ -1110,6 +1129,12 @@ footer p {
 }
 /* Contact Page CSS Ends */
 
+/* Affiliates Page CSS Starts */
+.affiliate-page .htm-image-wrap {
+    margin-top: 150px;
+}
+/* Affiliates Page CSS Ends */
+
 /* Responsive CSS */
 
 @media(max-width:1500px){
@@ -1291,6 +1316,12 @@ footer p {
     }
     .cpage-contact {
         padding-bottom: 0;
+    }
+    .affiliate-page .htm-image-wrap {
+        margin-top: 100px;
+    }
+    .htm-text .htm-head {
+        font-size: 20px;
     }
 }
 @media(max-width: 767px){
