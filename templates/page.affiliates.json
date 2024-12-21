@@ -15,7 +15,7 @@
         "htm_item_3La4Lx": {
           "type": "htm_item",
           "settings": {
-            "item_image": "shopify://shop_images/Frame_427323135_1.png",
+            "item_image": "shopify://shop_images/Frame_427323135_2.png",
             "item_heading": "Step 01 Sign Up",
             "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
           }
@@ -23,16 +23,17 @@
         "htm_item_Q64hiW": {
           "type": "htm_item",
           "settings": {
-            "item_image": "shopify://shop_images/Frame_427323136_1.png",
-            "item_heading": "",
-            "item_para": ""
+            "item_image": "shopify://shop_images/Frame_427323136_2.png",
+            "item_heading": "Step 02 Join Us",
+            "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
           }
         },
         "htm_item_eb8yET": {
           "type": "htm_item",
           "settings": {
-            "item_heading": "",
-            "item_para": ""
+            "item_image": "shopify://shop_images/Frame_427323137_2.png",
+            "item_heading": "Step 03 Earn Credits",
+            "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
           }
         }
       },
