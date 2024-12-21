@@ -1,11 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-      "template-size-guide": {
-        "type": "template-size-guide",
-        
+  "sections": {
+    "template-size-guide": {
+      "type": "template-size-guide",
+      "settings": {
+        "heading": "Size Guide",
+        "left_image": "shopify://shop_images/image_2.png",
+        "right_image": "shopify://shop_images/image_3.png",
+        "html_heading": "How to Measure",
+        "htm_heading": "Helpful Tip!",
+        "htm_para": "Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
       }
-    },
-    "order": [
-      "template-size-guide"
-    ]
-  }
+    }
+  },
+  "order": [
+    "template-size-guide"
+  ]
+}
