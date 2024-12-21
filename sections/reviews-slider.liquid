@@ -1,0 +1,99 @@
+<section class="reviews-slider">
+    <div class="container-fluid">
+        <div class="rslider-in">
+            <div class="owl-carousel owl-theme">
+                {% for block in section.blocks %}
+                <div class="item">
+                    <div class="rs-item">
+                        <div class="rsi-title">
+                            <h3>{{ block.settings.review_title }}</h3>
+                            <p>{{ block.settings.review_text }}</p>
+                        </div>
+                        <div class="rs-person">
+                            <p>{{ block.settings.person_name }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="arrow_left">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.62256 1.14844L1.05469 9.71631L9.62256 18.2842" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18.1904 9.7168H1.05469" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="arrow_right">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.4614 1.14844L19.0293 9.71631L10.4614 18.2842" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.89355 9.7168H19.0293" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                    
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('.rslider-in .owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        dots: false,
+        nav:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:1
+            }
+        }
+    })
+    $('.rslider-in .arrow_left').click(function(e) {
+        $('.rslider-in .owl-carousel').trigger("prev.owl");
+    })
+    $('.rslider-in .arrow_right').click(function(e) {
+        $('.rslider-in .owl-carousel').trigger("next.owl");
+    })
+</script>
+
+{% schema %}
+{
+  "name": "Reviews Slider",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Review Title",
+          "default": "Excellent Service!"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "I had a great experience with this product. Highly recommend it to everyone!"
+        },
+        {
+          "type": "text",
+          "id": "person_name",
+          "label": "Person Name",
+          "default": "John Doe"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Slider",
+      "category": "Testimonials"
+    }
+  ]
+}
+{% endschema %}

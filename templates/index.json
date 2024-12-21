@@ -117,6 +117,67 @@
         "pawsome_image": "shopify://shop_images/Cute_Spitz_1_1.png",
         "heading": "We’re Kinda Pawsome"
       }
+    },
+    "spacer5": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
+    "spacer6": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
+    "review-slider": {
+      "type": "reviews-slider",
+      "blocks": {
+        "item1": {
+          "type": "review",
+          "settings": {
+            "review_title": "Absolutely in love with the design",
+            "review_text": "Lorem ipsum dolor sit amet consectetur. Lacinia pellentesque leo ipsum cursus. Tempus rhoncus maecenas curabitur neque a nulla faucibus egestas. Nisl risus.",
+            "person_name": "John Keats"
+          }
+        },
+        "item2": {
+          "type": "review",
+          "settings": {
+            "review_title": "Absolutely in love with the design",
+            "review_text": "Lorem ipsum dolor sit amet consectetur. Lacinia pellentesque leo ipsum cursus. Tempus rhoncus maecenas curabitur neque a nulla faucibus egestas. Nisl risus.",
+            "person_name": "John Keats"
+          }
+        },
+        "item3": {
+          "type": "review",
+          "settings": {
+            "review_title": "Absolutely in love with the design",
+            "review_text": "Lorem ipsum dolor sit amet consectetur. Lacinia pellentesque leo ipsum cursus. Tempus rhoncus maecenas curabitur neque a nulla faucibus egestas. Nisl risus.",
+            "person_name": "John Keats"
+          }
+        }
+      },
+      "block_order": [
+        "item1",
+        "item2",
+        "item3"
+      ],
+      "settings": {
+        
+      }
+    },
+    "spacer7": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
+    "spacer8": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
     }
   },
   "order": [
@@ -128,6 +189,11 @@
     "spacer3",
     "bestsellers",
     "spacer4",
-    "pawsome"
+    "pawsome",
+    "spacer5",
+    "spacer6",
+    "review-slider",
+    "spacer7",
+    "spacer8"
   ]
 }
