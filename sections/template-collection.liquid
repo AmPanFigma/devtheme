@@ -1,4 +1,4 @@
-<section class="collection-section">
+<section class="collection-section" style="background-color: {{ collection.metafields.custom.colour | default: '#FC4C00' }};">
     <div class="collection-background">
         <img
           src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Blonde_girl_with_dog_indoor_portrait.png?v=1734273348"
@@ -59,50 +59,37 @@
             <h3>{{ section.settings.heading }}</h3>
         </div>
         <div class="fandsWrap">
-            <!-- New Filter Dropdown for Tags -->
-            {% assign all_tags = "" %}
-
-            <!-- Loop through all products to gather tags -->
-            {% for product in collections.all.products %}
-              {% for tag in product.tags %}
-                {% unless all_tags contains tag %}
-                  {% assign all_tags = all_tags | append: tag | append: ',' %}
-                {% endunless %}
-              {% endfor %}
-            {% endfor %}
-
-            <!-- Create a tag dropdown with unique tags -->
-            <div class="item styled-sort">
-              <select id="filter-by-tag" class="js-example-basic-single">
-                <option value="">Filter by Tag</option>
-                {% assign unique_tags = all_tags | split: ',' | sort %}
-                {% for tag in unique_tags %}
-                  {% if tag != "" %}
-                    <option value="{{ tag }}">{{ tag }}</option>
-                  {% endif %}
-                {% endfor %}
+          <!-- Collection-Based Filter Dropdown -->
+          <div class="item styled-sort">
+              <select id="filter-by-collection" class="js-example-basic-single">
+                  <option value="">Filter by Collection</option>
+                  <!-- Loop through all collections -->
+                  {% for collection in collections %}
+                      <option value="{{ collection.handle }}">{{ collection.title }}</option>
+                  {% endfor %}
               </select>
-            </div>
-
-            <div class="sort-filter">
-                <div class="item">
+          </div>
+      
+          <div class="sort-filter">
+              <div class="item">
                   <div class="collection-products-list-sort">
-                    <div class="collection-sort styled-sort">
-                      <select id="sort-by">
-                        <option value="default">Sort By</option>
-                        <option value="price-asc">Featured</option>
-                        <option value="price-asc">Best Selling</option>
-                        <option value="price-asc">Price, low to high</option>
-                        <option value="price-asc">Price, High to low</option>
-                        <option value="az">Date, old to new</option>
-                        <option value="za">Date, new to old</option>
-                      </select>
-                    </div>
+                      <div class="collection-sort styled-sort">
+                          <select id="sort-by">
+                              <option value="default">Sort By</option>
+                              <option value="featured">Featured</option>
+                              <option value="best-selling">Best Selling</option>
+                              <option value="price-asc">Price, low to high</option>
+                              <option value="price-desc">Price, high to low</option>
+                              <option value="date-old">Date, old to new</option>
+                              <option value="date-new">Date, new to old</option>
+                          </select>
+                      </div>
                   </div>
-                </div>
-            </div>
-            
-        </div>
+              </div>
+          </div>
+      </div>
+      
+      
         
 
     </div>
@@ -256,6 +243,14 @@
         sortProducts();
       });
     });
+
+    document.getElementById('filter-by-collection').addEventListener('change', function() {
+    const selectedCollection = this.value;
+    if (selectedCollection) {
+        // Redirect to the selected collection's URL
+        window.location.href = `/collections/${selectedCollection}`;
+    }
+});
   </script>
 
 
