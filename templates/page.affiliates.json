@@ -45,7 +45,9 @@
       "settings": {
         "pill_heading": "become an affiliate",
         "heading": "We Would Love To Have You!",
-        "para": "Introduction . Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
+        "para": "Introduction . Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci.",
+        "button_text": "Become an Affiliate",
+        "button_link": "https://www.google.co.in/"
       }
     }
   },
