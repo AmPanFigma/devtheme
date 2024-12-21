@@ -80,7 +80,13 @@
     "our-collections": {
       "type": "our-collections",
       "settings": {
-        "heading": "Picks For Your Pup’s Personality"
+        "heading": "Picks For Your Pup’s Personality",
+        "selected_collections": [
+          "anxious-mess",
+          "bit-of-a-prick",
+          "little-dog-syndrome",
+          "needy-bitch"
+        ]
       }
     },
     "spacer3": {
