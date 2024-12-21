@@ -969,6 +969,81 @@ footer p {
     display: none!important;
 }
 
+/* Size Guide Page CSS Starts */
+.size-guide {
+    padding: 100px 0;
+}
+.sguide-in .sguide-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.sgimage-item {
+    aspect-ratio: 1/1;
+}
+.sgimage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.how-to-measure-sec {
+    margin-bottom: 100px;
+}
+.how-to-measure .htm-tag {
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    color: #FE5F99;
+}
+.how-to-measure p {
+    text-align: center;
+    max-width: 80ch;
+    margin-left: auto;
+    margin-right: auto;
+    color: #474747;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.htm-image-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 36px;
+    margin-top: 50px;
+}
+.htm-image-wrap .htm-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+.htm-item .htm-image {
+    aspect-ratio: 1/1;
+}
+.htm-item .htm-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.htm-text {
+    text-align: center;
+}
+.htm-text .htm-head {
+    font-weight: 500;
+    font-size: 24px;
+    color: #111111;
+}
+.htm-text p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #474747;
+    max-width: 22ch;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 12px;
+}
+/* Size Guide Page CSS Ends */
+
 /* Responsive CSS */
 
 @media(max-width:1500px){
@@ -1059,6 +1134,12 @@ footer p {
     .pups-attitude .pa-in {
         padding-top: 70px;
     }
+    .size-guide {
+        padding: 60px 0;
+    }
+    .how-to-measure-sec {
+        margin-bottom: 60px;
+    }
 }
 @media(max-width:991px){
     h2 {
@@ -1121,6 +1202,12 @@ footer p {
     }
     .pups-attitude {
         min-height: 440px;
+    }
+    .htm-image-wrap {
+        gap: 24px;
+    }
+    .htm-in .heading {
+        margin-bottom: 30px;
     }
 }
 @media(max-width: 767px){
@@ -1190,6 +1277,20 @@ footer p {
     }
     .pain-data .paind-button {
         margin-top: 30px;
+    }
+    .sguide-in .sguide-images {
+        grid-template-columns: 1fr;
+    }
+    .htm-image-wrap {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .htm-image-wrap .htm-item {
+        gap: 16px;
+    }
+    .htm-text p {
+        max-width: 100%;
+        margin-top: 8px;
     }
 }
 @media(max-width: 400px){
