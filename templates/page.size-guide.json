@@ -20,14 +20,15 @@
             "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
           }
         },
-        "htm_item_jKbYjz": {
+        "htm_item_8N7cYa": {
           "type": "htm_item",
           "settings": {
-            "item_heading": "",
-            "item_para": ""
+            "item_image": "shopify://shop_images/Frame_427323136.png",
+            "item_heading": "Chest",
+            "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
           }
         },
-        "htm_item_faHNFi": {
+        "htm_item_jKbYjz": {
           "type": "htm_item",
           "settings": {
             "item_heading": "",
@@ -37,8 +38,8 @@
       },
       "block_order": [
         "htm_item_QwNmEP",
-        "htm_item_jKbYjz",
-        "htm_item_faHNFi"
+        "htm_item_8N7cYa",
+        "htm_item_jKbYjz"
       ],
       "settings": {
         "heading": "Size Guide",
