@@ -1,10 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-      "template-contact": {
-        "type": "template-contact",
+  "sections": {
+    "template-contact": {
+      "type": "template-contact",
+      "settings": {
+        "pill_heading": "contact",
+        "heading": "Hey What’s Up!",
+        "para": "Pellentesque bibendum dolor tortor diam. Cursus in metus egestas sollicitudin risus dignissim. Fermentum tincidunt bibendum donec ultricies viverra nisi nam eleifend lectus.",
+        "email_link": "info@heyyoupups.com",
+        "tel_number": "02038234575",
+        "address": "Gemma House\n39 Lilestone street\nLondon\nNW88SS",
+        "background_image": "shopify://shop_images/Frame_427320490_2_1.png"
       }
-    },
-    "order": [
-      "template-contact"
-    ]
-  }
+    }
+  },
+  "order": [
+    "template-contact"
+  ]
+}
