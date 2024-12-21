@@ -5,7 +5,7 @@
       <div class="pi-breadcrumb">
         <ul>
             <li><a href="">Home</a></li>
-            <li><a href="">{{ product.category }}</a></li>
+            <li><a href="">{{ product.collection.title }}</a></li>
             <li><a href="">{{ product.title }}</a></li>
         </ul>
       </div>
@@ -25,223 +25,124 @@
         
         
         <div class="pro-description">
-          {% form 'product'
-            , product
-            , id: 'product-form'
-            , novalidate: 'novalidate' %}
-            <input
-              type="hidden"
-              name="id"
-              value="{{ product.selected_or_first_available_variant.id }}">
+          <div class="product-share">
+            <a class="sc-item copy-link" href="#!">
+              {% render 'product-share' %}
+            </a>
+          </div>
+          <ajax-cart-product-form>
+            {% form 'product'
+              , product
+              , id: 'product-form'
+              , novalidate: 'novalidate' %}
+              <input
+                type="hidden"
+                name="id"
+                value="{{ selected_variant.id }}">
 
-            {% for block in section.blocks %}
-              {% case block.type %}
-                {% when '@app' %}
-                  {% render block %}
-                {% when 'title' %}
-                  <div class="title">
-                    <h1>{{ product.title }}</h1>
-                  </div>
-                {% when 'price' %}
-                  <div class="price" id="price-{{ section.id }}">
-                    <p class="sell-price">
-                      {{ product.price | money_without_trailing_zeros }}
-                    </p>
-                  </div>
-                {% when 'variant_selector' %}
-                  {% if product.type == 'Ring' %}
-                    <div class="variant">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'title' %}
+                    <div class="title">
+                      <h1>{{ product.title }}</h1>
+                    </div>
+
+                  {% when 'description' %}
+                    <div class="pro-dessciption">
+                      <p>{{ product.description }}</p>
+                    </div>
+
+                    <!-- <div class="price" id="price-{{ section.id }}">  <strike class="real-price">{{ selected_variant.compare_at_price | money }}</strike>  <span class="sell-price">    {{ selected_variant.price  }}  </span>  {% if selected_variant.price < selected_variant.compare_at_price %}    <span>Sale</span>
+                      {% endif %}
+                    </div> -->
+                    <div class="variant-selector">
+                      
                       {% unless product.has_only_default_variant %}
+                        <div class="varient-heading">
+                          <p>save more when you buy a bundle</p>
+                        </div>
                         <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
-                          {% for option in product.options_with_values %}
-                            <div class="ring-size-selector">
-                              <div class="rss-wrap">
-                                <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }} :
-                                </label>
-                                <select name="options[{{ option.name | escape }}]" id="Option-{{ section.id }}-{{ forloop.index0 }}">
-                                  {% for value in option.values %}
-                                    <option
-                                      value="{{ value | escape }}"
-                                      {% if option.selected_value == value %}
-                                      selected="selected"
-                                      {% endif %}>
-                                      {{ value }}
-                                    </option>
-                                  {% endfor %}
-                                </select>
-                              </div>
-                              <div class="size-guide-toggle">
-                                <a href="javascript:void(0)">View Size Guide</a>
-                              </div>
-                            </div>
-                            <script type="application/json">
-                              {{ product.variants | json }}
-                            </script>
-                          {% endfor %}
+                          <ul>
+                            {% for variant in product.variants %}
+                              <li
+                                class="variant-option"
+                                data-variant-id="{{ variant.id }}"
+                                data-price="{{ variant.price | money }}"
+                                data-discounted-price="{{ variant.metafields.custom.discounted_price }}"
+                                data-available="{{ variant.available }}">
+                                <span class="variant-title">{{ variant.title }}</span>
+                                {% if variant.metafields.custom.discounted_price %}
+                                  <span class="discounted-price">(Save {{ variant.metafields.custom.discounted_price | money }})</span>
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                          <script type="application/json">{{ product.variants | json }}
+                          </script>
                         </variant-selector>
                       {% endunless %}
                     </div>
-                  {% endif %}
 
-                {% when 'description' %}
-                  <div class="pro-desp">
-                    {{ product.description }}
-                  </div>
-                {% when 'checkout_buttons' %}
-                  <div class="submit">
-                    <button
-                      type="submit"
-                      name="add"
-                      {% if product.selected_or_first_available_variant.available == false %}
-                      disabled
-                      {% endif %}>
-                      {% if product.selected_or_first_available_variant.available == false %}
-                        Sold Out
+                    <!-- Variant Information Display -->
+                    <div id="variant-info">
+                      <p id="variant-price"></p>
+                      <p id="variant-discounted-price"></p>
+                    </div>
+
+                    <!-- <div class="quantity">
+                      <div class="minus">
+                        -
+                      </div>
+                      <div class="quan">
+                        <input
+                          type="number"
+                          name="updates[]"
+                          class="update-quantity"
+                          id="updates_{{ forloop.index }}"
+                          value="{{ item.quantity }}"
+                          min=1>
+                      </div>
+                      <div class="plus">
+                        +
+                      </div>
+                    </div> -->
+
+                  {% when 'checkout_buttons' %}
+                    <!-- Add to Cart Button -->
+                    <div class="submit product-submit">
+
+                      <input
+                        type="hidden"
+                        name="id"
+                        id="product-variant-id"
+                        value="{{ product.variants.first.id }}">
+                      {% if product.variants.first.available %}
+                        <button
+                          type="submit"
+                          name="add"
+                          class="chateau-cta black"
+                          id="add-to-cart-button"
+                          data-available="{{ product.variants.first.available }}">
+                          <span id="add-to-cart-text">{{ product.variants.first.price | money_without_trailing_zeros }}</span>
+                          - Add To Cart
+                        </button>
                       {% else %}
-                        Add To bag
+                        <button
+                          type="submit"
+                          name="add"
+                          disabled
+                          class="chateau-cta black"
+                          data-available="{{ product.variants.first.available }}">
+                          <span id="add-to-cart-text">Sold Out</span>
+                        </button>
                       {% endif %}
-                    </button>
-                    <a href="{{ block.settings.select-page.url }}">Try at Home</a>
-                  </div>
-                  <div class="payment-option">
-                    <p>Guaranteed Safe Checkout with Payment Options</p>
-                    <div class="po-wrapper">
-                      <div class="po-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Amex.svg?v=1728311207" alt="">
-                      </div>
-                      <div class="po-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Mastercard.svg?v=1728311207" alt="">
-                      </div>
-                      <div class="po-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Discover.svg?v=1728311207" alt="">
-                      </div>
-                      <div class="po-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/ApplePay.svg?v=1728311207" alt="">
-                      </div>
-                      <div class="po-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/GooglePay.svg?v=1728311207" alt="">
-                      </div>
-                      <div class="po-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Visa.svg?v=1728311207" alt="">
-                      </div>
-                      <div class="po-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/UnionPay.svg?v=1728311207" alt="">
-                      </div>
+                      <div data-ajax-cart-errors="form"></div>
                     </div>
-                  </div>
-                  <div class="product-usp">
-                    <div class="usp-item">
-                      <div class="usp-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Group_10.svg?v=1728312727" alt="">
-                      </div>
-                      <div class="usp-txt">Purity</div>
-                    </div>
-                    <div class="usp-item">
-                      <div class="usp-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Vector_17.svg?v=1728312724" alt="">
-                      </div>
-                      <div class="usp-txt">Conscious</div>
-                    </div>
-                    <div class="usp-item">
-                      <div class="usp-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Vector_18.svg?v=1728312719" alt="">
-                      </div>
-                      <div class="usp-txt">Choice</div>
-                    </div>
-                    <div class="usp-item">
-                      <div class="usp-icon">
-                        <img src="https://cdn.shopify.com/s/files/1/0893/3677/4940/files/Group_11.svg?v=1728312717" alt="">
-                      </div>
-                      <div class="usp-txt">Easy returns</div>
-                    </div>
-                  </div>
-
-                {% when 'pincode' %}
-                  <div class="pincode-div">
-                    <div class="ZipCodeRestrict zipcode_product_page"></div>
-                  </div>
-
-                {% when 'accordions' %}
-                  <div class="product-accordions">
-                    {% if product.metafields.custom.product_details.size > 0 %}
-                      <div class="pa-item">
-                        <div class="pa-head">
-                          <p>Design Details</p>
-                          <div class="pa-plus">
-                            {% render 'acc-plus' %}
-                          </div>
-                        </div>
-                        <div class="pa-ans">
-                          {{ product.metafields.custom.product_details | metafield_tag }}
-                        </div>
-                      </div>
-                    {% endif %}
-                    <div class="pa-item">
-                      <div class="pa-head">
-                        <p>Jewellery Details</p>
-                        <div class="pa-plus">
-                          {% render 'acc-plus' %}
-                        </div>
-                      </div>
-                      <div class="pa-ans">
-                        <div class="pa-ul">
-                          <ul>
-                            <li>
-                                Metal Purity:
-                                <span>18Kt</span>
-                            </li>
-                            {% for item in product.metafields.custom.jewellery_details.value %}
-                              {%  if item.detail_name == 'Metal Purity' or item.detail_name == 'Diamond Certification' or item.detail_name == 'Gold Certification' %}
-      
-                                {% else %}
-                                  <li>
-                                      {{ item.detail_name }}:
-                                      <span>{{ item.detail_description }}</span>
-                                  </li>
-                              {% endif %}
-                              
-                            {% endfor %}
-                            <li>
-                                Diamond Certification:
-                                <span>IGI Certified</span>
-                            </li>
-                            <li>
-                                Gold Certification:
-                                <span>BIS Hallmarked</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="pa-item">
-                      <div class="pa-head">
-                        <p>Shipping Details</p>
-                        <div class="pa-plus">
-                          {% render 'acc-plus' %}
-                        </div>
-                      </div>
-                      <div class="pa-ans">
-                        {{ section.settings.shipping }}
-                      </div>
-                    </div>
-                    <div class="pa-item">
-                      <div class="pa-head">
-                        <p>Return Policy</p>
-                        <div class="pa-plus">
-                          {% render 'acc-plus' %}
-                        </div>
-                      </div>
-                      <div class="pa-ans">
-                        {{ section.settings.return }}
-                      </div>
-                    </div>
-                  </div>
-                  
-
-                {% endcase %}
-              {% endfor %}
-            {% endform %}
-          </div>
+                {% else %}
+                  {% endcase %}
+                {% endfor %}
+              {% endform %}
+            </ajax-cart-product-form>
         </div>
       </div>
     </div>

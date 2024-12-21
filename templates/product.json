@@ -49,8 +49,8 @@
           "purchase"
         ],
         "settings": {
-          "shipping": "<p>We will process your insured shipment within 2–3 business days of receiving your request. The shipping fee, inclusive of insurance, is Rs 1000/- (Rupees One Thousand Only) for delivery from any Pin-code in India to our Aukera warehouse. Should you prefer to arrange shipping on your own, Aukera cannot be held accountable for any damage or loss during the transit.</p>",
-          "return": "<p>At Aukera, we believe in offering peace of mind with our flexible return, buy-back, and exchange policies. You can return your jewellery within 15 days for a full refund, no questions asked. Our lifetime buy-back facility ensures you can receive up to 90% of the original value when you return your jewellery.<br/><br/>Please note that custom or made-to-order pieces are exempt from these offers.</p>"
+          "shipping": "<p>dummy text</p>",
+          "return": "<p>dummy text</p>"
         }
       }
     },

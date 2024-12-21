@@ -1,0 +1,11 @@
+{
+    "sections": {
+      "template-size-guide": {
+        "type": "template-size-guide",
+        
+      }
+    },
+    "order": [
+      "template-size-guide"
+    ]
+  }
