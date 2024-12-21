@@ -31,8 +31,9 @@
         "htm_item_jKbYjz": {
           "type": "htm_item",
           "settings": {
-            "item_heading": "",
-            "item_para": ""
+            "item_image": "shopify://shop_images/Frame_427323137.png",
+            "item_heading": "Get Shopping",
+            "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
           }
         }
       },
