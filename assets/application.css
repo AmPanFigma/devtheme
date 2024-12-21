@@ -1076,6 +1076,7 @@ footer p {
 .cpage-contact {
     width: 80%;
     margin: 0 auto;
+    padding-bottom: 40px;
 }
 .cpage-contact .heading p {
     margin-top: 20px;
@@ -1287,6 +1288,9 @@ footer p {
     .cpage-in {
         width: 100%;
         margin-top: 40px;
+    }
+    .cpage-contact {
+        padding-bottom: 0;
     }
 }
 @media(max-width: 767px){
