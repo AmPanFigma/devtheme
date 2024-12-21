@@ -1044,7 +1044,7 @@ footer p {
 .pro-featured-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 18px 10px;
 }
 .product-featured-image {
     aspect-ratio: 6/7;
@@ -1058,6 +1058,67 @@ footer p {
 }
 .pi-product .pro-description {
     width: 40%;
+}
+.pro-description .title h1 {
+    font-size: 32px;
+    font-weight: 500;
+    color: #111;
+    text-transform: capitalize;
+}
+.pro-description .pro-desc p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #474747;
+    letter-spacing: 0.48px;
+}
+.variant-selector {
+    margin-top: 50px;
+}
+.variant-selector .varient-size {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.varient-heading p {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.sizeChart {
+    display: flex;
+}
+.sizeChart a {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #111111;
+    letter-spacing: 0.48px;
+    text-decoration: underline;
+    line-height: 16px;
+}
+variant-selector ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+variant-selector ul li {
+    border: 1px solid #B3B3B3;
+    padding: 10px 20px;
+    min-width: 80px;
+}
+variant-selector ul li span {
+    font-size: 10px;
+    font-weight: 400;
+    color: #111111;
+    display: block;
+    text-align: center;
 }
 /* Product Page CSS Ends */
 

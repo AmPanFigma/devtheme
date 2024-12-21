@@ -5,7 +5,7 @@
       <div class="pi-breadcrumb">
         <ul>
             <li><a href="">Home</a></li>
-            <li><a href="">{{ product.collection.title }}</a></li>
+            <li><a href="">{{ product.category }}</a></li>
             <li><a href="">{{ product.title }}</a></li>
         </ul>
       </div>
@@ -25,11 +25,7 @@
         
         
         <div class="pro-description">
-          <div class="product-share">
-            <a class="sc-item copy-link" href="#!">
-              {% render 'product-share' %}
-            </a>
-          </div>
+          
           <ajax-cart-product-form>
             {% form 'product'
               , product
@@ -48,18 +44,20 @@
                     </div>
 
                   {% when 'description' %}
-                    <div class="pro-dessciption">
+                    <div class="pro-desc">
                       <p>{{ product.description }}</p>
                     </div>
 
-                    <!-- <div class="price" id="price-{{ section.id }}">  <strike class="real-price">{{ selected_variant.compare_at_price | money }}</strike>  <span class="sell-price">    {{ selected_variant.price  }}  </span>  {% if selected_variant.price < selected_variant.compare_at_price %}    <span>Sale</span>
-                      {% endif %}
-                    </div> -->
                     <div class="variant-selector">
                       
                       {% unless product.has_only_default_variant %}
-                        <div class="varient-heading">
-                          <p>save more when you buy a bundle</p>
+                        <div class="varient-size">
+                          <div class="varient-heading">
+                            <p>Select Size</p>
+                          </div>
+                          <div class="sizeChart">
+                            <a href="">Size Chart</a>
+                          </div>
                         </div>
                         <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                           <ul>
@@ -89,7 +87,7 @@
                       <p id="variant-discounted-price"></p>
                     </div>
 
-                    <!-- <div class="quantity">
+                    <div class="quantity">
                       <div class="minus">
                         -
                       </div>
@@ -105,7 +103,7 @@
                       <div class="plus">
                         +
                       </div>
-                    </div> -->
+                    </div>
 
                   {% when 'checkout_buttons' %}
                     <!-- Add to Cart Button -->
@@ -120,18 +118,17 @@
                         <button
                           type="submit"
                           name="add"
-                          class="chateau-cta black"
+                          class="custom-button black"
                           id="add-to-cart-button"
                           data-available="{{ product.variants.first.available }}">
-                          <span id="add-to-cart-text">{{ product.variants.first.price | money_without_trailing_zeros }}</span>
-                          - Add To Cart
+                          Add To Cart
                         </button>
                       {% else %}
                         <button
                           type="submit"
                           name="add"
                           disabled
-                          class="chateau-cta black"
+                          class="custom-button black"
                           data-available="{{ product.variants.first.available }}">
                           <span id="add-to-cart-text">Sold Out</span>
                         </button>
@@ -147,49 +144,6 @@
       </div>
     </div>
   </section>
-
-  <div class="ring-guide-modal" data-lenis-prevent>
-    <div class="rgm-wrapper">
-      <div class="rgm-con">
-        <div class="rgm-cross">
-          {% render 'cross' %}
-        </div>
-        <div class="rgm-head">
-          {% assign ring-guide-heading = section.blocks | where: 'type', 'ring-guide-heading' %}
-          {% for block in ring-guide-heading %}
-            {{ block.settings['modal-heading'] }}
-          {% endfor %}
-        </div>
-        <table>
-          {% assign ring-guide = section.blocks | where: 'type', 'ring-guide' %}
-          <tr>
-            {% for block in ring-guide-heading %}
-              <th>{{ block.settings.head1 }}</th>
-              <th>{{ block.settings.head2 }}</th>
-              <th>{{ block.settings.head3 }}</th>
-              <th>{{ block.settings.head4 }}</th>
-              <th>{{ block.settings.head5 }}</th>
-              <th>{{ block.settings.head6 }}</th>
-              <th>{{ block.settings.head7 }}</th>
-              <th>{{ block.settings.head8 }}</th>
-            {% endfor %}
-          </tr>
-          {% for block in ring-guide %}
-            <tr>
-              <td>{{ block.settings['group-item1'] }}</td>
-              <td>{{ block.settings['group-item2'] }}</td>
-              <td>{{ block.settings['group-item3'] }}</td>
-              <td>{{ block.settings['group-item4'] }}</td>
-              <td>{{ block.settings['group-item5'] }}</td>
-              <td>{{ block.settings['group-item6'] }}</td>
-              <td>{{ block.settings['group-item7'] }}</td>
-              <td>{{ block.settings['group-item8'] }}</td>
-            </tr>
-          {% endfor %}
-        </table>
-      </div>
-    </div>
-  </div>
 
   
 
