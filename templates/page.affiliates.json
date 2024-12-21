@@ -1,0 +1,13 @@
+{
+    "sections": {
+      "template-affiliates": {
+        "type": "template-affiliates",
+        "settings": {
+          
+        }
+      }
+    },
+    "order": [
+      "template-affiliates"
+    ]
+  }

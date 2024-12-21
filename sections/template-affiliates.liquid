@@ -1,0 +1,84 @@
+<section class="affiliate-page">
+    <div class="container">
+        <div class="affiliate-in">
+            <div class="heading center with-pill">
+                <div class="pillwrap">
+                    <div class="heading-pill yellow">{{ section.settings.pill_heading }}</div>
+                </div>
+                <h3>{{ section.settings.heading }}</h3>
+                <p>{{ section.settings.para }}</p>
+                <div class="heading-button">
+                    <a href="{{ section.settings.button_link }}" class="custom-button black">{{ section.settings.button_text }}</a>
+                </div>
+            </div>
+            <div class="htm-image-wrap">
+                {% for block in section.blocks %}
+                <div class="htm-item">
+                    <div class="htm-image">
+                        <img src="{{ block.settings.item_image | img_url: 'master' }}" alt="">
+                    </div>
+                    <div class="htm-text">
+                        <div class="htm-head">{{ block.settings.item_heading }}</div>
+                        <p>{{ block.settings.item_para }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Affiliates",
+  "settings": [
+    {
+        "type": "text",
+        "id": "pill_heading",
+        "label": "Affiliates Tag Heading",
+        "default": "become an affiliate"
+    },
+    {
+        "type": "text",
+        "id": "heading",
+        "label": "Affiliates Title",
+        "default": "We Would Love To Have You!"
+    },
+    {
+        "type": "text",
+        "id": "para",
+        "label": "Paragraph Text",
+        "default": "Introduction . Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
+    },
+  ],
+  "blocks": [
+    {
+      "type": "htm_item",
+      "name": "Affiliates Steps",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "item_image",
+          "label": "Steps Item Image"
+        },
+        {
+          "type": "text",
+          "id": "item_heading",
+          "label": "Steps Item Heading"
+        },
+        {
+            "type": "text",
+            "id": "item_para",
+            "label": "Steps Item Paragraph"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Affiliates",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
