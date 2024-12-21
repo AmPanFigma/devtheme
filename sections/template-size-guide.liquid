@@ -45,41 +45,41 @@
 
 {% schema %}
 {
-  "name": "Sizeguide",
+  "name": "Size Guide",
   "settings": [
     {
         "type": "text",
         "id": "heading",
-        "label": "Heading",
+        "label": "Main Heading",
         "default": "Size Guide"
-    }
+    },
     {
       "type": "image_picker",
       "id": "left_image",
-      "label": "Size Guide Left Image"
+      "label": "Left Image"
     },
     {
         "type": "image_picker",
         "id": "right_image",
-        "label": "Size Guide Right Image"
+        "label": "Right Image"
     },
     {
         "type": "text",
         "id": "html_heading",
-        "label": "How to measure heading",
+        "label": "How to Measure Heading",
         "default": "How to Measure"
     },
     {
         "type": "text",
         "id": "htm_heading",
-        "label": "How to measure heading",
+        "label": "How to Measure Subheading",
         "default": "Helpful Tip!"
     },
     {
         "type": "text",
         "id": "htm_para",
-        "label": "How to measure heading",
-        "default": "How to Measure"
+        "label": "How to Measure Paragraph",
+        "default": "Use this guide to measure your pet accurately."
     }
   ],
   "blocks": [
@@ -95,17 +95,21 @@
         {
           "type": "text",
           "id": "item_heading",
-          "label": "How To Measure Item Heading"
+          "label": "Grid Item Heading"
         },
         {
             "type": "text",
             "id": "item_para",
-            "label": "How To Measure Item Paragraph"
+            "label": "Grid Item Paragraph"
         }
       ]
     }
   ],
   "presets": [
+    {
+      "name": "Size Guide",
+      "category": "Custom"
+    }
   ]
 }
 {% endschema %}
