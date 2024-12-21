@@ -1,13 +1,54 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-      "template-affiliates": {
-        "type": "template-affiliates",
-        "settings": {
-          
+  "sections": {
+    "template-affiliates": {
+      "type": "template-affiliates",
+      "blocks": {
+        "htm_item_3La4Lx": {
+          "type": "htm_item",
+          "settings": {
+            "item_image": "shopify://shop_images/Frame_427323135_1.png",
+            "item_heading": "Step 01 Sign Up",
+            "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
+          }
+        },
+        "htm_item_Q64hiW": {
+          "type": "htm_item",
+          "settings": {
+            "item_image": "shopify://shop_images/Frame_427323136_1.png",
+            "item_heading": "",
+            "item_para": ""
+          }
+        },
+        "htm_item_eb8yET": {
+          "type": "htm_item",
+          "settings": {
+            "item_heading": "",
+            "item_para": ""
+          }
         }
+      },
+      "block_order": [
+        "htm_item_3La4Lx",
+        "htm_item_Q64hiW",
+        "htm_item_eb8yET"
+      ],
+      "settings": {
+        "pill_heading": "become an affiliate",
+        "heading": "We Would Love To Have You!",
+        "para": "Introduction . Volutpat aliquam ut feugiat enim vel. Sed sed mauris interdum consequat in elit et. Id in arcu vestibulum enim ornare a suscipit aenean. Fringilla id egestas condimentum adipiscing mauris arcu enim orci."
       }
-    },
-    "order": [
-      "template-affiliates"
-    ]
-  }
+    }
+  },
+  "order": [
+    "template-affiliates"
+  ]
+}
