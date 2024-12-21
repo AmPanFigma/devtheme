@@ -11,6 +11,35 @@
   "sections": {
     "template-size-guide": {
       "type": "template-size-guide",
+      "blocks": {
+        "htm_item_QwNmEP": {
+          "type": "htm_item",
+          "settings": {
+            "item_image": "shopify://shop_images/Frame_427323135.png",
+            "item_heading": "Neck",
+            "item_para": "Sociis interdum dignissim dui lacus lectus ultricies. Tortor condimentum nisl sed."
+          }
+        },
+        "htm_item_jKbYjz": {
+          "type": "htm_item",
+          "settings": {
+            "item_heading": "",
+            "item_para": ""
+          }
+        },
+        "htm_item_faHNFi": {
+          "type": "htm_item",
+          "settings": {
+            "item_heading": "",
+            "item_para": ""
+          }
+        }
+      },
+      "block_order": [
+        "htm_item_QwNmEP",
+        "htm_item_jKbYjz",
+        "htm_item_faHNFi"
+      ],
       "settings": {
         "heading": "Size Guide",
         "left_image": "shopify://shop_images/image_2.png",
