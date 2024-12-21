@@ -389,11 +389,17 @@ footer p {
 .heading {
     margin-bottom: 60px;
 }
+.heading.left {
+    align-items: flex-start;
+}
 .heading.with-pill {
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
+}
+.heading.left {
+    align-items: flex-start;
 }
 .heading .heading-pill {
     padding: 10px 25px;
@@ -1043,6 +1049,59 @@ footer p {
     margin-top: 12px;
 }
 /* Size Guide Page CSS Ends */
+
+/* Contact Page CSS Starts */
+.cpage {
+    position: relative;
+}
+.cpage .cpage-image {
+    position: absolute;
+    width: 50%;
+    top: 0;
+    right: 0;
+}
+.cpage-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cpage-in {
+    width: 50%;
+}
+.cpage-contact {
+    width: 80%;
+}
+.cpage-contact .heading p {
+    margin-top: 20px;
+    margin-bottom: 0;
+    max-width: 38ch;
+    letter-spacing: 0.48px;
+    color: #474747;
+}
+.cpage-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+.cpage-item .cpi-head {
+    font-weight: 900;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #FE5F99;
+    letter-spacing: 2.56px;
+    margin-bottom: 10px;
+}
+.cpage-item .cpi-data a,
+.cpage-item .cpi-data p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #474747;
+    letter-spacing: 0.48px;
+} 
+.cpage-item .cpi-data a {
+    text-decoration: underline;
+}
+/* Contact Page CSS Ends */
 
 /* Responsive CSS */
 
