@@ -13,8 +13,8 @@
       "type": "template-thankyou",
       "settings": {
         "background_image": "shopify://shop_images/09_Account_Sign_In.png",
-        "heading": "oops!",
-        "error_subheading": "Requested Page not found",
+        "heading": "Thank You",
+        "error_subheading": "We have received your request",
         "error_message": "Lorem ipsum dolor sit amet consectetur. Aenean vulputate in pharetra netus scelerisque duis elementum.",
         "button_text": "Go to Home",
         "button_link": ""
