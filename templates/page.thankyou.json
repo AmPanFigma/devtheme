@@ -1,13 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-      "template": {
-        "type": "template-thankyou",
-        "settings": {
-          
-        }
+  "sections": {
+    "template": {
+      "type": "template-thankyou",
+      "settings": {
+        "background_image": "shopify://shop_images/09_Account_Sign_In.png",
+        "heading": "oops!",
+        "error_subheading": "Requested Page not found",
+        "error_message": "Lorem ipsum dolor sit amet consectetur. Aenean vulputate in pharetra netus scelerisque duis elementum.",
+        "button_text": "Go to Home",
+        "button_link": ""
       }
-    },
-    "order": [
-      "template"
-    ]
-  }
+    }
+  },
+  "order": [
+    "template"
+  ]
+}
