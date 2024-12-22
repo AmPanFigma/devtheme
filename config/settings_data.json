@@ -73,7 +73,9 @@
       },
       "footer": {
         "type": "footer",
-        "settings": {}
+        "settings": {
+          "footer_menu": "footer-shop-menu"
+        }
       },
       "my-ajax-cart": {
         "type": "my-ajax-cart",
