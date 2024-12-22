@@ -61,47 +61,83 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", (event) => {
-        // Add a delay to ensure everything is loaded
-        setTimeout(() => {
-          const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
+    // Check if the current page is not a product page
+    if ({{ template | json }} !== "product") {
+      // Add a delay to ensure everything is loaded
+      setTimeout(() => {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
 
-          function raf(time) {
-            // Check if body has 'modal-backdrop' class
-            if (!document.body.classList.contains('backdrop')) {
-              lenis.raf(time);
-            }
-            else{
-              lenis.raf(time);
-            }
-            requestAnimationFrame(raf);
+        function raf(time) {
+          // Check if body has 'modal-backdrop' class
+          if (!document.body.classList.contains('backdrop')) {
+            lenis.raf(time);
+          } else {
+            lenis.raf(time);
           }
           requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
 
-          const header = document.querySelector('header'); // Select your header element
+        const header = document.querySelector('header'); // Select your header element
 
-          lenis.on('scroll', ({ scroll, limit }) => {
-              const scrollPercentage = (scroll / limit) * 100; // Calculate scroll percentage
+        lenis.on('scroll', ({ scroll, limit }) => {
+          const scrollPercentage = (scroll / limit) * 100; // Calculate scroll percentage
 
-              if (scrollPercentage > 2) {
-                header.classList.add('active'); // Add 'active' class after scrolling 20%
-              } else {
-                header.classList.remove('active'); // Remove 'active' class if less than 20%
-              }
-          });
-          
+          if (scrollPercentage > 2) {
+            header.classList.add('active'); // Add 'active' class after scrolling 20%
+          } else {
+            header.classList.remove('active'); // Remove 'active' class if less than 20%
+          }
         });
       });
+    }
+  });
+  
 
-      $(document).ready(function () {
-          $(".cart-open").click(function () {
-              $("#shopify-section-my-ajax-cart").addClass("active"), $("body").addClass("js-show-ajax-cart")
-          }), $(".cart-close").click(function () {
-              $("#shopify-section-my-ajax-cart").removeClass("active"), $("body").removeClass("js-show-ajax-cart")
-          })
+    $(document).ready(function () {
+      $(document).on("click", ".cart-open", function () {
+          console.log("Cart open clicked");
+          $("#shopify-section-my-ajax-cart").addClass("active");
+          $("body").addClass("js-show-ajax-cart");
       });
+
+      $(document).on("click", ".cart-close", function () {
+          console.log("Cart close clicked");
+          $("#shopify-section-my-ajax-cart").removeClass("active");
+          $("body").removeClass("js-show-ajax-cart");
+      });
+  });
+
+  document.addEventListener('liquid-ajax-cart:request-end', event => {
+  const {requestState} = event.detail;
+
+  // If the "add to cart" request is successful
+  if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+
+    // Add the CSS class to the "body" tag
+    document.body.classList.add('js-show-ajax-cart');
+  }
+});
+
+
+    //   $(document).ready(function () {
+    //     // Event delegation for .remove
+    //     $(document).on('click', '.remove', function() {
+    //         // Find the closest .cart_prod ancestor and then locate .cart-remove-confirm within it
+    //         var $cartProd = $(this).closest('.cart_prod');
+    //         $cartProd.find(".cart-remove-confirm").addClass("active");
+    //     });
+
+    //     // Event delegation for .remove-active
+    //     $(document).on('click', '.remove-active', function() {
+    //         // Find the closest .cart_prod ancestor and then locate .cart-remove-confirm within it
+    //         var $cartProd = $(this).closest('.cart_prod');
+    //         $cartProd.find(".cart-remove-confirm").removeClass("active");
+    //     });
+    // });
     </script>
 
     <script type="application/json" data-ajax-cart-initial-state>

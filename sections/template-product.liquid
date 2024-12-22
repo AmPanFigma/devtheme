@@ -1,28 +1,95 @@
-{% comment %} {% assign selected_variant = product.selected_or_first_available_variant %} {% endcomment %}
+{% assign selected_variant = product.selected_or_first_available_variant %}
 <section class="product-inner">
   <div class="container-fluid">
     <div class="pi-wrapper">
       <div class="pi-breadcrumb">
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">{{ product.category }}</a></li>
-            <li><a href="">{{ product.title }}</a></li>
+          <!-- Home link -->
+          <li><a href="/">Home</a></li>
+        
+          <!-- Product Collection Name and Link -->
+          {% assign primary_collection = product.collections | first %}
+          {% if primary_collection %}
+            <li><a href="{{ primary_collection.url }}">{{ primary_collection.title }}</a></li>
+          {% else %}
+            <li>Uncategorized</li> <!-- Optional fallback if no collection -->
+          {% endif %}
+        
+          <!-- Current Product Name -->
+          <li><a href="{{ product.url }}">{{ product.title }}</a></li>
         </ul>
       </div>
       <div class="pi-product">
         <div class="pro-img" >
           <div class="pro-featured-wrapper">
-            {% for media in product.media %}
-              <div class="product-featured-image">
-                <img
-                  src="{{ media | img_url: 'large' }}"
-                  alt="{{ media.preview_image.alt }}"
-                  id="image{{ forloop.index }}">
-              </div>
+            <!-- First loop: Display first 2 images -->
+            {% for media in product.media limit:2 %}
+            <div class="product-featured-image">
+              <img
+                src="{{ media | img_url: 'large' }}"
+                alt="{{ media.preview_image.alt }}"
+                id="image{{ forloop.index }}">
+            </div>
             {% endfor %}
+
+            </div>
+
+            <div class="pro-cfeatures">
+              <div class="cfeatures-in">
+                <div class="pdr-grid white">
+                    <div class="pdr-item">
+                        <div class="pdritem-image">
+                            <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_57.svg?v=1734241523" alt="">
+                        </div>
+                        <div class="pdritem-text">Free Shipping Over €50</div>
+                    </div>
+                    <div class="pdr-item">
+                        <div class="pdritem-image">
+                            <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_58.svg?v=1734241522" alt="">
+                        </div>
+                        <div class="pdritem-text">Top Rated Products</div>
+                    </div>
+                    <div class="pdr-item">
+                        <div class="pdritem-image">
+                            <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Pet_Transport_Icon_856c2282-e43b-49ed-af89-68d091831ab2.svg?v=1734241522" alt="">
+                        </div>
+                        <div class="pdritem-text">14-Day Return Window</div>
+                    </div>
+                    <div class="pdr-item">
+                        <div class="pdritem-image">
+                            <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_59.svg?v=1734241522" alt="">
+                        </div>
+                        <div class="pdritem-text">Crafted with love</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="pro-featured-wrapper">
+            <!-- Second loop: Display all images except the first 2 -->
+            {% for media in product.media offset:2 %}
+            <div class="product-featured-image">
+              <img
+                src="{{ media | img_url: 'large' }}"
+                alt="{{ media.preview_image.alt }}"
+                id="image{{ forloop.index }}">
+            </div>
+            {% endfor %}
+
           </div>
         </div>
-        
+        <div class="pro-img mobile">
+          <div class="product-carousel">
+            <div class="owl-carousel owl-theme">
+              {% for media in product.media %}
+                <div class="item">
+                  <div class="product-img pos-rel">
+                    {% render 'product-media' | media: media %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
         
         <div class="pro-description">
           
@@ -43,43 +110,77 @@
                       <h1>{{ product.title }}</h1>
                     </div>
 
+                    <div class="price" id="price-{{ section.id }}">
+                      <p class="sell-price">
+                          {{ product.price | money_without_trailing_zeros }}
+                      </p>
+                  </div>
+
                   {% when 'description' %}
                     <div class="pro-desc">
                       <p>{{ product.description }}</p>
                     </div>
 
-                    <div class="variant-selector">
-                      
-                      {% unless product.has_only_default_variant %}
-                        <div class="varient-size">
-                          <div class="varient-heading">
-                            <p>Select Size</p>
-                          </div>
-                          <div class="sizeChart">
-                            <a href="">Size Chart</a>
-                          </div>
-                        </div>
-                        <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
-                          <ul>
-                            {% for variant in product.variants %}
-                              <li
-                                class="variant-option"
-                                data-variant-id="{{ variant.id }}"
-                                data-price="{{ variant.price | money }}"
-                                data-discounted-price="{{ variant.metafields.custom.discounted_price }}"
-                                data-available="{{ variant.available }}">
-                                <span class="variant-title">{{ variant.title }}</span>
-                                {% if variant.metafields.custom.discounted_price %}
-                                  <span class="discounted-price">(Save {{ variant.metafields.custom.discounted_price | money }})</span>
+                    <div class="product-types">
+                      {% assign title_without_type = product.title | split: ' ' | slice: 0, -1 | join: ' ' %}
+                      <p class="product-style">Style: {{ title_without_type | default: product.title }}</p>
+
+
+                    
+                      {% assign current_type = product.type %}
+                    
+                      {% if current_type %}
+                        <ul class="product-type-list">
+                          {% for product_in_type in collections.all.products %}
+                            {% if product_in_type.type == current_type %}
+                              <li>
+                                {% if product_in_type.id == product.id %}
+                                  <!-- Highlight the current product -->
+                                  <a href="{{ product_in_type.url }}" class="current-type">
+                                    <img src="{{ product_in_type.featured_image | img_url: 'medium' }}" alt="{{ product_in_type.title }}" />
+                                  </a>
+                                {% else %}
+                                  <!-- Display other products in the same type -->
+                                  <a href="{{ product_in_type.url }}">
+                                    <img src="{{ product_in_type.featured_image | img_url: 'medium' }}" alt="{{ product_in_type.title }}" />
+                                  </a>
                                 {% endif %}
                               </li>
-                            {% endfor %}
-                          </ul>
-                          <script type="application/json">{{ product.variants | json }}
-                          </script>
-                        </variant-selector>
+                            {% endif %}
+                          {% endfor %}
+                        </ul>
+                      {% else %}
+                        <p>This product does not have a type assigned.</p>
+                      {% endif %}
+                    </div>
+                    
+
+                    <div class="variant-selector">
+                      {% unless product.has_only_default_variant %}
+                        <div class="variant-selector">
+                          <div class="varient-size">
+                            <div class="varient-heading">
+                              <p>Select Size</p>
+                            </div>
+                            <div class="sizeChart"><a href="">Size Chart</a></div>
+                          </div>
+                          <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+                            <ul id="variant-options">
+                              {% for variant in product.variants %}
+                                <li 
+                                  class="variant-option {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}" 
+                                  data-variant-id="{{ variant.id }}" 
+                                  data-available="{{ variant.available }}">
+                                  <span class="variant-title">{{ variant.title }}</span>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                            <script type="application/json">{{ product.variants | json }}</script>
+                          </variant-selector>
+                        </div>
                       {% endunless %}
                     </div>
+                    
 
                     <!-- Variant Information Display -->
                     <div id="variant-info">
@@ -87,166 +188,232 @@
                       <p id="variant-discounted-price"></p>
                     </div>
 
-                    <div class="quantity">
-                      <div class="minus">
-                        -
+                    <div class="form-selecot-button">
+                      <div class="bc-quan-wrapper">
+                        <div class="bn-quan">
+                          <div class="quantity">
+                            <div class="minus">
+                              -
+                            </div>
+                            <div class="quan">
+                              <input
+                                type="number"
+                                name="quantity"
+                                id="Quantity-{{ section.id }}"
+                                class="update-quantity"
+                                value=1
+                                min=1>
+                            </div>
+                            <div class="plus">
+                              +
+                            </div>
+                          </div>
+                        </div>
+                        <div class="bc-quan-disc"></div>
                       </div>
-                      <div class="quan">
-                        <input
-                          type="number"
-                          name="updates[]"
-                          class="update-quantity"
-                          id="updates_{{ forloop.index }}"
-                          value="{{ item.quantity }}"
-                          min=1>
-                      </div>
-                      <div class="plus">
-                        +
-                      </div>
-                    </div>
-
-                  {% when 'checkout_buttons' %}
-                    <!-- Add to Cart Button -->
-                    <div class="submit product-submit">
-
-                      <input
-                        type="hidden"
-                        name="id"
-                        id="product-variant-id"
-                        value="{{ product.variants.first.id }}">
-                      {% if product.variants.first.available %}
-                        <button
-                          type="submit"
-                          name="add"
-                          class="custom-button black"
-                          id="add-to-cart-button"
-                          data-available="{{ product.variants.first.available }}">
-                          Add To Cart
+  
+                      <div class="submit">
+                        <button type="submit" name="add" class="custom-button black white" {% if selected_variant.available == false %}disabled{% endif %}>
+                          {% if selected_variant.available == false %}
+                            Sold Out
+                          {% else %}
+                            Add To Bag
+                          {% endif %}
                         </button>
-                      {% else %}
-                        <button
-                          type="submit"
-                          name="add"
-                          disabled
-                          class="custom-button black"
-                          data-available="{{ product.variants.first.available }}">
-                          <span id="add-to-cart-text">Sold Out</span>
-                        </button>
-                      {% endif %}
-                      <div data-ajax-cart-errors="form"></div>
+                      </div>
                     </div>
                 {% else %}
                   {% endcase %}
                 {% endfor %}
               {% endform %}
             </ajax-cart-product-form>
+
+            <div class="product-accordions">
+              <div class="pa-item">
+                <div class="pa-head">
+                  <p>Product Details</p> <!-- Question (Name) -->
+                  <div class="pa-circle"></div>
+                </div>
+                <div class="pa-ans" style="display: none;">
+                  <div class="panas-in">
+                    {{ product.metafields.custom.product_details }} <!-- Data (Description) -->
+                  </div>
+                </div>
+              </div>
+              <div class="pa-item">
+                <div class="pa-head">
+                  <p>Refund Policy</p> <!-- Question (Name) -->
+                  <div class="pa-circle"></div>
+                </div>
+                <div class="pa-ans" style="display: none;">
+                  <div class="panas-in">
+                    {{ product.metafields.custom.refund_policy }} <!-- Data (Description) -->
+                  </div>
+                </div>
+              </div>
+              <div class="pa-item">
+                <div class="pa-head">
+                  <p>Shipping</p> <!-- Question (Name) -->
+                  <div class="pa-circle"></div>
+                </div>
+                <div class="pa-ans" style="display: none;">
+                  <div class="panas-in">
+                    {{ product.metafields.custom.shipping }} <!-- Data (Description) -->
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
+
+
+        
       </div>
     </div>
-  </section>
+</section>
 
-  
+<section class="our-categories">
+  <div class="container-fluid">
+      <div class="heading center with-pill">
+          <div class="pillwrap">
+              <div class="heading-pill yellow">testimonials</div>
+          </div>
+          <h3>Worth Raving About</h3>
+      </div>
+  </div>
+</section> 
 
- <script>
-    $(document).ready(function(){
-      $('.join-161').click(function(){
-        $('.join-club').addClass('active');
-      });
-      $('.jc-close').click(function(){
-        $('.join-club').removeClass('active');
-      });
-    });
-  </script>
+<section class="bestsellers padding">
+  <div class="container-fluid">
+      <div class="heading center with-pill">
+          <div class="pillwrap">
+              <div class="heading-pill yellow">you may also like</div>
+          </div>
+          <h3>{% if product.title %} More Like {{ product.title }} {% else %} Why Stop At Just One? {% endif %}</h3>
+      </div>
+      <div class="bestseller-product-grid">
+          <div class="collection-grid">
+              {% assign current_collection_handle = collection.handle %}
+              {% if current_collection_handle == blank %}
+                  {% assign current_collection_handle = product.collections.first.handle %}
+              {% endif %}
+              {% assign displayed_products = 0 %}
+              {% for related_product in product.collections.first.products %}
+                  {% if related_product.id != product.id %}
+                      <div class="product-card-wrapper">
+                          {% render 'product-card', product: related_product %}
+                      </div>
+                      {% assign displayed_products = displayed_products | plus: 1 %}
+                  {% endif %}
+                  {% if displayed_products == 4 %}
+                      {% break %}
+                  {% endif %}
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+</section>
+
+
 
   <script defer>
-    class VariantSelector extends HTMLElement{
-        constructor(){
-            super();
-            this.addEventListener("change", this.onVariantChange);
+    class VariantSelector extends HTMLElement {
+      constructor() {
+        super();
+        this.addEventListener("click", this.onVariantSelect.bind(this));
+      }
+  
+      onVariantSelect(event) {
+        const target = event.target.closest('.variant-option');
+        if (!target) return;
+  
+        const variantId = target.dataset.variantId;
+        const price = target.dataset.price;
+        const available = target.dataset.available === "true";
+  
+        // Update hidden input for the selected variant
+        const formInput = document.querySelector("#product-form input[name='id']");
+        if (formInput) {
+          formInput.value = variantId;
+          console.log("Selected Variant ID:", variantId);
         }
-    
-        onVariantChange(){
-            this.getSelectedOptions();
-            this.getSelectedVariant();
-            if(this.currentVariant){
-                this.updateURL();
-                this.updateFormID();
-                this.updatePrice();
-            }
+  
+        // Update price display
+        const priceDisplay = document.getElementById("variant-price");
+        if (priceDisplay) {
+          priceDisplay.textContent = price;
         }
-    
-        getSelectedOptions(){
-            this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+  
+        // Update button state
+        const addButton = document.querySelector(".submit button");
+        if (addButton) {
+          addButton.disabled = !available;
+          addButton.textContent = available ? "Add To Bag" : "Sold Out";
         }
-    
-        getVariantJSON(){
-            this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
-            return this.variantData;
-        }
-    
-        getSelectedVariant(){
-            this.currentVariant = this.getVariantJSON().find(
-                (variant)=>{
-                    const findings = !variant.options.map(
-                        (option, index) => {
-                            return this.options[index] === option;
-                        }
-                    ).includes(false);
-    
-                    if(findings) return variant;
-                }
-            );
-    
-        }
-    
-        updateURL(){
-            if(!this.currentVariant) return;
-            window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
-        }
-    
-        updateFormID(){
-            const form_input = document.querySelector("#product-form input[name='id']");
-            if (form_input && this.currentVariant) {
-                form_input.value = this.currentVariant.id;
-            }
-        }
-    
-        updatePrice(){
-            fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
-            .then((response) => response.text())
-            .then((responseText)=>{
-                {% comment %} const id = `price-${this.datatset.section}`; {% endcomment %}
-                const html = new DOMParser().parseFromString(responseText, 'text/html');
-    
-                const oldPrice=document.getElementById('price-{{ section.id }}');
-                const newPrice=html.getElementById('price-{{ section.id }}');
-    
-                if(oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
-            });
-        }
+      }
     }
+  
     customElements.define("variant-selector", VariantSelector);
-  </script>
-
-  <script>
-      $(document).ready(function () {
-    $('.pa-head').click(function () {
-      var parentItem = $(this).parent('.pa-item');
-      var answer = $(this).next('.pa-ans');
-
-      if (parentItem.hasClass('active') && answer.is(':visible')) {
-        // If the parent is already active and the answer is visible, remove active and slide up
-        parentItem.removeClass('active');
-        answer.slideUp();
-      } else {
-        // Otherwise, remove active from all, add it to the clicked one and slide up/down accordingly
-        $('.pa-item').removeClass('active');
-        parentItem.addClass('active');
-        $('.pa-ans').slideUp();
-        answer.slideDown();
+  
+    document.addEventListener('DOMContentLoaded', function () {
+      const productForm = document.getElementById('product-form');
+      if (productForm) {
+        productForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const formData = new FormData(productForm);
+          
+          fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Product added to cart:', data);
+            // Optional: Update cart UI or show confirmation
+          })
+          .catch(error => {
+            console.error('Error adding product to cart:', error);
+            alert('Failed to add product to cart. Please try again.');
+          });
+        });
       }
     });
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const variantOptions = document.querySelectorAll('.variant-option');
+
+    variantOptions.forEach(option => {
+      option.addEventListener('click', function () {
+        // Remove the 'selected' class from all options
+        variantOptions.forEach(opt => opt.classList.remove('selected'));
+
+        // Add the 'selected' class to the clicked option
+        this.classList.add('selected');
       });
+    });
+  });
+</script>
+
+  <script>
+      $(document).ready(function() {
+      $('.pa-head').click(function() {
+    var parentItem = $(this).parent(".pa-item");
+    var answer = $(this).next(".pa-ans");
+
+    if (parentItem.hasClass('active') && answer.is(':visible')) {
+      // If the parent is already active and the answer is visible, remove active and slide up
+      parentItem.removeClass('active');
+      answer.slideUp();
+    } else {
+      // Otherwise, remove active from all, add it to the clicked one and slide up/down accordingly
+      $(".pa-item").removeClass('active');
+      parentItem.addClass('active');
+      $(".pa-ans").slideUp();
+      answer.slideDown();
+    }
+      });
+    });
 
       // Select all anchor tags with the class 'smooth-scroll'
       document.querySelectorAll('.smooth-scroll').forEach((anchor) => {
@@ -272,7 +439,7 @@
       });
   </script>
 
-  <script>
+  <!-- <script>
       $(document).ready(function () {
     $('.size-guide-toggle').click(function () {
       $('.ring-guide-modal').addClass('active');
@@ -285,59 +452,79 @@
       $('body').css({ overflow: 'auto' }); // Restore body scroll
     });
       });
-  </script>
+  </script> -->
 
-  <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var productForm = document.getElementById('product-form');
-    if (productForm) {
-      productForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        var formData = new FormData(productForm);
-        
-        fetch('/cart/add.js', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          // Optionally, update the cart count or open the cart drawer here
-        })
-        .catch(error => {
-          console.error('Error adding product to cart:', error);
-        });
+<script>
+  $(document).ready(function() {
+      $('.minus').click(function () {
+          var $input = $(this).parent().find('input');
+          var count = parseInt($input.val()) - 1;
+          count = count < 1 ? 1 : count;
+          $input.val(count);
+          $input.change();
+          return false;
       });
-    }
+      $('.plus').click(function () {
+          var $input = $(this).parent().find('input');
+          $input.val(parseInt($input.val()) + 1);
+          $input.change();
+          return false;
       });
-  </script>
+  });
 
-     <script type="application/ld+json">
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+      $('.product-carousel .owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        dots: false,
+        nav:true,
+        responsiveClass:true,
+        navText: ['<img src="https://cdn.shopify.com/s/files/1/0674/2674/6556/files/Group_427321663_1.svg?v=1734703811">', '<img src="https://cdn.shopify.com/s/files/1/0674/2674/6556/files/Group_427321663.svg?v=1734703812">'],
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:2
+            },
+            1000:{
+                items:2
+            }
+        }
+    })
+  });
+</script>
+  
+<script type="application/ld+json">
   {
-  "@context": "https://schema.org/",
-             "@type": "Product",
-             "name": "{{ product.title | escape }}",
-  {% if product.featured_image != nil %}
-    "image": [
-    "https:{{ product.featured_image | img_url: '960x960' }}",
-    "https:{{ product.featured_image | img_url: '960x720' }}",
-    "https:{{ product.featured_image | img_url: '960x540' }}"
-    ],
-  {% endif %}
-  "description": "{{ product.description | strip_html | escape }}",
-  "brand": {
-               "@type": "Brand",
-               "name": "{{ product.vendor | escape }}"
-  },
-             "offers" : {
-               "@type" : "Offer",
-               "availability" : "https://schema.org/{% if product.available %}InStock{% else %}SoldOut{% endif %}",
-  "price" : "{{ product.price | divided_by: 100.0 }}",
-  "priceCurrency": "{{ shop.currency }}",
-  "url" : "{{ shop.url }}{{ routes.root_url }}{{ product.url }}" 
+      "@context": "https://schema.org/",
+              "@type": "Product",
+              "name": "{{ product.title | escape }}",
+      {% if product.featured_image != nil %}
+      "image": [
+      "https:{{ product.featured_image | img_url: '960x960' }}",
+      "https:{{ product.featured_image | img_url: '960x720' }}",
+      "https:{{ product.featured_image | img_url: '960x540' }}"
+      ],
+      {% endif %}
+      "description": "{{ product.description | strip_html | escape }}",
+      "brand": {
+                  "@type": "Brand",
+                  "name": "{{ product.vendor | escape }}"
+      },
+              "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/{% if product.available %}InStock{% else %}SoldOut{% endif %}",
+      "price" : "{{ product.price | divided_by: 100.0 }}",
+      "priceCurrency": "{{ shop.currency }}",
+      "url" : "{{ shop.url }}{{ routes.root_url }}{{ product.url }}" 
+      }
   }
-       }
 
-  </script>
+</script>
 
   {% schema %}
     {

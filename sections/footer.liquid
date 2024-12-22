@@ -22,16 +22,13 @@
                             <p class="label">shop</p>
                             <div class="footernav-in">
                                 <ul>
-                                    <li><a href="">Best Sellers</a></li>
-                                    <li><a href="">New Arrivals</a></li>
-                                    <li><a href="">Sale</a></li>
-                                    <li><a href="">Bundles</a></li>
-                                    <li><a href="">Harnesses</a></li>
-                                    <li><a href="">Collars</a></li>
-                                    <li><a href="">Bowties</a></li>
-                                    <li><a href="">Leads</a></li>
-                                    <li><a href="">Poo Bags</a></li>
-                                    <li><a href="">Shop All</a></li>
+                                    {% if section.blocks['menu1'].settings.menu != blank %}
+                                        {% for link in linklists[section.blocks['menu1'].settings.menu].links %}
+                                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li>No menu assigned. Please configure in the theme editor.</li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -39,9 +36,13 @@
                             <p class="label">about</p>
                             <div class="footernav-in">
                                 <ul>
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">Size Guide</a></li>
-                                    <li><a href="">Affiliates</a></li>
+                                    {% if section.blocks['menu2'].settings.menu != blank %}
+                                        {% for link in linklists[section.blocks['menu2'].settings.menu].links %}
+                                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li>No menu assigned. Please configure in the theme editor.</li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -49,12 +50,13 @@
                             <p class="label">help</p>
                             <div class="footernav-in">
                                 <ul>
-                                    <li><a href="">Contact Us</a></li>
-                                    <li><a href="">Refund Policy</a></li>
-                                    <li><a href="">Shipping Policy</a></li>
-                                    <li><a href="">Privacy Policy</a></li>
-                                    <li><a href="">Terms of Services</a></li>
-                                    <li><a href="">Dog Accessories Disclaimer</a></li>
+                                    {% if section.blocks['menu3'].settings.menu != blank %}
+                                        {% for link in linklists[section.blocks['menu3'].settings.menu].links %}
+                                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li>No menu assigned. Please configure in the theme editor.</li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -103,3 +105,74 @@
         </div>
     </div>
 </footer>
+
+{
+    "name": "Footer Navigation",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_menu",
+        "label": "Footer Menu",
+        "default": "footer-shop-menu"
+      },
+    ],
+    "blocks": [
+    {
+      "type": "menu1",
+      "name": "Footer Menu 1",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title",
+          "default": "Shop Menu 1"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Select Menu"
+        }
+      ]
+    },
+    {
+      "type": "menu2",
+      "name": "Footer Menu 2",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title",
+          "default": "Shop Menu 2"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Select Menu"
+        }
+      ]
+    },
+    {
+      "type": "menu3",
+      "name": "Footer Menu 3",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title",
+          "default": "Shop Menu 3"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Select Menu"
+        }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Footer Navigation",
+        "category": "Footer"
+      }
+    ]
+  }
