@@ -12,18 +12,29 @@
     "sections": {
       "announcement": {
         "type": "announcement",
-        "settings": {}
+        "settings": {
+          "heading": "Save big when you buy as a bundle"
+        }
       },
       "header": {
         "type": "header",
         "settings": {
           "mobile_menu_title": "Menu",
+          "select_logo": "shopify://shop_images/hey-you-pups-logo.png",
           "menu-left": "left-menu",
-          "menu-right": "right-menu"
+          "dropdown_title": "About",
+          "selected_collections": [
+            "bit-of-a-prick",
+            "anxious-mess"
+          ]
         }
       },
       "footer": {
         "type": "footer",
+        "settings": {}
+      },
+      "my-ajax-cart": {
+        "type": "my-ajax-cart",
         "settings": {}
       }
     },
