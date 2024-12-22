@@ -4,8 +4,12 @@
       <div class="header-left">
         <div class="header-logo">
           <a href="{{ shop.url }}">
-            <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/hey-you-pups-logo.png?v=1733850931" alt="">
+            <img src="{{ section.settings.select_logo |  img_url: 'master' }}" alt="">
           </a>
+        </div>
+        <div class="hamburger">
+          {% render 'hamburger' %}
+          {% render 'ham-cross' %}
         </div>
         <div class="header-menu">
           <div class="hm-in">
@@ -14,10 +18,78 @@
                 {% assign main_menu_linklist = linklists[section.settings.menu-left].links %}
                 {% for link in main_menu_linklist %}
                   {% if link.links != blank %}
-                    <li class="dropdown-link">
-                      <a href="javascript:void(0)">{{ link.title }}</a>
+                  {% if link.title == "Shop" %}
+                    <li class="dropdown-link featured-collections">
+                      <a href="javascript:void(0)" class="nav-dd">{{ link.title }}</a>
                       {% render 'chevron' %}
+                      <div class="dd-con">
+                        <div class="dd-con-wrap">
+                          {% for childlink in link.links %}
+                            <div class="dd-url">
+                              <a href="{{ childlink.url }}">
+                                <div class="dd-title">{{ childlink.title }}</div>
+                                <div class="dd-icon">
+                                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.22168 12.4819C2.8481 12.4819 0.113281 9.74711 0.113281 6.37354C0.113281 2.99996 2.8481 0.265137 6.22168 0.265137C9.59526 0.265137 12.3301 2.99996 12.3301 6.37354C12.3301 9.74711 9.59526 12.4819 6.22168 12.4819Z" fill="#FCDB00"/>
+                                    <path d="M6.2207 3.92993L8.66406 6.37329L6.2207 8.81665" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3.77734 6.37354H8.66406" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>                                    
+                                </div>
+                              </a>
+                            </div>
+                          {% endfor %}
+                        </div>
+                        <div class="dd-img pos-rel">
+                          <!-- Display Best Sellers Collection -->
+                          {% assign best_sellers = collections['best-sellers'] %}
+                          {% if best_sellers and best_sellers.image %}
+                          <div class="collection-item">
+                            <a href="{{ best_sellers.url }}">
+                              <div class="colitem-image">
+                                <img src="{{ best_sellers.image | img_url: 'master' }}" alt="Best Sellers">
+                              </div>
+                              <div class="collection-title">Best Sellers</div>
+                            </a>
+                          </div>
+                          {% endif %}
+                          
+                          <!-- Display New Arrivals Collection -->
+                          {% assign new_arrivals = collections['new-arrivals'] %}
+                          {% if new_arrivals and new_arrivals.image %}
+                          <div class="collection-item">
+                            <a href="{{ new_arrivals.url }}">
+                              <div class="colitem-image">
+                                <img src="{{ new_arrivals.image | img_url: 'master' }}" alt="New Arrivals">
+                              </div>
+                              <div class="collection-title">New Arrivals</div>
+                            </a>
+                          </div>
+                          {% endif %}
+                        </div>
+                      </div>
                     </li>
+                  {% else %}
+                  <li class="dropdown-link custom-collections">
+                    <a href="javascript:void(0)" class="nav-dd">{{ link.title }}</a>
+                    {% render 'chevron' %}
+                    <div class="dd-con">
+                      
+                      <div class="dd-img custom-design">
+                        {% for collection_handle in section.settings.selected_collections %}
+                          {% assign collection = collections[collection_handle] %}
+                          {% if collection and collection.image %}
+                          <div class="custom-collection-item">
+                            <a href="{{ collection.url }}">
+                              <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
+                              <div class="custom-collection-title">{{ collection.title }}</div>
+                            </a>
+                          </div>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </li>
+                  {% endif %}
                   {% else %}
                     <li>
                       <a class="fade-animate" href="{{ link.url }}">{{ link.title }}</a>
@@ -37,9 +109,27 @@
                 {% assign main_menu_linklist = linklists[section.settings.menu-right].links %}
                 {% for link in main_menu_linklist %}
                   {% if link.links != blank %}
-                    <li class="dropdown-link">
-                      <a href="javascript:void(0)">{{ link.title }}</a>
+                    <li class="dropdown-link simple">
+                      <a href="javascript:void(0)" class="nav-dd">{{ link.title }}</a>
                       {% render 'chevron' %}
+                      <div class="dd-con">
+                        <div class="dd-con-wrap full">
+                          {% for childlink in link.links %}
+                            <div class="dd-url">
+                              <a href="{{ childlink.url }}">
+                                <div class="dd-title">{{ childlink.title }}</div>
+                                <div class="dd-icon">
+                                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.22168 12.4819C2.8481 12.4819 0.113281 9.74711 0.113281 6.37354C0.113281 2.99996 2.8481 0.265137 6.22168 0.265137C9.59526 0.265137 12.3301 2.99996 12.3301 6.37354C12.3301 9.74711 9.59526 12.4819 6.22168 12.4819Z" fill="#FCDB00"/>
+                                    <path d="M6.2207 3.92993L8.66406 6.37329L6.2207 8.81665" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3.77734 6.37354H8.66406" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>                                    
+                                </div>
+                              </a>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
                     </li>
                   {% else %}
                     <li>
@@ -50,11 +140,57 @@
               </ul>
             </div>
           </div>
+          <div class="header-other">
+              {% if shop.customer_accounts_enabled %}
+              {% if customer %}
+                <a href="{{ routes.account_url }}" class="cust-login nav-acc-mob">{% render 'account-icon' %}</a>
+              {% else %}
+                <a href="{{ routes.account_login_url }}" class="cust-login nav-acc-mob">{% render 'account-icon' %}</a>
+              {% endif %}
+            {% endif %}
+            <a href="{{ routes.cart_url }}">{% render 'cart-icon' %}</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </header>
+
+<script>
+  // Select all .nav-dd-con elements
+  const navDdCons = document.querySelectorAll('.dropdown-link');
+
+  navDdCons.forEach(navDdCon => {
+  const navDd = navDdCon.querySelector('.nav-dd');
+  const ddCon = navDdCon.querySelector('.dd-con');
+
+  // Add 'active' class when entering .nav-dd
+  navDd.addEventListener('mouseenter', () => {
+    ddCon.classList.add('active');
+    navDd.classList.add('active');
+  });
+
+  // Keep 'active' class when entering .dd-con
+  ddCon.addEventListener('mouseenter', () => {
+    ddCon.classList.add('active');
+    navDd.classList.add('active');
+  });
+
+  // Remove 'active' class only when leaving .nav-dd-con
+  navDdCon.addEventListener('mouseleave', () => {
+    ddCon.classList.remove('active');
+    navDd.classList.remove('active');
+  });
+  });
+
+  $(document).ready(function(){
+    $('.hamburger').click(function(){
+      $('.nav-links').toggleClass('active');
+      $(this).toggleClass('active');
+    })
+  });
+
+</script>
 
 
 {% schema %}
@@ -68,6 +204,11 @@
         "label": "Mobile Menu Title"
       },
       {
+        "type": "image_picker",
+        "id": "select_logo",
+        "label": "Change Logo"
+      },
+      {
         "type": "link_list",
         "id": "menu-left",
         "label": "Left Navigation Menu"
@@ -76,6 +217,17 @@
         "type": "link_list",
         "id": "menu-right",
         "label": "Right Navigation Menu"
+      },
+      {
+        "type": "collection_list",
+        "id": "selected_collections",
+        "label": "Select Collections for Other Dropdown",
+        "limit": 4
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
       }
     ]
   }

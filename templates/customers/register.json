@@ -1,0 +1,17 @@
+{
+    "sections": {
+      "signup": {
+        "type": "template-signup",
+        "settings": {
+          "head": "Get Started Now",
+          "sub-head": "",
+          "bg-img": "shopify://shop_images/chris-lee-70l11tDAI6rM-unsplash_2_1.jpg",
+          "link": "shopify://policies/terms-of-service",
+          "fp-head": ""
+        }
+      }
+    },
+    "order": [
+      "signup"
+    ]
+  }

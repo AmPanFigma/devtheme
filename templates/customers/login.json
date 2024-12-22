@@ -1,0 +1,17 @@
+{
+    "sections": {
+      "login": {
+        "type": "template-login",
+        "settings": {
+          "head": "Login to your acocunt",
+          "sub-head": "Enter your credentials to access your account",
+          "bg-img": "shopify://shop_images/chris-lee-70l1tDAI6rM-unsplash_2_1.jpg",
+          "link": "shopify://policies/terms-of-service",
+          "fp-head": "Forgot password?"
+        }
+      }
+    },
+    "order": [
+      "login"
+    ]
+  }
