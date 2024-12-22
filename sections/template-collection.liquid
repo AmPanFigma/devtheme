@@ -189,67 +189,90 @@
       }
   
       // Function to sort and display products
-      function sortProducts() {
+      document.addEventListener('DOMContentLoaded', function () {
+    const sortBy = document.getElementById('sort-by'); // Ensure the correct element is targeted
+    const productCards = Array.from(document.querySelectorAll('.collection-grid .product-card')); // Ensure cards are selected
+    const filterByTag = document.getElementById('filter-by-tag'); // If filtering by tags is used, ensure this is defined
+
+    function sortProducts() {
         const sortValue = sortBy.value;
-  
+
+        // Filter visible products
         const filteredCards = productCards.filter(card => card.style.display !== 'none');
-  
+
         let sortedCards;
         if (sortValue === 'price-asc') {
-          sortedCards = filteredCards.sort((a, b) => {
-            const priceA = parseFloat(a.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,"")); // Extract numeric value from price
-            const priceB = parseFloat(b.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
-            return priceA - priceB;
-          });
+            sortedCards = filteredCards.sort((a, b) => {
+                const priceA = parseFloat(a.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g, ""));
+                const priceB = parseFloat(b.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g, ""));
+                return priceA - priceB;
+            });
         } else if (sortValue === 'price-desc') {
-          sortedCards = filteredCards.sort((a, b) => {
-            const priceA = parseFloat(a.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
-            const priceB = parseFloat(b.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
-            return priceB - priceA;
-          });
-        } else if (sortValue === 'az') {
-          sortedCards = filteredCards.sort((a, b) => {
-            const titleA = a.querySelector('.product-name').textContent.toLowerCase();
-            const titleB = b.querySelector('.product-name').textContent.toLowerCase();
-            return titleA.localeCompare(titleB); // A-Z
-          });
-        } else if (sortValue === 'za') {
-          sortedCards = filteredCards.sort((a, b) => {
-            const titleA = a.querySelector('.product-name').textContent.toLowerCase();
-            const titleB = b.querySelector('.product-name').textContent.toLowerCase();
-            return titleB.localeCompare(titleA); // Z-A
-          });
+            sortedCards = filteredCards.sort((a, b) => {
+                const priceA = parseFloat(a.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g, ""));
+                const priceB = parseFloat(b.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g, ""));
+                return priceB - priceA;
+            });
+        } else if (sortValue === 'featured') {
+            sortedCards = filteredCards; // Keep default order (assumes featured order is default)
+        } else if (sortValue === 'best-selling') {
+            sortedCards = filteredCards.sort((a, b) => {
+                const salesA = parseInt(a.dataset.sales || 0); // Assumes `data-sales` contains sales rank
+                const salesB = parseInt(b.dataset.sales || 0);
+                return salesB - salesA; // High to low
+            });
+        } else if (sortValue === 'date-new') {
+            sortedCards = filteredCards.sort((a, b) => {
+                const dateA = new Date(a.dataset.date || 0); // Assumes `data-date` contains ISO date strings
+                const dateB = new Date(b.dataset.date || 0);
+                return dateB - dateA; // New to old
+            });
+        } else if (sortValue === 'date-old') {
+            sortedCards = filteredCards.sort((a, b) => {
+                const dateA = new Date(a.dataset.date || 0);
+                const dateB = new Date(b.dataset.date || 0);
+                return dateA - dateB; // Old to new
+            });
         } else {
-          sortedCards = filteredCards; // Default case (no sorting)
+            sortedCards = filteredCards; // Default case (no sorting)
         }
-  
+
         // Clear the current product display
         const container = document.querySelector('.collection-grid');
         container.innerHTML = ''; // Clear current products
-  
+
         // Append sorted products back to the container
         sortedCards.forEach(card => {
-          container.appendChild(card);
+            container.appendChild(card);
         });
-      }
-  
-      // Event listeners for filtering and sorting
-      filterByTag.addEventListener('change', function() {
-        updateProductDisplay();
-        sortProducts(); // Sort after filtering to keep the display consistent
-      });
-  
-      sortBy.addEventListener('change', function() {
+    }
+
+    // Event listener for sorting
+    sortBy.addEventListener('change', function () {
         sortProducts();
-      });
     });
 
-    document.getElementById('filter-by-collection').addEventListener('change', function() {
-    const selectedCollection = this.value;
-    if (selectedCollection) {
-        // Redirect to the selected collection's URL
-        window.location.href = `/collections/${selectedCollection}`;
+    // Optional: Handle filtering by tag (if used)
+    if (filterByTag) {
+        filterByTag.addEventListener('change', function () {
+            updateProductDisplay(); // Ensure this function filters products
+            sortProducts(); // Sort after filtering
+        });
     }
+
+    // Handle filtering by collection
+    const filterByCollection = document.getElementById('filter-by-collection');
+    if (filterByCollection) {
+        filterByCollection.addEventListener('change', function () {
+            const selectedCollection = this.value;
+            if (selectedCollection) {
+                // Redirect to the selected collection's URL
+                window.location.href = `/collections/${selectedCollection}`;
+            }
+        });
+    }
+});
+
 });
   </script>
 

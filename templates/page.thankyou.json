@@ -1,0 +1,13 @@
+{
+    "sections": {
+      "template": {
+        "type": "template-thankyou",
+        "settings": {
+          
+        }
+      }
+    },
+    "order": [
+      "template"
+    ]
+  }
