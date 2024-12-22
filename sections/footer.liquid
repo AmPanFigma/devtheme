@@ -22,13 +22,9 @@
                             <p class="label">shop</p>
                             <div class="footernav-in">
                                 <ul>
-                                    {% if section.blocks['menu1'].settings.menu != blank %}
-                                        {% for link in linklists[section.blocks['menu1'].settings.menu].links %}
-                                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                                        {% endfor %}
-                                    {% else %}
-                                        <li>No menu assigned. Please configure in the theme editor.</li>
-                                    {% endif %}
+                                    {% for link in linklists[section.settings.menu_1].links %}
+                                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
@@ -36,13 +32,9 @@
                             <p class="label">about</p>
                             <div class="footernav-in">
                                 <ul>
-                                    {% if section.blocks['menu2'].settings.menu != blank %}
-                                        {% for link in linklists[section.blocks['menu2'].settings.menu].links %}
-                                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                                        {% endfor %}
-                                    {% else %}
-                                        <li>No menu assigned. Please configure in the theme editor.</li>
-                                    {% endif %}
+                                    {% for link in linklists[section.settings.menu_2].links %}
+                                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
@@ -50,13 +42,9 @@
                             <p class="label">help</p>
                             <div class="footernav-in">
                                 <ul>
-                                    {% if section.blocks['menu3'].settings.menu != blank %}
-                                        {% for link in linklists[section.blocks['menu3'].settings.menu].links %}
-                                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                                        {% endfor %}
-                                    {% else %}
-                                        <li>No menu assigned. Please configure in the theme editor.</li>
-                                    {% endif %}
+                                    {% for link in linklists[section.settings.menu_3].links %}
+                                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
@@ -111,60 +99,20 @@
     "settings": [
       {
         "type": "link_list",
-        "id": "footer_menu",
-        "label": "Footer Menu"
+        "id": "menu_1",
+        "label": "Footer Menu 1"
       },
+      {
+        "type": "link_list",
+        "id": "menu_2",
+        "label": "Footer Menu 2"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_3",
+        "label": "Footer Menu 3"
+      }
     ],
-    "blocks": [
-    {
-      "type": "menu1",
-      "name": "Footer Menu 1",
-      "settings": [
-        {
-          "type": "text",
-          "id": "menu_title",
-          "label": "Menu Title"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Select Menu"
-        }
-      ]
-    },
-    {
-      "type": "menu2",
-      "name": "Footer Menu 2",
-      "settings": [
-        {
-          "type": "text",
-          "id": "menu_title",
-          "label": "Menu Title"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Select Menu"
-        }
-      ]
-    },
-    {
-      "type": "menu3",
-      "name": "Footer Menu 3",
-      "settings": [
-        {
-          "type": "text",
-          "id": "menu_title",
-          "label": "Menu Title"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Select Menu"
-        }
-      ]
-    }
-  ],
     "presets": [
       {
         "name": "Footer Navigation",
