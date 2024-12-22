@@ -18,6 +18,42 @@
       },
       "header": {
         "type": "header",
+        "blocks": {
+          "simple_link_Lbhtiy": {
+            "type": "simple_link",
+            "settings": {
+              "link_title": "Affiliates",
+              "link_url": "shopify://pages/affiliates"
+            }
+          },
+          "simple_link_rfmTp7": {
+            "type": "simple_link",
+            "settings": {
+              "link_title": "Contact Us",
+              "link_url": "shopify://pages/contact"
+            }
+          },
+          "dropdown_child_ENJHDk": {
+            "type": "dropdown_child",
+            "settings": {
+              "child_link_title": "About Us",
+              "child_link_url": "shopify://pages/about-us"
+            }
+          },
+          "dropdown_child_m4jGwh": {
+            "type": "dropdown_child",
+            "settings": {
+              "child_link_title": "Size Guide",
+              "child_link_url": "shopify://pages/size-guide"
+            }
+          }
+        },
+        "block_order": [
+          "simple_link_Lbhtiy",
+          "simple_link_rfmTp7",
+          "dropdown_child_ENJHDk",
+          "dropdown_child_m4jGwh"
+        ],
         "settings": {
           "mobile_menu_title": "Menu",
           "select_logo": "shopify://shop_images/hey-you-pups-logo.png",
