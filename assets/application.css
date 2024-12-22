@@ -1481,7 +1481,7 @@ variant-selector ul li span {
     width: 100%;
 }
 .log-form-in {
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     padding: 40px 30px;
     background-color: #fff;
@@ -1829,7 +1829,7 @@ variant-selector ul li span {
         right: -60px;
     }
     .log-form-in {
-        width: 80%;
+        width: 70%;
     }
 }
 @media(max-width: 767px){
