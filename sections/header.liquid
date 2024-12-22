@@ -106,34 +106,37 @@
           <div class="hm-in">
             <div class="nav-links">
               <ul>
-                {% assign main_menu_linklist = linklists[section.settings.menu-right].links %}
-                {% for link in main_menu_linklist %}
-                  {% if link.links != blank %}
-                    <li class="dropdown-link simple">
-                      <a href="javascript:void(0)" class="nav-dd">{{ link.title }}</a>
-                      {% render 'chevron' %}
-                      <div class="dd-con">
-                        <div class="dd-con-wrap full">
-                          {% for childlink in link.links %}
-                            <div class="dd-url">
-                              <a href="{{ childlink.url }}">
-                                <div class="dd-title">{{ childlink.title }}</div>
-                                <div class="dd-icon">
-                                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.22168 12.4819C2.8481 12.4819 0.113281 9.74711 0.113281 6.37354C0.113281 2.99996 2.8481 0.265137 6.22168 0.265137C9.59526 0.265137 12.3301 2.99996 12.3301 6.37354C12.3301 9.74711 9.59526 12.4819 6.22168 12.4819Z" fill="#FCDB00"/>
-                                    <path d="M6.2207 3.92993L8.66406 6.37329L6.2207 8.81665" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M3.77734 6.37354H8.66406" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>                                    
-                                </div>
-                              </a>
-                            </div>
-                          {% endfor %}
-                        </div>
-                      </div>
-                    </li>
-                  {% else %}
+                <!-- First Item: Dropdown -->
+                <li class="dropdown-link simple">
+                  <a href="javascript:void(0)" class="nav-dd">{{ section.settings.dropdown_title }}</a>
+                  {% render 'chevron' %}
+                  <div class="dd-con">
+                    <div class="dd-con-wrap full">
+                      {% for block in section.blocks %}
+                        {% if block.type == "dropdown_child" %}
+                          <div class="dd-url">
+                            <a href="{{ block.settings.child_link_url }}">
+                              <div class="dd-title">{{ block.settings.child_link_title }}</div>
+                              <div class="dd-icon">
+                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.22168 12.4819C2.8481 12.4819 0.113281 9.74711 0.113281 6.37354C0.113281 2.99996 2.8481 0.265137 6.22168 0.265137C9.59526 0.265137 12.3301 2.99996 12.3301 6.37354C12.3301 9.74711 9.59526 12.4819 6.22168 12.4819Z" fill="#FCDB00"/>
+                                  <path d="M6.2207 3.92993L8.66406 6.37329L6.2207 8.81665" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path d="M3.77734 6.37354H8.66406" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </div>
+                            </a>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </li>
+            
+                <!-- Additional Simple Links -->
+                {% for block in section.blocks %}
+                  {% if block.type == "simple_link" %}
                     <li>
-                      <a class="fade-animate" href="{{ link.url }}">{{ link.title }}</a>
+                      <a href="{{ block.settings.link_url }}">{{ block.settings.link_title }}</a>
                     </li>
                   {% endif %}
                 {% endfor %}
@@ -148,7 +151,7 @@
                 <a href="{{ routes.account_login_url }}" class="cust-login nav-acc-mob">{% render 'account-icon' %}</a>
               {% endif %}
             {% endif %}
-            <a href="{{ routes.cart_url }}">{% render 'cart-icon' %}</a>
+            <a href="#!" class="cart-open" data-ajax-cart-section>{% render 'cart-icon' %}</a>
           </div>
         </div>
       </div>
@@ -214,9 +217,10 @@
         "label": "Left Navigation Menu"
       },
       {
-        "type": "link_list",
-        "id": "menu-right",
-        "label": "Right Navigation Menu"
+        "type": "text",
+        "id": "dropdown_title",
+        "label": "Dropdown Title",
+        "default": "About"
       },
       {
         "type": "collection_list",
@@ -226,9 +230,40 @@
       }
     ],
     "blocks": [
-      {
-        "type": "@app"
-      }
-    ]
+    {
+      "type": "dropdown_child",
+      "name": "Dropdown Child Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "child_link_title",
+          "label": "Child Link Title",
+          "default": "New Arrivals"
+        },
+        {
+          "type": "url",
+          "id": "child_link_url",
+          "label": "Child Link URL"
+        }
+      ]
+    },
+    {
+      "type": "simple_link",
+      "name": "Simple Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "Link Title",
+          "default": "Contact Us"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
   }
 {% endschema %}

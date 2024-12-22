@@ -55,6 +55,10 @@
     </main>
     {% section 'footer' %}
 
+    <div class="sideCart">
+      {% section 'my-ajax-cart' %}
+    </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", (event) => {
         // Add a delay to ensure everything is loaded
@@ -90,6 +94,22 @@
           
         });
       });
+
+      $(document).ready(function () {
+          $(".cart-open").click(function () {
+              $("#shopify-section-my-ajax-cart").addClass("active"), $("body").addClass("js-show-ajax-cart")
+          }), $(".cart-close").click(function () {
+              $("#shopify-section-my-ajax-cart").removeClass("active"), $("body").removeClass("js-show-ajax-cart")
+          })
+      });
+    </script>
+
+    <script type="application/json" data-ajax-cart-initial-state>
+      {{ cart | json }}
+    </script>
+
+    <script type="module">
+      import '{{ "liquid-ajax-cart-v2.1.1.js" | asset_url }}';
     </script>
 
 

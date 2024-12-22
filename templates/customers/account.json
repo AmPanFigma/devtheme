@@ -1,0 +1,11 @@
+{
+    "sections": {
+        "template": {
+            "type": "template-customer-account",
+            "settings":{
+                "Img": "shopify://shop_images/image_7.png?v=1729235208"
+            }
+        }
+    },
+    "order": ["template"]
+  }

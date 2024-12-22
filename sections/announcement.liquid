@@ -2,7 +2,27 @@
 <div class="announce-bar">
     <div class="container">
         <div class="anbar-in">
-            <p>🔥 Save big when you buy as a bundle 🔥</p>
+            <p>🔥 {{ section.settings.heading }} 🔥</p>
         </div>
     </div>
 </div>
+
+{% schema %}
+{
+  "name": "Announcement",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Announcement bar text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "announcement",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
