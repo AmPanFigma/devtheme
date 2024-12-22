@@ -40,32 +40,21 @@
                           {% endfor %}
                         </div>
                         <div class="dd-img pos-rel">
-                          <!-- Display Best Sellers Collection -->
-                          {% assign best_sellers = collections['best-sellers'] %}
-                          {% if best_sellers and best_sellers.image %}
-                          <div class="collection-item">
-                            <a href="{{ best_sellers.url }}">
-                              <div class="colitem-image">
-                                <img src="{{ best_sellers.image | img_url: 'master' }}" alt="Best Sellers">
-                              </div>
-                              <div class="collection-title">Best Sellers</div>
-                            </a>
-                          </div>
-                          {% endif %}
-                          
-                          <!-- Display New Arrivals Collection -->
-                          {% assign new_arrivals = collections['new-arrivals'] %}
-                          {% if new_arrivals and new_arrivals.image %}
-                          <div class="collection-item">
-                            <a href="{{ new_arrivals.url }}">
-                              <div class="colitem-image">
-                                <img src="{{ new_arrivals.image | img_url: 'master' }}" alt="New Arrivals">
-                              </div>
-                              <div class="collection-title">New Arrivals</div>
-                            </a>
-                          </div>
-                          {% endif %}
+                          {% for collection_handle in section.settings.selected_collections %}
+                            {% assign collection = collections[collection_handle] %}
+                            {% if collection and collection.image %}
+                            <div class="collection-item">
+                              <a href="{{ collection.url }}">
+                                <div class="colitem-image">
+                                  <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
+                                </div>
+                                <div class="collection-title">{{ collection.title }}</div>
+                              </a>
+                            </div>
+                            {% endif %}
+                          {% endfor %}
                         </div>
+                        
                       </div>
                     </li>
                   {% else %}
@@ -75,7 +64,7 @@
                     <div class="dd-con">
                       
                       <div class="dd-img custom-design">
-                        {% for collection_handle in section.settings.selected_collections %}
+                        {% for collection_handle in section.settings.shop_collections %}
                           {% assign collection = collections[collection_handle] %}
                           {% if collection and collection.image %}
                           <div class="custom-collection-item">
@@ -225,8 +214,14 @@
       {
         "type": "collection_list",
         "id": "selected_collections",
-        "label": "Select Collections for Other Dropdown",
+        "label": "Select Collections for Collection Dropdown",
         "limit": 4
+      },
+      {
+        "type": "collection_list",
+        "id": "shop_collections",
+        "label": "Select Collections for Shop Dropdown",
+        "limit": 2
       }
     ],
     "blocks": [
