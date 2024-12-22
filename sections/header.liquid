@@ -4,7 +4,7 @@
       <div class="header-left">
         <div class="header-logo">
           <a href="{{ shop.url }}">
-            <img src="{{ section.settings.select_logo | img_url: 'master' }}" alt="Logo">
+            <img src="{{ section.settings.select_logo |  img_url: 'master' }}" alt="">
           </a>
         </div>
         <div class="hamburger">
@@ -19,7 +19,6 @@
                 {% for link in main_menu_linklist %}
                   {% if link.links != blank %}
                   {% if link.title == "Shop" %}
-                    <!-- Shop Dropdown -->
                     <li class="dropdown-link featured-collections">
                       <a href="javascript:void(0)" class="nav-dd">{{ link.title }}</a>
                       {% render 'chevron' %}
@@ -41,7 +40,7 @@
                           {% endfor %}
                         </div>
                         <div class="dd-img pos-rel">
-                          {% for collection_handle in section.settings.shop_collections %}
+                          {% for collection_handle in section.settings.selected_collections %}
                             {% assign collection = collections[collection_handle] %}
                             {% if collection and collection.image %}
                             <div class="collection-item">
@@ -55,34 +54,34 @@
                             {% endif %}
                           {% endfor %}
                         </div>
+                        
                       </div>
                     </li>
                   {% else %}
-                    <!-- Other Dropdown -->
-                    <li class="dropdown-link custom-collections">
-                      <a href="javascript:void(0)" class="nav-dd">{{ link.title }}</a>
-                      {% render 'chevron' %}
-                      <div class="dd-con">
-                        <div class="dd-img custom-design">
-                          {% for collection_handle in section.settings.selected_collections %}
-                            {% assign collection = collections[collection_handle] %}
-                            {% if collection and collection.image %}
-                            <div class="custom-collection-item">
-                              <a href="{{ collection.url }}">
-                                <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
-                                <div class="custom-collection-title">{{ collection.title }}</div>
-                              </a>
-                            </div>
-                            {% endif %}
-                          {% endfor %}
-                        </div>
+                  <li class="dropdown-link custom-collections">
+                    <a href="javascript:void(0)" class="nav-dd">{{ link.title }}</a>
+                    {% render 'chevron' %}
+                    <div class="dd-con">
+                      
+                      <div class="dd-img custom-design">
+                        {% for collection_handle in section.settings.shop_collections %}
+                          {% assign collection = collections[collection_handle] %}
+                          {% if collection and collection.image %}
+                          <div class="custom-collection-item">
+                            <a href="{{ collection.url }}">
+                              <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
+                              <div class="custom-collection-title">{{ collection.title }}</div>
+                            </a>
+                          </div>
+                          {% endif %}
+                        {% endfor %}
                       </div>
-                    </li>
+                    </div>
+                  </li>
                   {% endif %}
                   {% else %}
-                    <!-- Simple Link -->
                     <li>
-                      <a href="{{ link.url }}">{{ link.title }}</a>
+                      <a class="fade-animate" href="{{ link.url }}">{{ link.title }}</a>
                     </li>
                   {% endif %}
                 {% endfor %}
@@ -96,17 +95,24 @@
           <div class="hm-in">
             <div class="nav-links">
               <ul>
-                <!-- First Dropdown -->
-                <li class="dropdown-link">
+                <!-- First Item: Dropdown -->
+                <li class="dropdown-link simple">
                   <a href="javascript:void(0)" class="nav-dd">{{ section.settings.dropdown_title }}</a>
                   {% render 'chevron' %}
                   <div class="dd-con">
-                    <div class="dd-con-wrap">
+                    <div class="dd-con-wrap full">
                       {% for block in section.blocks %}
                         {% if block.type == "dropdown_child" %}
                           <div class="dd-url">
                             <a href="{{ block.settings.child_link_url }}">
                               <div class="dd-title">{{ block.settings.child_link_title }}</div>
+                              <div class="dd-icon">
+                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.22168 12.4819C2.8481 12.4819 0.113281 9.74711 0.113281 6.37354C0.113281 2.99996 2.8481 0.265137 6.22168 0.265137C9.59526 0.265137 12.3301 2.99996 12.3301 6.37354C12.3301 9.74711 9.59526 12.4819 6.22168 12.4819Z" fill="#FCDB00"/>
+                                  <path d="M6.2207 3.92993L8.66406 6.37329L6.2207 8.81665" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path d="M3.77734 6.37354H8.66406" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </div>
                             </a>
                           </div>
                         {% endif %}
@@ -114,8 +120,8 @@
                     </div>
                   </div>
                 </li>
-
-                <!-- Simple Links -->
+            
+                <!-- Additional Simple Links -->
                 {% for block in section.blocks %}
                   {% if block.type == "simple_link" %}
                     <li>
@@ -127,7 +133,7 @@
             </div>
           </div>
           <div class="header-other">
-            {% if shop.customer_accounts_enabled %}
+              {% if shop.customer_accounts_enabled %}
               {% if customer %}
                 <a href="{{ routes.account_url }}" class="cust-login nav-acc-mob">{% render 'account-icon' %}</a>
               {% else %}
@@ -141,7 +147,6 @@
     </div>
   </div>
 </header>
-
 
 <script>
   // Select all .nav-dd-con elements
