@@ -72,9 +72,33 @@
         "shipping": "<p>dummy text</p>",
         "return": "<p>dummy text</p>"
       }
+    },
+    "product_testimonials_Ezh39M": {
+      "type": "product-testimonials",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_KjHpWN": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_KjHpWN"
+      ],
+      "settings": {
+        "categories_heading": "Worth Raving About",
+        "categories_subheading": "testimonials"
+      }
     }
   },
   "order": [
-    "template-product"
+    "template-product",
+    "product_testimonials_Ezh39M"
   ]
 }
