@@ -7,63 +7,84 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
-    "sections": {
-      "template-product": {
-        "type": "template-product",
-        "blocks": {
-          "title": {
-            "type": "title",
-            "settings": {}
-          },
-          "description": {
-            "type": "description",
-            "settings": {}
-          },
-          "price": {
-            "type": "price",
-            "settings": {}
-          },
-          "variant_selector": {
-            "type": "variant_selector",
-            "settings": {}
-          },
-          "checkout_buttons": {
-            "type": "checkout_buttons",
-            "settings": {
-              "select-page": "try-at-home"
-            }
-          },
-          "pincode_PJqMaH": {
-            "type": "pincode",
-            "settings": {}
-          },
-          "accordions": {
-            "type": "accordions",
-            "settings": {}
-          },
-          "purchase": {
-            "type": "purchase_plan",
-            "settings": {}
+{
+  "sections": {
+    "template-product": {
+      "type": "template-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {}
+        },
+        "checkout_buttons": {
+          "type": "checkout_buttons",
+          "settings": {
+            "select-page": "try-at-home"
           }
         },
-        "block_order": [
-          "title",
-          "description",
-          "price",
-          "variant_selector",
-          "checkout_buttons",
-          "pincode_PJqMaH",
-          "accordions",
-          "purchase"
-        ],
-        "settings": {
-          "shipping": "<p>dummy text</p>",
-          "return": "<p>dummy text</p>"
+        "pincode_PJqMaH": {
+          "type": "pincode",
+          "settings": {}
+        },
+        "accordions": {
+          "type": "accordions",
+          "settings": {}
+        },
+        "purchase": {
+          "type": "purchase_plan",
+          "settings": {}
         }
+      },
+      "block_order": [
+        "title",
+        "description",
+        "price",
+        "variant_selector",
+        "checkout_buttons",
+        "pincode_PJqMaH",
+        "accordions",
+        "purchase"
+      ],
+      "settings": {
+        "shipping": "<p>dummy text</p>",
+        "return": "<p>dummy text</p>"
       }
     },
-    "order": [
-      "template-product"
-    ]
-  }
+    "173538136072b6c641": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_kweehk": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_kweehk"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "template-product",
+    "173538136072b6c641"
+  ]
+}
