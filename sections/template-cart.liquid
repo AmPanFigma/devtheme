@@ -115,7 +115,7 @@
         {% else %}
           <div class="cart-empty">
             <h1 class="head-text">{{ section.settings.cart-empty-head }}</h1>
-            <a href="{{ shop.url }}/#grab-section" class="primary-button black-green">
+            <a href="{{ routes.all_products_collection_url }}" class="primary-button black-green">
   
               {{ section.settings.cart-empty-cta }}
   
@@ -130,22 +130,41 @@
     </div>
   </section>
   <script>
-    // $(document).ready(function() {
-    //     $('.minus').click(function () {
-    //         var $input = $(this).parent().find('input');
-    //         var count = parseInt($input.val()) - 1;
-    //         count = count < 1 ? 1 : count;
-    //         $input.val(count);
-    //         $input.change();
-    //         return false;
-    //     });
-    //     $('.plus').click(function () {
-    //         var $input = $(this).parent().find('input');
-    //         $input.val(parseInt($input.val()) + 1);
-    //         $input.change();
-    //         return false;
-    //     });
-    // });
+    $(document).ready(function () {
+  $('.decrease, .increase').click(function () {
+    var $input = $(this).siblings('.quantity-input');
+    var $form = $input.closest('form');
+    var itemKey = $input.attr('name').match(/\[([^\]]+)\]/)[1];
+    var newQuantity = parseInt($input.val());
+
+    if ($(this).hasClass('decrease')) {
+      newQuantity = Math.max(1, newQuantity - 1);
+    } else {
+      newQuantity += 1;
+    }
+
+    $input.val(newQuantity);
+
+    // AJAX call to update cart
+    $.ajax({
+      type: 'POST',
+      url: '/cart/change.js',
+      data: {
+        id: itemKey,
+        quantity: newQuantity
+      },
+      dataType: 'json',
+      success: function() {
+        // Reload the page to reflect updated cart
+        location.reload();
+      },
+      error: function(xhr) {
+        console.error('Error updating cart:', xhr);
+        alert('Unable to update cart. Please try again.');
+      }
+    });
+  });
+});
 </script>
   
   {% schema %}

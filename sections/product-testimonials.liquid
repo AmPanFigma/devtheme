@@ -1,0 +1,55 @@
+<section class="our-categories">
+    <div class="container-fluid">
+        <div class="heading center with-pill">
+            <div class="pillwrap">
+                <div class="heading-pill yellow">{{ section.settings.categories_subheading }}</div>
+            </div>
+            <h3>{{ section.settings.categories_heading }}</h3>
+        </div>
+        <div class="reviewsappwrap">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when '@app' %}
+                  
+              {% endcase %}
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+  
+  {% schema %}
+{
+  "name": "Product Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "categories_heading",
+      "label": "Testimonials Heading",
+      "default": "Worth Raving About"
+    },
+    {
+      "type": "text",
+      "id": "categories_subheading",
+      "label": "Testimonials Subheading",
+      "default": "testimonials"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Testimonials",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "@app"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+  

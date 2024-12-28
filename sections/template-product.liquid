@@ -109,12 +109,15 @@
                     <div class="title">
                       <h1>{{ product.title }}</h1>
                     </div>
-
+                    {% when '@app' %}
+                        {% render block %}
+                    
+                    {% when 'price' %}
                     <div class="price" id="price-{{ section.id }}">
                       <p class="sell-price">
                           {{ product.price | money_without_trailing_zeros }}
                       </p>
-                  </div>
+                    </div>
 
                   {% when 'description' %}
                     <div class="pro-desc">
@@ -154,7 +157,7 @@
                       {% endif %}
                     </div>
                     
-
+                    {% when 'variant_selector' %}
                     <div class="variant-selector">
                       {% unless product.has_only_default_variant %}
                         <div class="variant-selector">
@@ -189,6 +192,7 @@
                     </div>
 
                     <div class="form-selecot-button">
+                      {% when 'qunatity_selector' %}
                       <div class="bc-quan-wrapper">
                         <div class="bn-quan">
                           <div class="quantity">
@@ -212,6 +216,7 @@
                         <div class="bc-quan-disc"></div>
                       </div>
   
+                      {% when 'checkout_buttons' %}
                       <div class="submit">
                         <button type="submit" name="add" class="custom-button black white" {% if selected_variant.available == false %}disabled{% endif %}>
                           {% if selected_variant.available == false %}
@@ -222,47 +227,50 @@
                         </button>
                       </div>
                     </div>
+
+                    {% when 'accordions' %}
+                    <div class="product-accordions">
+                      <div class="pa-item">
+                        <div class="pa-head">
+                          <p>Product Details</p> <!-- Question (Name) -->
+                          <div class="pa-circle"></div>
+                        </div>
+                        <div class="pa-ans" style="display: none;">
+                          <div class="panas-in">
+                            {{ product.metafields.custom.product_details }} <!-- Data (Description) -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pa-item">
+                        <div class="pa-head">
+                          <p>Refund Policy</p> <!-- Question (Name) -->
+                          <div class="pa-circle"></div>
+                        </div>
+                        <div class="pa-ans" style="display: none;">
+                          <div class="panas-in">
+                            {{ product.metafields.custom.refund_policy }} <!-- Data (Description) -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pa-item">
+                        <div class="pa-head">
+                          <p>Shipping</p> <!-- Question (Name) -->
+                          <div class="pa-circle"></div>
+                        </div>
+                        <div class="pa-ans" style="display: none;">
+                          <div class="panas-in">
+                            {{ product.metafields.custom.shipping }} <!-- Data (Description) -->
+                          </div>
+                        </div>
+                      </div>
+                  </div>
                 {% else %}
                   {% endcase %}
                 {% endfor %}
               {% endform %}
             </ajax-cart-product-form>
 
-            <div class="product-accordions">
-              <div class="pa-item">
-                <div class="pa-head">
-                  <p>Product Details</p> <!-- Question (Name) -->
-                  <div class="pa-circle"></div>
-                </div>
-                <div class="pa-ans" style="display: none;">
-                  <div class="panas-in">
-                    {{ product.metafields.custom.product_details }} <!-- Data (Description) -->
-                  </div>
-                </div>
-              </div>
-              <div class="pa-item">
-                <div class="pa-head">
-                  <p>Refund Policy</p> <!-- Question (Name) -->
-                  <div class="pa-circle"></div>
-                </div>
-                <div class="pa-ans" style="display: none;">
-                  <div class="panas-in">
-                    {{ product.metafields.custom.refund_policy }} <!-- Data (Description) -->
-                  </div>
-                </div>
-              </div>
-              <div class="pa-item">
-                <div class="pa-head">
-                  <p>Shipping</p> <!-- Question (Name) -->
-                  <div class="pa-circle"></div>
-                </div>
-                <div class="pa-ans" style="display: none;">
-                  <div class="panas-in">
-                    {{ product.metafields.custom.shipping }} <!-- Data (Description) -->
-                  </div>
-                </div>
-              </div>
-          </div>
+            
         </div>
 
 
@@ -271,16 +279,6 @@
     </div>
 </section>
 
-<section class="our-categories">
-  <div class="container-fluid">
-      <div class="heading center with-pill">
-          <div class="pillwrap">
-              <div class="heading-pill yellow">testimonials</div>
-          </div>
-          <h3>Worth Raving About</h3>
-      </div>
-  </div>
-</section> 
 
 <section class="bestsellers padding">
   <div class="container-fluid">
@@ -526,157 +524,98 @@
 
 </script>
 
-  {% schema %}
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
     {
-      "name": "Product",
+      "type": "richtext",
+      "id": "shipping",
+      "label": "Shipping Text"
+    },
+    {
+      "type": "richtext",
+      "id": "return",
+      "label": "Return Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "@app",
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "variant_selector",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1
+    },
+    {
+      "type": "checkout_buttons",
+      "name": "Checkout Buttons",
+      "limit": 1,
       "settings": [
         {
-          "type": "richtext",
-          "id": "shipping",
-          "label": "Shipping text"
-        }, {
-          "type": "richtext",
-          "id": "return",
-          "label": "Return text"
+          "type": "page",
+          "id": "select_page",
+          "label": "Select Page"
         }
-      ],
+      ]
+    },
+    {
+      "type": "accordions",
+      "name": "Accordions",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Products",
       "blocks": [
         {
-          "type": "title",
-          "name": "Title",
-          "limit": 1
+          "type": "title"
         },
         {
-          "type": "price",
-          "name": "Price",
-          "limit": 1
+          "type": "price"
         },
         {
-          "type": "variant_selector",
-          "name": "Variant Selector",
-          "limit": 1
+          "type": "description"
         },
         {
-          "type": "quantity",
-          "name": "Quantity",
-          "limit": 1
-        }, {
-          "type": "description",
-          "name": "Description",
-          "limit": 1
-        },{
-          "type": "pincode",
-          "name": "pincode",
-          "limit": 1
-        }, {
-          "type": "checkout_buttons",
-          "name": "Checkout Buttons",
-          "limit": 1,
-          "settings": [
-            {
-              "type": "page",
-              "id": "select-page",
-              "label": "Select Page"
-            }
-          ]
-        }, {
-          "type": "accordions",
-          "name": "Accordions",
-          "limit": 1
-        }, {
-          "type": "purchase_plan",
-          "name": "Purchase Plan",
-          "limit": 1
-        }, {
-          "type": "@app"
-        }, {
-          "type": "ring-guide",
-          "name": "Ring Guide",
-          "settings": [
-            {
-              "type": "text",
-              "id": "group-item1",
-              "label": "Group Item 1"
-            },
-            {
-              "type": "text",
-              "id": "group-item2",
-              "label": "Group Item 2"
-            },
-            {
-              "type": "text",
-              "id": "group-item3",
-              "label": "Group Item 3"
-            },
-            {
-              "type": "text",
-              "id": "group-item4",
-              "label": "Group Item 4"
-            }, {
-              "type": "text",
-              "id": "group-item5",
-              "label": "Group Item 5"
-            }, {
-              "type": "text",
-              "id": "group-item6",
-              "label": "Group Item 6"
-            }, {
-              "type": "text",
-              "id": "group-item7",
-              "label": "Group Item 7"
-            }, {
-              "type": "text",
-              "id": "group-item8",
-              "label": "Group Item 8"
-            }
-          ]
-        }, {
-          "type": "ring-guide-heading",
-          "name": "Ring Guide Heading",
-          "limit": 1,
-          "settings": [
-            {
-              "type": "richtext",
-              "id": "modal-heading",
-              "label": "Modal Heading"
-            },
-            {
-              "type": "text",
-              "id": "head1",
-              "label": "Heading 1"
-            },
-            {
-              "type": "text",
-              "id": "head2",
-              "label": "Heading 2"
-            },
-            {
-              "type": "text",
-              "id": "head3",
-              "label": "Heading 3"
-            }, {
-              "type": "text",
-              "id": "head4",
-              "label": "Heading 4"
-            }, {
-              "type": "text",
-              "id": "head5",
-              "label": "Heading 5"
-            }, {
-              "type": "text",
-              "id": "head6",
-              "label": "Heading 6"
-            }, {
-              "type": "text",
-              "id": "head7",
-              "label": "Heading 7"
-            }, {
-              "type": "text",
-              "id": "head8",
-              "label": "Heading 8"
-            }
-          ]
+          "type": "variant_selector"
+        },
+        {
+          "type": "quantity"
+        },
+        {
+          "type": "checkout_buttons"
+        },
+        {
+          "type": "accordions"
         }
       ]
     }
-  {% endschema %}
+  ]
+}
+{% endschema %}
+
+
