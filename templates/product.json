@@ -69,8 +69,8 @@
         "accordions"
       ],
       "settings": {
-        "shipping": "<p>dummy text</p>",
-        "return": "<p>dummy text</p>"
+        "sizeguideImage_1": "shopify://shop_images/image_2.png",
+        "sizeguideImage_2": "shopify://shop_images/image_3.png"
       }
     },
     "product_testimonials_Ezh39M": {
