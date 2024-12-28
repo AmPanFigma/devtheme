@@ -279,6 +279,27 @@
     </div>
 </section>
 
+<div class="join-club">
+  <div class="jc-wrapper">
+    <div class="jc-form-head">
+      <h5>Size Guide</h5>
+      <div class="jc-close">
+        {% render 'cross-icon' %}
+      </div>
+    </div>
+    <div class="jc-form-wrap">
+      <div class="sizeguide-wrap">
+        <div class="sg-image">
+          <img src="{{ section.settings.sizeguideImage_1 | img_url: 'master' }}" alt="Size Guide Image">
+        </div>
+        <div class="sg-image">
+          <img src="{{ section.settings.sizeguideImage_2 | img_url: 'master' }}" alt="Size Guide Image">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <script defer>
     class VariantSelector extends HTMLElement {
@@ -496,14 +517,14 @@
   "name": "Product",
   "settings": [
     {
-      "type": "richtext",
-      "id": "shipping",
-      "label": "Shipping Text"
+      "type": "image_picker",
+      "id": "sizeguideImage_1",
+      "label": "Size Guide Image 1"
     },
     {
-      "type": "richtext",
-      "id": "return",
-      "label": "Return Text"
+      "type": "image_picker",
+      "id": "sizeguideImage_2",
+      "label": "Size Guide Image 2"
     }
   ],
   "blocks": [
