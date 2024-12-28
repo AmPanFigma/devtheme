@@ -95,10 +95,19 @@
         "categories_heading": "Worth Raving About",
         "categories_subheading": "testimonials"
       }
+    },
+    "you_may_like_GayKJV": {
+      "type": "you-may-like",
+      "settings": {
+        "section_heading": "You May Also Like",
+        "default_subheading": "Why Stop At Just One?",
+        "product_heading_prefix": "More Like"
+      }
     }
   },
   "order": [
     "template-product",
-    "product_testimonials_Ezh39M"
+    "product_testimonials_Ezh39M",
+    "you_may_like_GayKJV"
   ]
 }
