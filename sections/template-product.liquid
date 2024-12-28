@@ -222,7 +222,7 @@
                           {% if selected_variant.available == false %}
                             Sold Out
                           {% else %}
-                            Add To Bag
+                            Add To Cart
                           {% endif %}
                         </button>
                       </div>
@@ -278,39 +278,6 @@
       </div>
     </div>
 </section>
-
-
-<section class="bestsellers padding">
-  <div class="container-fluid">
-      <div class="heading center with-pill">
-          <div class="pillwrap">
-              <div class="heading-pill yellow">you may also like</div>
-          </div>
-          <h3>{% if product.title %} More Like {{ product.title }} {% else %} Why Stop At Just One? {% endif %}</h3>
-      </div>
-      <div class="bestseller-product-grid">
-          <div class="collection-grid">
-              {% assign current_collection_handle = collection.handle %}
-              {% if current_collection_handle == blank %}
-                  {% assign current_collection_handle = product.collections.first.handle %}
-              {% endif %}
-              {% assign displayed_products = 0 %}
-              {% for related_product in product.collections.first.products %}
-                  {% if related_product.id != product.id %}
-                      <div class="product-card-wrapper">
-                          {% render 'product-card', product: related_product %}
-                      </div>
-                      {% assign displayed_products = displayed_products | plus: 1 %}
-                  {% endif %}
-                  {% if displayed_products == 4 %}
-                      {% break %}
-                  {% endif %}
-              {% endfor %}
-          </div>
-      </div>
-  </div>
-</section>
-
 
 
   <script defer>
