@@ -1,4 +1,4 @@
-<section class="our-categories">
+<section class="our-categories product-testimonials">
     <div class="container-fluid">
         <div class="heading center with-pill">
             <div class="pillwrap">
@@ -10,7 +10,7 @@
             {% for block in section.blocks %}
               {% case block.type %}
                 {% when '@app' %}
-                  
+                    {% render block %}
               {% endcase %}
             {% endfor %}
         </div>
@@ -36,19 +36,11 @@
   ],
   "blocks": [
     {
-      "type": "@app"
-    }
+        "type": "@app",
+    },
   ],
   "presets": [
-    {
-      "name": "Product Testimonials",
-      "category": "Custom",
-      "blocks": [
-        {
-          "type": "@app"
-        }
-      ]
-    }
+    
   ]
 }
 {% endschema %}
