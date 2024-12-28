@@ -35,11 +35,13 @@
                   <div class="prod-price">
                     <p>{{ line_item.final_line_price | money }}</p>
                   </div>
-                  {% if line_item.variant %}
+                  {% if line_item.variant.options.size > 0 and line_item.product.variants.size > 1 %}
                     <div class="prod-variant">
-                    <p>Size: <span>{{ line_item.variant.title }}</span></p>
+                      <p>Size: <span>{{ line_item.variant.options[0] }}</span></p>
                     </div>
-                    {% endif %}
+                  {% endif %}
+                  <!-- <p>{{ line_item.variant | json }}</p> -->
+
                   <div class="prod-quan-con">
                      {% if line_item.selling_plan_allocation %}
                          {% else %}

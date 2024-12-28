@@ -29,9 +29,12 @@
                             
                             <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">{% render 'delete-icon' %}</a>
                         </div>
-                        <div class="cart-page-variant">
-                            <p>Size: {{ item.variant.title }}</p>
-                        </div>
+                        
+                        {% if item.variant.options.size > 0 and item.product.variants.size > 1 %}
+                          <div class="cart-page-variant">
+                            <p>Size: {{ item.variant.options[0] }}</p>
+                          </div>
+                        {% endif %}
                         <p class="item-price">{{ item.price | money }}</p>
                       </div>
                       <div class="quantity-wrapper">
@@ -114,11 +117,10 @@
           </div>
         {% else %}
           <div class="cart-empty">
-            <h1 class="head-text">{{ section.settings.cart-empty-head }}</h1>
-            <a href="{{ routes.all_products_collection_url }}" class="primary-button black-green">
-  
+            <h3 class="head-text">{{ section.settings.cart-empty-head }}</h3>
+            <p class="head-text">{{ section.settings.cart-empty-para }}</p>
+            <a href="{{ routes.all_products_collection_url }}" class="custom-button black white">
               {{ section.settings.cart-empty-cta }}
-  
             </a>
           </div>
         {% endif %}
@@ -188,6 +190,12 @@
           "id": "cart-empty-head",
           "label": "Heading when Cart is Empty",
           "default": "Cart Empty"
+        },
+        {
+          "type": "text",
+          "id": "cart-empty-para",
+          "label": "Paragraph when Cart is Empty",
+          "default": "There are no products in your cart."
         },
         {
           "type": "text",

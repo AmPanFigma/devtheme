@@ -2164,6 +2164,9 @@ pointer-events: none;
 /* Error Page CSS */
 
 /* Cart Page CSS */
+.cart-heading {
+    text-align: center;
+}
 .cart-heading h3 {
     text-transform: capitalize;
 }
@@ -2177,6 +2180,13 @@ pointer-events: none;
 }
 .cart-con .cart-info {
     width: 60%;
+}
+.cart-con .cart-empty {
+    width: 100%;
+    text-align: center;
+}
+.cart-con .cart-empty h3 {
+    font-size: 32px;
 }
 .cart-txt {
     display: flex;
@@ -2214,7 +2224,7 @@ pointer-events: none;
     padding: 15px 0;
 }
 .item-desp .item-price {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #202322;
     text-transform: uppercase;
@@ -2236,7 +2246,7 @@ pointer-events: none;
     margin-bottom: 30px;
 } */
 .cart-page-variant p {
-    font-size: 16px;
+    font-size: 14px;
 }
 .quantity {
     gap: 20px;
@@ -2310,7 +2320,8 @@ pointer-events: none;
 }
 .cart-section .refund-rr {
     color: #989898;
-    margin-top: 20px;
+    margin-top: 60px;
+    text-align: center;
 }
 .cart-section .refund-rr a {
     color: #FE5F99;
