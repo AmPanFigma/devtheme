@@ -43,6 +43,10 @@
           "type": "variant_selector",
           "settings": {}
         },
+        "qunatity_selector_nnDgPW": {
+          "type": "qunatity_selector",
+          "settings": {}
+        },
         "checkout_buttons": {
           "type": "checkout_buttons",
           "settings": {
@@ -60,6 +64,7 @@
         "loox_reviews_loox_rating_yFd6EF",
         "description",
         "variant_selector",
+        "qunatity_selector_nnDgPW",
         "checkout_buttons",
         "accordions"
       ],
