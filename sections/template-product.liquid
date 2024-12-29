@@ -165,7 +165,7 @@
                             <div class="varient-heading">
                               <p>Select Size</p>
                             </div>
-                            <div class="sizeChart"><a href="">Size Chart</a></div>
+                            <div class="sizeChart"><a href="javascript:void(0)" class="size-modal">Size Chart</a></div>
                           </div>
                           <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                             <ul id="variant-options">
@@ -287,12 +287,12 @@
         {% render 'cross-icon' %}
       </div>
     </div>
-    <div class="jc-form-wrap">
-      <div class="sizeguide-wrap">
-        <div class="sg-image">
+    <div class="jc-form-wrap sguide-in">
+      <div class="sguide-images">
+        <div class="sgimage-item">
           <img src="{{ section.settings.sizeguideImage_1 | img_url: 'master' }}" alt="Size Guide Image">
         </div>
-        <div class="sg-image">
+        <div class="sgimage-item">
           <img src="{{ section.settings.sizeguideImage_2 | img_url: 'master' }}" alt="Size Guide Image">
         </div>
       </div>
@@ -481,6 +481,19 @@
             }
         }
     })
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('.size-modal').click(function(){
+      $('.join-club').addClass('active');
+      $('body').addClass('stay');
+    });
+    $('.jc-close').click(function(){
+      $('.join-club').removeClass('active');
+      $('body').removeClass('stay');
+    });
   });
 </script>
   

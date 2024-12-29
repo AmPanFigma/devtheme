@@ -18,6 +18,9 @@
 body {
     font-family: var(--outfit);
 }
+body.stay {
+    overflow: hidden;
+}
 h1,h2,h3,h4,h5,h6 {
     font-family: var(--outfit);
     font-style: normal;
@@ -1728,6 +1731,56 @@ variant-selector ul li span {
 .pa-item .pa-ans {
     padding: 0 30px 40px;
 }
+.join-club {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: #00000057;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .4s all ease;
+    clip-path: inset(0 0 100% 0);
+}
+.join-club.active {
+    transition: 1s all ease;
+    clip-path: inset(0 0 0% 0);
+}
+.jc-wrapper {
+    background: #fff;
+    display: flex;
+    width: 70%;
+    padding: 30px;
+    flex-direction: column;
+    gap: 20px;
+}
+.jc-form-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.jc-form-head h5 {
+    margin-bottom: 0;
+}
+.jc-form-head .jc-close {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    cursor: pointer;
+}
+.jc-form-head .jc-close svg {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
 /* Product Page CSS Ends */
 
 /* Page CSS Ends */
@@ -2349,6 +2402,73 @@ pointer-events: none;
 }
 /* Cart Page CSS */
 
+/* Account Pages CSS */
+.accounts-page {
+    padding: 100px 0;
+    background-image: none;
+    background-color: #fff;
+}
+.accounts-page .section-stack {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 50px;
+}
+.top-stack {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    justify-items: start;
+    align-content: start;
+    gap: 10px;
+}
+.ss-top p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0;
+}
+.ss-top p span {
+    display: flex;
+}
+.ss-top svg path {
+    /* stroke: #fff; */
+}
+.ss-top a {
+    color: #111;
+    text-transform: uppercase;
+}
+.ss-bottom {
+    display: flex;
+    flex-direction: column;
+}
+.ss-bottom h3 {
+    /* color: #fff; */
+    font-size: 32px;
+}
+.ss-bottom p {
+    /* color: #fff; */
+    margin-bottom: 0;
+}
+.bottom-stack {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 14rem;
+    gap: 40px;
+}
+.orders-head {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b6b6b6;
+}
+.orders-head p {
+    text-transform: uppercase;
+    margin-bottom: 0;
+    /* color: #fff; */
+}
+.orders-details {
+    margin-top: 20px;
+}
+.orders-details .custom-button {
+    margin-top: 20px;
+}
+
 /* Responsive CSS */
 
 @media(max-width:1500px){
@@ -2373,6 +2493,9 @@ pointer-events: none;
     .rs-item .rsi-title p {
         font-size: 26px;
         line-height: 38px;
+    }
+    .jc-wrapper {
+        width: 60%;
     }
 }
 @media(max-width:1200px){
@@ -2493,6 +2616,9 @@ pointer-events: none;
     }
     .cart-summary {
         width: 35%;
+    }
+    .jc-wrapper {
+        width: 72%;
     }
 }
 @media(max-width:991px){
@@ -2653,6 +2779,9 @@ pointer-events: none;
     }
     .cart-summary {
         width: 100%;
+    }
+    .jc-wrapper {
+        width: 80%;
     }
 }
 @media(max-width: 767px){
@@ -2919,6 +3048,11 @@ pointer-events: none;
     }
     .cart-txt .item-desp {
         padding: 12px 0;
+    }
+    .jc-wrapper {
+        height: 80vh;
+        overflow: hidden;
+        overflow-y: auto;
     }
 }
 @media(max-width: 400px){
