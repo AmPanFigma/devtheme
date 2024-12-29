@@ -1475,10 +1475,17 @@ ajax-cart-quantity input[type=number]::-webkit-outer-spin-button {
     overflow: hidden;
     border-radius: 14px;
 }
-.product-featured-image img {
+.product-featured-image img, .product-featured-image video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.product-featured-image video:fullscreen {
+    object-fit: contain;
+}
+.product-featured-image.video-ratio {
+    grid-column: span 2 / span 2;
+    aspect-ratio: 7 / 4;
 }
 .pro-cfeatures .pdr-item {
     gap: 10px;
@@ -2764,7 +2771,7 @@ pointer-events: none;
         border-radius: 10px;
         overflow: hidden;
     }
-    .product-img.pos-rel img {
+    .product-img.pos-rel img, .product-img.pos-rel video {
         width: 100%;
         height: 100%;
         object-fit: cover;

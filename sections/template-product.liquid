@@ -22,6 +22,7 @@
       <div class="pi-product">
         <div class="pro-img" >
           <div class="pro-featured-wrapper">
+            <!-- First loop: Display the first 2 media (images or videos) -->
             <!-- First loop: Display first 2 images -->
             {% for media in product.media limit:2 %}
             <div class="product-featured-image">
@@ -31,6 +32,7 @@
                 id="image{{ forloop.index }}">
             </div>
             {% endfor %}
+
 
             </div>
 
@@ -65,17 +67,32 @@
             </div>
             </div>
             <div class="pro-featured-wrapper">
-            <!-- Second loop: Display all images except the first 2 -->
-            {% for media in product.media offset:2 %}
-            <div class="product-featured-image">
-              <img
-                src="{{ media | img_url: 'large' }}"
-                alt="{{ media.preview_image.alt }}"
-                id="image{{ forloop.index }}">
+              <!-- Loop through media objects, skipping the first 2 -->
+              {% for media in product.media offset:2 %}
+                <div class="product-featured-image {% if media.media_type == 'video' or media.media_type == 'external_video' %}video-ratio{% endif %}">
+                  {% case media.media_type %}
+                    {% when 'image' %}
+                      <!-- Display image -->
+                      <img
+                        src="{{ media | img_url: 'large' }}"
+                        alt="{{ media.preview_image.alt }}"
+                        id="image{{ forloop.index }}">
+                    {% when 'video' %}
+                      <!-- Display video -->
+                      <video
+                        playsinline="playsinline" autoplay muted controls
+                        id="video{{ forloop.index }}"
+                        poster="{{ media.preview_image.src }}">
+                        {% for source in media.sources %}
+                          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                        {% endfor %}
+                        Your browser does not support the video tag.
+                      </video>
+                  {% endcase %}
+                </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-
-          </div>
+            
         </div>
         <div class="pro-img mobile">
           <div class="product-carousel">
