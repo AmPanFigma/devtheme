@@ -18,9 +18,9 @@
                         {% for block in section.blocks %}
                           <div class="item">
                             <div class="ugc-img">
-                              {% if block.settings.video_url %}
-                                <video controls>
-                                  <source src="{{ block.settings.video_url | file_url }}" type="video/mp4">
+                            {% if block.settings.video_file %}
+                                <video controls poster="{{ block.settings.poster_image | img_url: 'master' }}">
+                                  <source src="{{ block.settings.video_file | img_url: 'master' }}" type="video/mp4">
                                   Your browser does not support the video tag.
                                 </video>
                               {% else %}
@@ -87,11 +87,16 @@
       "type": "video_block",
       "name": "Video Block",
       "settings": [
-        {
-            "type": "url",
-            "id": "video_url",
-            "label": "Video URL"
-        }
+      {
+        "type": "image_picker",
+        "id": "video_file",
+        "label": "Upload Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "poster_image",
+        "label": "Upload Poster Image"
+      }
       ]
     }
   ],
