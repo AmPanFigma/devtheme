@@ -19,8 +19,27 @@
                           <div class="item">
                             <div class="ugc-img">
                                 {% if block.settings.video != blank %}
-                                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true }}
-                              {% endif %}
+                                <div class="video-wrapper">
+                                    <img 
+                                        src="{{ block.settings.poster_image | file_url }}" 
+                                        alt="Video Poster" 
+                                        class="video-poster" 
+                                        onclick="playVideo(this)" 
+                                        style="cursor: pointer;">
+                                    {{ block.settings.video | video_tag: autoplay: false, loop: true, muted: true, playsinline: true }}
+                                    <div class="playbtn" onclick="playVideo(this)">
+                                        <svg class="play-icon" width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="20.0195" cy="20.0985" r="20" fill="black" fill-opacity="0.56"/>
+                                            <path d="M15.0039 11.0771L29.0371 20.0985L15.0039 29.1198V11.0771Z" fill="white"/>
+                                        </svg>    
+                                        <svg class="pause-icon" width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                            <circle cx="20.0195" cy="20.0985" r="20" fill="black" fill-opacity="0.56"/>
+                                            <rect x="15" y="11" width="4" height="18" fill="white"/>
+                                            <rect x="22" y="11" width="4" height="18" fill="white"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                {% endif %}
                             </div>
                           </div>
                         {% endfor %}
@@ -53,6 +72,29 @@
       })
     });
   </script>
+
+<script>
+    function playVideo(el) {
+        const wrapper = el.closest('.video-wrapper');
+        const video = wrapper.querySelector('video');
+        const poster = wrapper.querySelector('.video-poster');
+        const playIcon = wrapper.querySelector('.play-icon');
+        const pauseIcon = wrapper.querySelector('.pause-icon');
+
+        if (video) {
+            if (video.paused) {
+                video.play();
+                poster.style.display = 'none';
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                video.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+    }
+</script>
 
 {% schema %}
 {
