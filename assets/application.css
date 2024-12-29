@@ -1019,6 +1019,16 @@ ajax-cart-quantity input[type=number]::-webkit-outer-spin-button {
     left: 45%;
     top: 40%;
     cursor: pointer;
+    z-index: 2;
+}
+.video-wrapper img.video-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
 }
 /* UGC Section Ends */
 
@@ -2627,6 +2637,17 @@ pointer-events: none;
     .container-fluid {
         max-width: 1400px;
     }
+    .ugc-section .ugc-in {
+        gap: 80px;
+    }
+}
+@media(max-width:1400px){
+    .ugc-in .ugc-left {
+        width: 35%;
+    }
+    .ugc-in .ugc-right {
+        width: 65%;
+    }
 }
 @media(max-width:1300px){
     .collection-background img {
@@ -2647,6 +2668,18 @@ pointer-events: none;
         line-height: 38px;
     }
     .jc-wrapper {
+        width: 60%;
+    }
+    .ugc-headings h3 > span span {
+        font-size: 26px!important;
+    }
+    .ugc-section .ugc-in {
+        gap: 50px;
+    }
+    .ugc-in .ugc-left {
+        width: 40%;
+    }
+    .ugc-in .ugc-right {
         width: 60%;
     }
 }
@@ -2947,6 +2980,18 @@ pointer-events: none;
     .shipping-calc .field {
         width: 100%;
     }
+    .ugc-section .ugc-in {
+        flex-direction: column;
+    }
+    .ugc-in .ugc-left, .ugc-in .ugc-right {
+        width: 100%;
+    }
+    .ugc-left .ugc-headings {
+        text-align: center;
+    }
+    .ugc-section {
+        padding: 50px 0;
+    }
 }
 @media(max-width: 767px){
     .heading {
@@ -3233,6 +3278,12 @@ pointer-events: none;
     }
     .newsletter-subs-wrap {
         width: 90%;
+    }
+    .ugc-img {
+        aspect-ratio: 2/3;
+    }
+    .ugc-section {
+        padding: 30px 0;
     }
 }
 @media(max-width: 400px){
