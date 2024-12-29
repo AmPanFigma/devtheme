@@ -1511,7 +1511,12 @@ ajax-cart-quantity input[type=number]::-webkit-outer-spin-button {
     font-weight: 300;
     font-size: 30px;
     color: #111111;
-    line-height: 32px;;
+    line-height: 32px;
+    margin-bottom: 0;
+}
+.pro-description .shopify-app-block {
+    margin-bottom: 30px;
+    margin-top: 10px;
 }
 .pro-description .pro-desc p {
     font-size: 16px;
