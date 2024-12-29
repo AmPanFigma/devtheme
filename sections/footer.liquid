@@ -53,26 +53,52 @@
                 <div class="fcolm-third">
                     <div class="fcolt-in">
                         <div class="subscribe">
-                            <h5>Sign Up and Save!</h5>
-                            <p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                            <h5>{{ section.settings.sign-in-head }}</h5>
+                            <p>{{ section.settings.pre2-subhead }}</p>
+                            {% form 'customer'
+                                , id: 'footer-newsletter-form'
+                                , class: 'footer-newsletter-form' %}
+                                <div class="newsletter-subs-wrap">
+                                <input
+                                    type="email"
+                                    name="contact[email]"
+                                    id="footer-newsletter-email"
+                                    placeholder="Enter Your Email"
+                                    aria-label="Email address"
+                                    required>
+                                <button
+                                    type="submit"
+                                    class="footer-newsletter-button lumi-filled-cta white"
+                                    name="subscribe">
+                                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.1875 4.95264L12.3074 4.95264" stroke="#343434" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8.80762 1.45264L12.3076 4.95264L8.80762 8.45264" stroke="#343434" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                </div>
+
+                                {% if form.posted_successfully? %}
+                                <script>
+                                    window.location.href = "/pages/thank-you";
+                                </script>
+                                {% endif %}
+
+                                {% if form.errors %}
+                                <div class="form-errors">
+                                    {{ form.errors | default_errors }}
+                                </div>
+                                {% endif %}
+                            {% endform %}
                         </div>
                         <div class="footer-social">
                             <div class="fsocial-in">
+                                {% for block in section.blocks %}
                                 <div class="fs-item">
-                                    <a href="">
-                                        <img src="" alt="">
+                                    <a href="{{ block.settings.social_link }}" target="_blank" rel="noopener noreferrer">
+                                        <img src="{{ block.settings.social_image | image_url }}" alt="{{ block.settings.social_alt_text }}">
                                     </a>
                                 </div>
-                                <div class="fs-item">
-                                    <a href="">
-                                        <img src="" alt="">
-                                    </a>
-                                </div>
-                                <div class="fs-item">
-                                    <a href="">
-                                        <img src="" alt="">
-                                    </a>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -111,11 +137,50 @@
         "type": "link_list",
         "id": "menu_3",
         "label": "Footer Menu 3"
+      },
+      {
+        "type": "text",
+        "id": "sign-in-head",
+        "label": "Sign Up Heading",
+        "default": "Sign Up and Save!"
+      }, 
+      {
+        "type": "text",
+        "id": "pre2-subhead",
+        "label": "Pre Footer Right Sub-Heading",
+        "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
       }
+    ],
+    "blocks": [
+        {
+        "type": "social_link",
+        "name": "Social Link",
+        "settings": [
+            {
+            "type": "url",
+            "id": "social_link",
+            "label": "Social Media URL"
+            },
+            {
+            "type": "image_picker",
+            "id": "social_image",
+            "label": "Social Media Icon"
+            },
+            {
+            "type": "text",
+            "id": "social_alt_text",
+            "label": "Alt Text"
+            }
+        ]
+        }
     ],
     "presets": [
       {
         "name": "Footer Navigation",
+        "category": "Footer"
+      },
+      {
+        "name": "Footer Social Links",
         "category": "Footer"
       }
     ]
