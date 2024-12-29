@@ -201,9 +201,9 @@ header {
 }
 .hamburger .cross {
     position: absolute;
-    top: 30px;
+    top: 22px;
     bottom: 0;
-    right: 20px;
+    right: 4px;
     opacity: 0;
     transition: .4s all ease;
     z-index: 3;
@@ -542,6 +542,18 @@ footer p {
     height: 100%;
     display: flex;
     align-items: center;
+}
+.footer-social .fsocial-in {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7px;
+}
+.fs-item img {
+    transition: .2s ease all;
+}
+.fs-item:hover img {
+    transform: scale(1.12);
 }
 /* Footer CSS Ends */
 
@@ -2975,6 +2987,8 @@ pointer-events: none;
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        position: relative;
+        z-index: 2;
     }
     .header-menu-wrap {
         position: absolute;
@@ -2988,18 +3002,25 @@ pointer-events: none;
         left: 0;
         align-items: flex-start;
         padding: 20px;
-        padding-top: 70px;
+        padding-top: 80px;
         gap: 0;
         z-index: 1;
     }
-    .header-menu-wrap.active {
-        clip-path: inset(0 0 0 0%);
+    .header-in .header-menu-wrap {
         gap: 20px;
         justify-content: flex-start;
+    }
+    .header-menu-wrap.active {
+        clip-path: inset(0 0 0 0%);
+    }
+    .header-menu ,.header-right .hr-in .hm-in{
+        width: 100%;
     }
     .nav-links ul {
         flex-direction: column;
         align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
     .nav-links ul li.dropdown-link {
         padding: 0;
@@ -3007,6 +3028,10 @@ pointer-events: none;
     .header-left, .header-right {
         width: 100%;
         justify-content: flex-start;
+    }
+    .header-left {
+        border-top: 1px solid #111;
+        padding-top: 30px;
     }
     .dropdown-link .dd-con {
         position: relative;
@@ -3024,13 +3049,13 @@ pointer-events: none;
     }
     .nav-links ul li a {
         font-size: 16px;
-        color: #fff;
+        /* color: #fff; */
     }
     .nav-links ul li.dropdown-link > svg {
-        filter: invert(1);
+        /* filter: invert(1); */
     }
     .dd-con-wrap .dd-url .dd-title {
-        color: #fff;
+        /* color: #fff; */
     }
     .header-other-item .header-other {
         display: flex;
@@ -3062,14 +3087,14 @@ pointer-events: none;
     .custom-collection-title {
         margin-top: 0;
         white-space: nowrap;
-        color: #fff;
+        /* color: #fff; */
         font-weight: 400;
     }
     .dropdown-link .dd-con.big {
         margin-top: 10px;
     }
     .dd-img .custom-collection-item {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
     }
     .variant-selector ul li {
         padding: 10px;
