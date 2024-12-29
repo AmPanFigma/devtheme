@@ -74,9 +74,17 @@
       "footer": {
         "type": "footer",
         "settings": {
+          "footer_logo": "shopify://shop_images/hey-you-pups-logo.png",
+          "footer_logo_alt": "HeyYouPups Logo",
+          "footer_brand_desc": "HeyYouPups is THE brand of new generation pet accessories. With us, it's style and solidity every day!",
+          "footer_email_label": "email",
+          "footer_email": "info@heyyoupups.com",
           "menu_1": "footer-shop-menu",
           "menu_2": "footer-about-menu",
-          "menu_3": "about-help-menu"
+          "menu_3": "about-help-menu",
+          "sign-in-head": "Sign Up and Save!",
+          "pre2-subhead": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.",
+          "reserved_text": "HeyYouPups. All rights reserved."
         }
       },
       "my-ajax-cart": {
