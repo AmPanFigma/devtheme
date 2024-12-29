@@ -45,9 +45,6 @@
     },
     "ugc-section": {
       "type": "ugc-section",
-      "blocks": {
-        
-      },
       "settings": {
         "heading_text": "Make life with your dog look as",
         "yellow_text": "good",
