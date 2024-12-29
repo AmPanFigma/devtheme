@@ -73,6 +73,37 @@
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "social_link_AfTt9K": {
+            "type": "social_link",
+            "settings": {
+              "social_link": "https://tiktok.com/heyyoupups",
+              "social_image": "shopify://shop_images/ic_baseline-tiktok_1.svg",
+              "social_alt_text": "Tik Tok Logo"
+            }
+          },
+          "social_link_gtnXAd": {
+            "type": "social_link",
+            "settings": {
+              "social_link": "https://instagram.com/heyyoupups",
+              "social_image": "shopify://shop_images/ri_instagram-fill_4.svg",
+              "social_alt_text": "Instagram Logo"
+            }
+          },
+          "social_link_3GxCUw": {
+            "type": "social_link",
+            "settings": {
+              "social_link": "https://facebook.com/heyyoupups",
+              "social_image": "shopify://shop_images/ic_baseline-facebook_1.svg",
+              "social_alt_text": "Facebook Logo"
+            }
+          }
+        },
+        "block_order": [
+          "social_link_AfTt9K",
+          "social_link_gtnXAd",
+          "social_link_3GxCUw"
+        ],
         "settings": {
           "footer_logo": "shopify://shop_images/hey-you-pups-logo.png",
           "footer_logo_alt": "HeyYouPups Logo",
