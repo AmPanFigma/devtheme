@@ -962,6 +962,47 @@ ajax-cart-quantity input[type=number]::-webkit-outer-spin-button {
 }
 /* Category Section Ends */
 
+/* UGC Section Starts */
+.ugc-section {
+    padding: 100px 0;
+}
+.ugc-section .ugc-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+.ugc-in .ugc-left {
+    width: 32%;
+}
+.ugc-in .ugc-right {
+    width: 68%;
+}
+.ugc-headings h3 > span {
+    display: block;
+}
+.ugc-headings h3 > span span.yellow {
+    background-color: #FCDB00;
+    padding: 5px 20px 7px 20px;
+    color: #111111;
+    font-size: 32px;
+    border-radius: 30px;
+    transform: rotate(-5deg);
+    display: inline-block;
+    line-height: 28px;
+}
+.ugc-headings h3 > span span.pink {
+    background-color: #FE5F99;
+    padding: 5px 20px 7px 20px;
+    color: #111111;
+    font-size: 32px;
+    border-radius: 30px;
+    transform: rotate(5deg);
+    display: inline-block;
+    line-height: 28px;
+}
+/* UGC Section Ends */
+
 /* Collection Section Starts */
 .collection-grid {
     display: grid;

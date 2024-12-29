@@ -1,0 +1,105 @@
+<section class="ugc-section">
+    <div class="container-fluid">
+        <div class="ugc-in">
+            <div class="ugc-left">
+                <div class="ugc-headings">
+                    <h3>
+                        {{ section.settings.heading_text }} 
+                        <span>
+                            <span class="yellow">{{ section.settings.yellow_text }}</span> 
+                            as it <span class="pink">{{ section.settings.pink_text }}</span>
+                        </span>
+                    </h3>
+                </div>
+            </div>
+            <div class="ugc-right">
+                <div class="ugc-carousel">
+                    <div class="owl-carousel owl-theme">
+                        {% for block in section.blocks %}
+                          <div class="item">
+                            <div class="ugc-img">
+                              {% if block.settings.video_url %}
+                                <video controls>
+                                  <source src="{{ block.settings.video_url | file_url }}" type="video/mp4">
+                                  Your browser does not support the video tag.
+                                </video>
+                              {% else %}
+                                <p>No video available</p>
+                              {% endif %}
+                            </div>
+                          </div>
+                        {% endfor %}
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        $('.ugc-carousel .owl-carousel').owlCarousel({
+          loop:true,
+          margin:14,
+          dots: true,
+          nav:false,
+          responsiveClass:true,
+          responsive:{
+              0:{
+                  items:1
+              },
+              600:{
+                  items:2
+              },
+              1000:{
+                  items:3
+              }
+          }
+      })
+    });
+  </script>
+
+{% schema %}
+{
+  "name": "UGC Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Main Heading Text",
+      "default": "Make life with your dog look as"
+    },
+    {
+      "type": "text",
+      "id": "yellow_text",
+      "label": "Yellow Text",
+      "default": "good"
+    },
+    {
+      "type": "text",
+      "id": "pink_text",
+      "label": "Pink Text",
+      "default": "feels"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_block",
+      "name": "Video Block",
+      "settings": [
+        {
+            "type": "url",
+            "id": "video_url",
+            "label": "Video URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

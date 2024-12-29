@@ -43,6 +43,18 @@
         "spacer_height": 100
       }
     },
+    "ugc-section": {
+      "type":"ugc-section",
+      "settings": {
+
+      }
+    },
+    "spacer9": {
+      "type": "spacer",
+      "settings": {
+        "spacer_height": 100
+      }
+    },
     "our-collections": {
       "type": "our-collections",
       "settings": {
@@ -185,6 +197,8 @@
     "spacer",
     "our-categories",
     "spacer2",
+    "ugc-section",
+    "spacer9",
     "our-collections",
     "spacer3",
     "bestsellers",
