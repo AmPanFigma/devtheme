@@ -46,33 +46,8 @@
     "ugc-section": {
       "type": "ugc-section",
       "blocks": {
-        "video_block_Pbxpbh": {
-          "type": "video_block",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/65fc7a016ed646acb38fcdb4d07ac82a.mov",
-            "poster_image": "shopify://shop_images/bit-of-a-prick-harness-277861.jpg"
-          }
-        },
-        "video_block_HtqRkF": {
-          "type": "video_block",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/65fc7a016ed646acb38fcdb4d07ac82a.mov",
-            "poster_image": "shopify://shop_images/bit-of-a-prick-harness-844851.jpg"
-          }
-        },
-        "video_block_HtMAKe": {
-          "type": "video_block",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/65fc7a016ed646acb38fcdb4d07ac82a.mov",
-            "poster_image": "shopify://shop_images/bit-of-a-prick-harness-242247.jpg"
-          }
-        }
+        
       },
-      "block_order": [
-        "video_block_Pbxpbh",
-        "video_block_HtqRkF",
-        "video_block_HtMAKe"
-      ],
       "settings": {
         "heading_text": "Make life with your dog look as",
         "yellow_text": "good",
