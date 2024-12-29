@@ -5,15 +5,15 @@
                 <div class="fcolm-first">
                     <div class="footer-logo">
                         <a href="">
-                            <img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/hey-you-pups-logo.png?v=1733850931" alt="">
+                            <img src="{{ section.settings.footer_logo | master }}" alt="{{ section.settings.footer_logo_alt }}">
                         </a>
                     </div>
                     <div class="footer-brand-desc">
-                        <p>HeyYouPups is THE brand of new generation pet accessories. With us, it's style and solidity every day! </p>
+                        <p>{{ section.settings.footer_brand_desc }}</p>
                     </div>
                     <div class="footer-email">
-                        <p class="label">email</p>
-                        <p class="data"><a href="mailto:info@heyyoupups.com">info@heyyoupups.com</a></p>
+                        <p class="label">{{ section.settings.footer_email_label }}</p>
+                        <p class="data"><a href="mailto:{{ section.settings.footer_email }}">{{ section.settings.footer_email }}</a></p>
                     </div>
                 </div>
                 <div class="fcolm-sec">
@@ -110,7 +110,7 @@
         <div class="container-fluid">
             <div class="fb-in">
                 <div class="fbin-left">
-                    <p> <span><img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_1041.svg?v=1734242951" alt=""></span>HeyYouPups. All rights reserved.</p>
+                    <p> <span><img src="https://cdn.shopify.com/s/files/1/0602/5075/1185/files/Group_1041.svg?v=1734242951" alt=""></span>{{ section.settings.reserved_text }}</p>
                 </div>
                 <div class="fbin-right">
                     <p>Designed by <a href="">StudioTwo42</a></p>
@@ -123,6 +123,35 @@
 {
     "name": "Footer Navigation",
     "settings": [
+      {
+        "type": "image_picker",
+        "id": "footer_logo",
+        "label": "Footer Logo"
+      },
+      {
+        "type": "text",
+        "id": "footer_logo_alt",
+        "label": "Logo Alt Text",
+        "default": "HeyYouPups Logo"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_brand_desc",
+        "label": "Footer Brand Description",
+        "default": "HeyYouPups is THE brand of new generation pet accessories. With us, it's style and solidity every day!"
+      },
+      {
+        "type": "text",
+        "id": "footer_email_label",
+        "label": "Email Label",
+        "default": "email"
+      },
+      {
+        "type": "text",
+        "id": "footer_email",
+        "label": "Email Address",
+        "default": "info@heyyoupups.com"
+      },
       {
         "type": "link_list",
         "id": "menu_1",
@@ -149,7 +178,13 @@
         "id": "pre2-subhead",
         "label": "Pre Footer Right Sub-Heading",
         "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
-      }
+      },
+      {
+        "type": "text",
+        "id": "reserved_text",
+        "label": "Reserved Text",
+        "default": "HeyYouPups. All rights reserved."
+      },
     ],
     "blocks": [
         {
