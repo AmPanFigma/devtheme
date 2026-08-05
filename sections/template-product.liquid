@@ -100,7 +100,7 @@
               {% for media in product.media %}
                 <div class="item">
                   <div class="product-img pos-rel">
-                    {% render 'product-media' | media: media %}
+                    {% render 'product-media', media: media %}
                   </div>
                 </div>
               {% endfor %}
@@ -637,3 +637,13 @@
 {% endschema %}
 
 
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'product-media' | media: media %}"
+  to: "{% render 'product-media', media: media %}"
+  position: 4721..4763
+{% endcomment %}
